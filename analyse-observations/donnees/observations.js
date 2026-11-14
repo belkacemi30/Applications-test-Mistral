@@ -11,16 +11,16 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O1",
    "type": "orale",
-   "auteur": "[PERSONNE A] et [PERSONNE B]",
+   "auteur": "[PERSONNE-29f2cb3b] et [PERSONNE-046a3282]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
-   "texte": "[PERSONNE A] et [PERSONNE B] se déclarent favorables au projet, qui leur convient bien.",
+   "texte": "[PERSONNE-29f2cb3b] et [PERSONNE-046a3282] se déclarent favorables au projet, qui leur convient bien.",
    "contexte": ""
   },
   {
    "id": "O2",
    "type": "orale",
-   "auteur": "Mme [PERSONNE C] Evelyne",
+   "auteur": "Mme [PERSONNE-3b460e0d] [NOM]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "Le paysage du village va être défiguré car le village est en hauteur et a un point de vue plongeant sur la zone du projet. Le paysage de Saint Julien de Briola est très vallonné et bucolique, les habitants actuels sont venus rechercher cette qualité de la nature, les panneaux photovoltaïques vont transformer et dégrader le paysage. Les haies qui sont prévues pour masquer les panneaux photovoltaïques sont excessivement petites et leur pousse sera beaucoup trop longue pour masquer rapidement le parc photovoltaïque.",
@@ -29,7 +29,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O3",
    "type": "orale",
-   "auteur": "Mme [PERSONNE C] Evelyne",
+   "auteur": "Mme [PERSONNE-3b460e0d] [NOM]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "la valeur des maisons va être diminuée par la présence de cette dégradation de l'environnement visuel. Cette dévaluation immobilière est préjudiciable pour tous les propriétaires. Dans le village, toute la série des maisons qui ont une vue sur la vallée va donc être impactée par cette dévaluation.",
@@ -38,7 +38,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O4",
    "type": "orale",
-   "auteur": "Mme [PERSONNE C] Evelyne",
+   "auteur": "Mme [PERSONNE-3b460e0d] [NOM]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "les nombreux camions nécessaires pour la création de ce chantier vont perturber pendant de longs mois le trafic sur les routes très étroites (un seul véhicule passant à la fois) qui entourent Saint Julien de Briola. De plus, il est probable que ces nombreux camions dégradent les chaussées : qu'est-ce qu'il est prévu pour la remise en état ?",
@@ -47,7 +47,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O5",
    "type": "orale",
-   "auteur": "Mme [PERSONNE C] Evelyne",
+   "auteur": "Mme [PERSONNE-3b460e0d] [NOM]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "De plus ce trafic va être très bruyant, alors que le principal intérêt du village et justement d'être à l'écart des grandes routes et particulièrement silencieux. La traversée du village même est très complexe étant donnée l'étroitesse et le profil de la rue principale.",
@@ -56,7 +56,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O6",
    "type": "orale",
-   "auteur": "Mme [PERSONNE C] Evelyne",
+   "auteur": "Mme [PERSONNE-3b460e0d] [NOM]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "lors de mes nombreuses promenades autour de Saint Julien de Briola, j'ai constaté la présence du busard cendré. J'ai lu dans le dossier les impacts négatifs concernant autant les habitats que les zones de nidification. Même si les périodes de fauche sont retardées sur les prairies concernées par le projet, le busard cendré sera perturbé dans ses périodes de chasse, ce que je n'accepte pas.",
@@ -65,7 +65,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O7",
    "type": "orale",
-   "auteur": "[PERSONNE D]",
+   "auteur": "[PERSONNE-151b1495]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "il ne se prononce pas, car il attend d’étudier plus profondément le dossier, puis il déposera ses observations lors de la dernière permanence.",
@@ -74,7 +74,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O8",
    "type": "orale",
-   "auteur": "[PERSONNE E]",
+   "auteur": "[PERSONNE-40d9afb1]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "les prairies qui sont concernées par le projet sont incultes car de mauvaise qualité agronomique, et on ne peut pas espérer les utiliser mieux.",
@@ -83,7 +83,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O9",
    "type": "orale",
-   "auteur": "[PERSONNE E]",
+   "auteur": "[PERSONNE-40d9afb1]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "de ce fait le projet apporte un avantage pécunier pour l’agriculteur ce qui lui permet de continuer ses autres activités agricoles d’élevage bovin.",
@@ -92,7 +92,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O10",
    "type": "orale",
-   "auteur": "[PERSONNE E]",
+   "auteur": "[PERSONNE-40d9afb1]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "à titre personnel, je suis beaucoup plus favorable à la production d’électricité par des panneaux photovoltaïques que par la filière nucléaire.",
@@ -101,7 +101,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O11",
    "type": "orale",
-   "auteur": "[PERSONNE E]",
+   "auteur": "[PERSONNE-40d9afb1]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "je considère que la zone du parc photovoltaïque sera peu visible depuis les maisons du village de Saint Julien de Briola, hormis depuis une maison, et seulement depuis une petite fenêtre en hauteur qui correspond à une salle de bains. Ce qui est un impact visuel très faible.",
@@ -110,7 +110,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O12",
    "type": "orale",
-   "auteur": "[PERSONNE E]",
+   "auteur": "[PERSONNE-40d9afb1]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "concernant l’impact visuel paysager, la haie qui est prévue le long de la route principale masquera bien les panneaux.",
@@ -119,7 +119,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O13",
    "type": "orale",
-   "auteur": "[PERSONNE E]",
+   "auteur": "[PERSONNE-40d9afb1]",
    "permanence": "1) Première permanence le 12/11/2024 :",
    "date": "12/11/2024",
    "texte": "en tant qu’habitant de Saint Julien de Briola, je considère que les taxes que la commune va recevoir permettront un apport financier très intéressant, au bénéfice de l’ensemble des administrés de la commune. Cet aspect collectif me semble un avantage très important.",
@@ -128,7 +128,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O14",
    "type": "orale",
-   "auteur": "[PERSONNE F]",
+   "auteur": "[PERSONNE-7c6e0e6d]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "concernant la justification économique pour l’agriculteur, le projet actuel devait lui bénéficier en compensation d’une aide agricole qui lui avait été retirée. Or, la presse a bien diffusé la victoire de l’agriculteur après un procès, et donc il bénéficie maintenant de cette aide initiale. Ce qui rend caduque la justification première.",
@@ -137,7 +137,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O15",
    "type": "orale",
-   "auteur": "[PERSONNE F]",
+   "auteur": "[PERSONNE-7c6e0e6d]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "son expérience de gardien de vaches dans sa jeunesse lui permet d’affirmer que les vaches préfèrent les zones où l’herbe pousse le mieux au printemps et l’automne : les terrains exposés à la pluie et au soleil et surtout pas à l’ombre des arbres. Donc certainement pas sur les terrains situés sous les panneaux photovoltaïques qui manqueront de soleil et d’eau.",
@@ -146,7 +146,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O16",
    "type": "orale",
-   "auteur": "[PERSONNE F]",
+   "auteur": "[PERSONNE-7c6e0e6d]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "l’impact paysager lui semble inacceptable car le projet défigure les vues bucoliques des collines voisines.",
@@ -155,7 +155,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "C1a",
    "type": "orale",
-   "auteur": "[PERSONNE F]",
+   "auteur": "[PERSONNE-7c6e0e6d]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "étant donnés les kilomètres nécessaires au transport de l’électricité produite, cela devient un projet trop onéreux.",
@@ -164,7 +164,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "C1b",
    "type": "orale",
-   "auteur": "[PERSONNE F]",
+   "auteur": "[PERSONNE-7c6e0e6d]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "cette implantation avait été imaginée pour compenser la perte de revenus de l’éleveur consécutive au déclassement de ses terres. Maintenant cela n’a plus de raison d’être.\n\n\nPour quelqu'un qui a gardé des vaches dans son enfance (comme moi) l'ombre des panneaux solaires relève de la plaisanterie.",
@@ -173,7 +173,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "C1c",
    "type": "orale",
-   "auteur": "[PERSONNE F]",
+   "auteur": "[PERSONNE-7c6e0e6d]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "Dans la demande du projet par la mairie il y a conflit d'intérêt car l'éleveur concerné est aussi l'adjoint au maire.",
@@ -182,7 +182,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "C1d",
    "type": "orale",
-   "auteur": "[PERSONNE F]",
+   "auteur": "[PERSONNE-7c6e0e6d]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "dans la présentation du projet d'implantation les photos aériennes ne montrent que le site. Or, il suffit de regarder sur Internet pouvoir que l'impact visuel des panneaux touche plus d'un tiers nord-est du village, soit au moins quatre dépendances ou habitations et le moulin. Qu'adviendra-t-il de la dévaluation de toutes ses propriétés ?",
@@ -191,7 +191,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "C1e",
    "type": "orale",
-   "auteur": "[PERSONNE F]",
+   "auteur": "[PERSONNE-7c6e0e6d]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "à propos du Moulin (qui est le plus exposé) il s'agit d'un très ancien édifice, dans ma famille depuis plusieurs generations Vu son état de conservation, j'ai présenté un dossier préalable pour demander l'inscription à l'inventaire des monuments historiques.",
@@ -200,7 +200,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O17",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "Elle rappelle que l'accès à la zone projet passe sur certains de ses chemins qui sont privés. Elle refuse catégoriquement que l'accès à la zone du projet utilise ses chemins car elle les entretient stables et enherbés et le passage des camions risque fort de tout détruire.",
@@ -209,7 +209,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O18",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "elle fait remarquer l'éloignement du poste source qui se trouve à 15km, a Mirepoix, sachant que les deux autres postes source potentiels situés à Bram et Castelnaudary sont encore plus éloignés. Elle trouve anormal d'éventrer les trottoirs de Mirepoix pour ce raccordement. Elle considère que les panneaux photovoltaïques pourraient être installés beaucoup plus près de Mirepoix afin d'éviter ces travaux inutiles et déraisonnables sur un parcours trop long et pouvant engendrer des dégâts écologiques par ses tranchées.",
@@ -218,7 +218,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O19",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "elle s'interroge sur la nécessité de nettoyer régulièrement les panneaux photovoltaïques, car les informations que l'on peut trouver sur divers sites Internet contredisent les informations incluses au dossier. Encore des pollutions potentielles,",
@@ -227,7 +227,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O20",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "elle fait remarquer que la charte de la communauté de communes de Malepère est bafouée sur au moins 3 points :\n\n- ne pas anthropiser excessivement les terres agricoles,\n- réaliser des projets en toute transparence des habitants,\n- mutualiser et répartir les retombées économiques des projets.",
@@ -236,7 +236,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O21",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "elle trouve choquant d'imposer aux habitants de sacrifier pendant 30 ans leur paysage sous prétexte que le potentiel agricole est faible. Ceci est un double jugement négatif.",
@@ -245,7 +245,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O22",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "elle se sent concernée par la transmission du patrimoine réalisé par les générations précédentes, et elle engage beaucoup d’efforts pour le maintenir en bon état.",
@@ -254,7 +254,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O23",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "concernant les indemnités IHCN, elle relève une erreur dans le dossier de l’étude d’impact environnemental p. 263 ainsi que dans l’étude préalable agricole p. 77, l’indemnité de 17 000 € par an a été bien rétablie pour l’exploitant, et une publicité en a été largement diffusée après le procès gagné par l’agriculteur.",
@@ -263,7 +263,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O24",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "concernant la mutualisation de la communauté de communes, les retombées économiques ont créé de fortes dissensions entre les propriétaires qui pourraient bénéficier de la manne financière par rapport à ceux qui en sont exclus. Ce sont souvent les personnes socialement favorisées, bien informés, bien placées, plus combatives qui en bénéficient.\n\nElle rappelle qu’à la campagne la valeur « travail » est saluée et respectée, contrairement à la position de « rentier ». La cohésion sociale et le bien vivre ensemble sont très perturbés, allant jusqu’à déclencher parfois de la haine. Ces projets sont source de dissensions autrefois inconnues.",
@@ -272,7 +272,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O25",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "concernant l’engagement de l’usage agricole sur les prairies, elle doute fort que le porteur de projet puisse trouver en remplaçant si c’était nécessaire en cas de défaillance de l’exploitant actuel : c’est complètement irréaliste au vu du nombre d’agriculteurs qui diminue tous les ans.",
@@ -281,7 +281,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O26",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "elle rappelle la proposition faite lors de la première réunion publique à la mairie : répartir des poteaux équipés de fanions sur l’ensemble de la zone enfin que la population se rende clairement compte de la superficie du projet. Le maître d’ouvrage a effectivement accepté cette proposition, sans jamais la mettre en pratique. Ce qui montre le peu de fiabilité du MO.",
@@ -290,7 +290,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O27",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "le risque d’incendie tel qu’il est expliqué dans l’étude d’impact environnemental page 214 et 221 devrait être limité grâce aux obligations légales de débroussaillement (OLD). Elle rappelle que le 23 septembre 2018, un feu très important a eu lieu par suite des travaux de débroussaillement dû à un simple choc de métal sur les pierres, entraînant la nécessité de l’intervention d’avions Canadair pour éteindre le feu dans cette zone boisée et reculée des axes principaux de circulation.\n\nEn l’occurrence, les zones soumises à OLD concernent deux champs cultivés en luzerne qui sont coupés deux à trois fois par an. Si cette coupe OLD se réalise, cela représente une forte perte de gain pour son exploitation. De plus, la zone OLD inclut une petite forêt de feuillus qu’il faudrait carrément raser, ce qu’elle refuse catégoriquement. Enfin une troisième OLD zone jouxte un bosquet sur le côté ouest du projet, et ce bosquet est lui-même attenant à une pinède de 11 hectares incluant des collines d’herbes sèches, particulièrement sensibles à la moindre étincelle.",
@@ -299,7 +299,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O28",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "concernant les moyens de lutte contre le feu, la réserve de 120 m³ prévue et très insuffisante en volume, est située beaucoup trop loin des zones de risques de feu.",
@@ -308,7 +308,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O29",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "concernant la fiscalité des parcelles couvertes par les panneaux photovoltaïques, quelle année la valeur de patrimoine que le fisc prendra en compte pour évaluer des frais de succession ? Ou encore des frais de mutation en cas de vente ?",
@@ -317,7 +317,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O30",
    "type": "orale",
-   "auteur": "[PERSONNE G] et [PERSONNE H]",
+   "auteur": "[PERSONNE-e901953f] et [PERSONNE-4c3eab31]",
    "permanence": "2) Deuxième permanence le 21/11/2024 :",
    "date": "21/11/2024",
    "texte": "la présence de panneaux photovoltaïques va diminuer la valeur immobilière des habitations comme c'est arrivé à Belpech. Les accumulations de ces projets sur tout le territoire de la Piège va aussi entraîner une mauvaise réputation de la région.",
@@ -329,7 +329,7 @@ const OBSERVATIONS_REGISTRE = {
    "auteur": "",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
-   "texte": "[PERSONNE I], habitante d'une commune limitrophe souhaite rester anonyme. Elle dépose le courrier C2 et affirme son opposition au projet en commentant son propre courrier. Voici un résumé des idées, le courrier C2 est en annexe.",
+   "texte": "[PERSONNE-3251d62e], habitante d'une commune limitrophe souhaite rester anonyme. Elle dépose le courrier C2 et affirme son opposition au projet en commentant son propre courrier. Voici un résumé des idées, le courrier C2 est en annexe.",
    "contexte": ""
   },
   {
@@ -416,7 +416,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O41",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "nous nous opposons fermement à ce projet pour trois raisons principales : Il comporte de multiples incohérences avec les recommandations disponibles, que ce soit en termes d'implantation, d'intégration paysagères ou encore de communication et de conduite du projet",
@@ -425,7 +425,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O42",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "il représente des risques très significatifs en termes de biodiversité, notamment sur quelques espèces menacées mentionnées plus haut, mais aussi plus largement sur les insectes et la chaîne trophique qui en dépend.",
@@ -434,7 +434,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O43",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "Il s'appuie sur le concept d'agrivoltaïsme, justifié ici par l'argument de faible valeur agronomique des terres d'implantation, d'amélioration du potentiel agronomique ou d'apport notamment sur le bien-être animal. Rien ne permet de raisonnablement faire cette démonstration sur base des éléments apportés par le promoteur",
@@ -443,7 +443,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O44",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "Nos principales recommandations sont les suivantes : Démonter l'argument de faible qualité des terres de façon scientifique et en s'appuyant sur des données issues d'organismes indépendants de référence (INRAE)",
@@ -452,7 +452,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O45",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "Compléter l'étude d'impact en tenant compte des manques qui ont été soulignés par le MRAE et en intégrant les risques liés à la situation du projet dans un couloir migratoire",
@@ -461,7 +461,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O46",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "compléter l'étude d'impact en couvrant l'ensemble des impacts soulevés par le CNPN dans son rapport d'auto saisine.",
@@ -470,7 +470,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O47",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "Revoir la surface du projet à la baisse de façon importante compte tenu des impacts avérés d'installations photovoltaïques sur la biodiversité et notamment sur les populations d'insectes qui sont rappelons-le à la base de la chaîne trophique",
@@ -479,7 +479,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O48",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "A l'image de la demande faite par l'autorité environnementale concernant le busard cendré, mener une évaluation approfondie des impacts sur toutes les espèces à enjeu local fort ou très fort, incluant les chiroptères identifiés\n\n\n(Minioptère de Schreibers classé vulnérable sur la liste rouge des espèces menacées en France, Barbastelle d’Europe Grand Rhinolophe). Cette évaluation doit permettre de confirmer le besoin ou non de faire une demande de dérogation à l’interdiction de destruction des espèces protégées, mais elle doit aussi permettre de mettre en place de réelles mesures d’évitement ou de réduction avec notamment la réduction des surfaces",
@@ -488,7 +488,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O49",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "Revoir la zone d’implantation prévue en tenant compte des recommandations en termes d’intégration paysagère, notamment en évitant la visibilité depuis les zones d’habitation proches.",
@@ -497,7 +497,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O50",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "Reconsidérer le projet en intégrant une analyse à l’échelle du territoire comme le recommandent d’une part le document de la DDTM pour l’intégration paysagère et d’autre part comme le prévoit la loi d’accélération des ENR de 2023.",
@@ -506,7 +506,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O51",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "Aligner les loyers proposés aux particuliers contre mise à disposition de leurs terres sur le fermage afin d’éviter toute forme de spéculation foncière ainsi que dans un souci de pérennisation de l’activité agricole de la région parfois appelée « le grenier à blé de l’Occitanie »",
@@ -515,7 +515,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O52",
    "type": "orale",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "Inclure le volet du raccordement au poste source au projet, l’un et l’autre étant indissociable et pouvant chacun avoir des impacts importants au titre de la biodiversité et des émissions de CO2 notamment.",
@@ -524,7 +524,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O53",
    "type": "orale",
-   "auteur": "[PERSONNE K] et [PERSONNE L]",
+   "auteur": "[PERSONNE-b15ba87f] et [PERSONNE-bcfc1056]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "beaucoup d’efforts ont été faits pour le tourisme et pour le paysage et la création de chemins de randonnées. Il existe quatre gîtes de vacances : tous ces efforts seront anéantis",
@@ -533,7 +533,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O54",
    "type": "orale",
-   "auteur": "[PERSONNE K] et [PERSONNE L]",
+   "auteur": "[PERSONNE-b15ba87f] et [PERSONNE-bcfc1056]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "ce projet abîme les sols en les dégradant et en massacrant des terres agricoles, et la biodiversité.",
@@ -542,7 +542,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O55",
    "type": "orale",
-   "auteur": "[PERSONNE K] et [PERSONNE L]",
+   "auteur": "[PERSONNE-b15ba87f] et [PERSONNE-bcfc1056]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "la confédération paysanne a bien expliqué que rien ne pousse de sous les panneaux photovoltaïques.",
@@ -551,7 +551,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O56",
    "type": "orale",
-   "auteur": "[PERSONNE K] et [PERSONNE L]",
+   "auteur": "[PERSONNE-b15ba87f] et [PERSONNE-bcfc1056]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "lorsque notre fille a voulu installer de cabane autonome au milieu de la forêt, son projet a été interdit sous prétexte que cela dégradait le paysage. Nous pensons que ce sont les projets de photovoltaïques qui dégradent réellement le paysage.",
@@ -560,7 +560,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O57",
    "type": "orale",
-   "auteur": "[PERSONNE K] et [PERSONNE L]",
+   "auteur": "[PERSONNE-b15ba87f] et [PERSONNE-bcfc1056]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "ce projet est une manne financière pour certains : le propriétaire n’est pas local (il habite à 15 km) il ne sera pas gêné par cette dégradation.",
@@ -569,7 +569,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O58",
    "type": "orale",
-   "auteur": "[PERSONNE K] et [PERSONNE L]",
+   "auteur": "[PERSONNE-b15ba87f] et [PERSONNE-bcfc1056]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "nous pensons qu’il vaut mieux mettre des panneaux photovoltaïques sur les bâtiments existants. De plus, nous n’avons pas besoin de cette production qui au contraire va être acheminée jusqu’à Mirepoix au bénéfice des habitants de la ville, alors que ce sont nous, à la campagne, qui en avons tous les inconvénients.",
@@ -578,7 +578,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O59",
    "type": "orale",
-   "auteur": "[PERSONNE K] et [PERSONNE L]",
+   "auteur": "[PERSONNE-b15ba87f] et [PERSONNE-bcfc1056]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "nous avons constaté que ce projet crée une forte mésentente dans le village.",
@@ -587,7 +587,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "C4",
    "type": "orale",
-   "auteur": "[PERSONNE G]",
+   "auteur": "[PERSONNE-e901953f]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "parcelles concernées par l'obligation légale de débroussaillement (voir page 221 du dossier étude d'impact environnemental Artifex).\n\n- Parcelles cultivables :\n\nCommune de Ribouisse : ZAE 0007\n\nCommune de Saint-Julien-de-Briola : ZB 0001.\n\nCes deux parcelles sont immédiatement modes mitoyennes du site du projet. En cumul cela représente linéaire de 520 m.\n\n$520 \\times 50 = 26\\,000 \\text{ m}^2$, soit 2,6 ha de surfaces cultivables concernées par le débroussaillement.\n\nLes années où il y a des céréales, d'Angers incendie est au maximum, d'autant que les locaux techniques sont proches de ses parcelles.\n\n- Parcelles de landes :\n\nCommune de Ribouisse : ZAE 0007\n\ndeux parcelles également mitoyennes du projet. Linéaire total 180 m.\n\n$180 \\times 50 = 9000 \\text{ m}^2$ soit 0,9 ha.\n\nCes parcelles en l'état ne sont pas débroussaillables car des arbres empêchent l'accès à tout engin. Solution ?",
@@ -596,7 +596,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O60",
    "type": "orale",
-   "auteur": "[PERSONNE G]",
+   "auteur": "[PERSONNE-e901953f]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "Elle s'inquiète des obligations légales de débroussaillement (OLD) qui concernent les abords du parc sur une largeur de 50 m et qui impactent ses propriétés constituées de 2 champs et 2 landes. Au total il s'agit d'un linéaire de 520 m sur une largeur de 50 m = 26 000 m², soit 2,6 ha.\n\nOn ne peut pas considérer à la fois que ce terrain est cultivé (et donc n'est pas soumis aux\n\nOLD), et d'autre part qu'il doit être débroussaillé car il est inflammable. Effectivement, étant donné qu'il s'agit de cultures en rotation, certaines années les champs sont semés en luzerne (non inflammable) ou en céréales (hautement inflammables dès qu'elles sont sèches). En fait ce parc crée un problème là où il n'y en a pas.\n\n[LIEU-DIT]\n\nphotovoltaïque très important. Cf @125",
@@ -605,7 +605,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O62",
    "type": "orale",
-   "auteur": "[PERSONNE G]",
+   "auteur": "[PERSONNE-e901953f]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "elle insiste sur la transformation de la valeur patrimoniale du terrain en cas de cession, car actuellement les services fiscaux se basent sur les valeurs de revenus agricoles pour estimer la valeur patrimoniale de l'hectare cultivée.",
@@ -614,16 +614,16 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O63",
    "type": "orale",
-   "auteur": "[PERSONNE G]",
+   "auteur": "[PERSONNE-e901953f]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
-   "texte": "[PERSONNE D] après s'être renseigné sur le dossier d'enquête publique, constate que ce projet ne présente que des aspects négatifs. En particulier, le fait de monter plus haut les panneaux photovoltaïques pour laisser\n\n\npasser les bovins en dessous, augmente l'impact visuel puisque ces panneaux atteignent une hauteur totale de plus de 3 m.",
+   "texte": "[PERSONNE-151b1495] après s'être renseigné sur le dossier d'enquête publique, constate que ce projet ne présente que des aspects négatifs. En particulier, le fait de monter plus haut les panneaux photovoltaïques pour laisser\n\n\npasser les bovins en dessous, augmente l'impact visuel puisque ces panneaux atteignent une hauteur totale de plus de 3 m.",
    "contexte": ""
   },
   {
    "id": "O64",
    "type": "orale",
-   "auteur": "[PERSONNE G]",
+   "auteur": "[PERSONNE-e901953f]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "il estime préférable d'installer des panneaux photovoltaïques flottants sur des lacs ou des étangs, ou encore sur les toits des hangars et des bâtiments.",
@@ -632,16 +632,16 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "O64-bis",
    "type": "orale",
-   "auteur": "[PERSONNE G]",
+   "auteur": "[PERSONNE-e901953f]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
-   "texte": "[PERSONNE M] habite à Mirepoix et elle est secrétaire de mairie de Saint-Julien-de-Briola, mais s'exprime en son nom personnel car son mari est agriculteur dans une commune limitrophe. Elle demande les critères de choix pour le bénéficiaire de la compensation agricole mesure MC1 attribuée aujourd'hui à l'ASA de Caux et Saulzens. Elle considère que cette ASA n'a pas réellement besoin de cette aide, car les travaux se feront quand même.",
+   "texte": "[PERSONNE-e592f03a] habite à Mirepoix et elle est secrétaire de mairie de Saint-Julien-de-Briola, mais s'exprime en son nom personnel car son mari est agriculteur dans une commune limitrophe. Elle demande les critères de choix pour le bénéficiaire de la compensation agricole mesure MC1 attribuée aujourd'hui à l'ASA de Caux et Saulzens. Elle considère que cette ASA n'a pas réellement besoin de cette aide, car les travaux se feront quand même.",
    "contexte": ""
   },
   {
    "id": "O65",
    "type": "orale",
-   "auteur": "[PERSONNE G]",
+   "auteur": "[PERSONNE-e901953f]",
    "permanence": "3) Troisième permanence, le 11/12/2024 :",
    "date": "11/12/2024",
    "texte": "Par contre la zone qui va de Mirepoix à Fanjeaux est soumise à un microclimat souvent plus humide, et comme la terre est particulièrement argileuse, le travail en est plus difficile. Elle demande que la compensation MC1 soit attribuée à une structure collective implantée dans la zone géographique entre Mirepoix et Fanjeaux.",
@@ -656,7 +656,7 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 12/11/2024 à 10:24:05",
    "lieu": "Par email",
    "objet": "Publicité de l'enquête publique centrale photovoltaïque au sol PAS DE MIREPOIX - SAINT JULIEN DE BRIOLA",
-   "texte": "Monsieur le Maire de [PERSONNE O] Le Maire, Dans le cadre de l'information aux habitant.es de votre commune concernant l'enquête publique de la centrale photovoltaïque au sol << Pas de Mirepoix >> à SAINT JULIEN DE BRIOLA, qui débute ce jour le 12/11/2024, et conformément à l'Article 5 de l'arrêté préfectoral du 15/10/2024 relatif à la dite enquête publique :1 - L'information de l'ouverture de l'enquête publique, doit être faite aux habitant.es au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024.2 - L'information doit dans la mesure du possible être publiée par tout procédé en usage dans la commune au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024 et pendant toute la durée de l'enquête publique. A ce jour, 12/11/2024 date de l'ouverture de l'enquête publique à SAINT JULIEN DE BRIOLA, nous constatons que seul un affichage de l'avis a été apposé en Mairie de PLAVILLA. Ce mode d'information est totalement insuffisant et ne répond pas à l'Article 5 de l'arrêté préfectoral sus visé. Nous vous demandons par le présent courriel de mettre en oeuvre l'Article 5 sus visé, par les moyens déjà en usage dans votre commune pour informer les habitant.es : à savoir par l'envoi d'un mail aux habitant.es ou d'un courrier dans leurs boîtes aux lettres. Sans la mise en oeuvre de ce procédé d'information, nous considérons que la publicité de l'avis d'enquête publique aux habitant.es de PLAVILLA n'a pas été faite correctement, et notamment par les moyens en usage dans votre commune, et que de ce fait l'Article 5 sus visé n'a pas été respecté. Si les modalités de l'article 5 ont été respectées dans votre commune, veuillez ne pas tenir compte de cet email. Veuillez agréer\n\n[COURRIEL]\n\n[PERSONNE U]\n\nCommissaire enquêteur de l'enquête publique de la centrale photovoltaïque \"Pas de Mirepoix >>, [PERSONNE T] Chef de projet, SASU Centrale Solaire Pas de Mirepoix, Quentin SEYER.",
+   "texte": "Monsieur le Maire de [PERSONNE-510b23d6] Le Maire, Dans le cadre de l'information aux habitant.es de votre commune concernant l'enquête publique de la centrale photovoltaïque au sol << Pas de Mirepoix >> à SAINT JULIEN DE BRIOLA, qui débute ce jour le 12/11/2024, et conformément à l'Article 5 de l'arrêté préfectoral du 15/10/2024 relatif à la dite enquête publique :1 - L'information de l'ouverture de l'enquête publique, doit être faite aux habitant.es au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024.2 - L'information doit dans la mesure du possible être publiée par tout procédé en usage dans la commune au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024 et pendant toute la durée de l'enquête publique. A ce jour, 12/11/2024 date de l'ouverture de l'enquête publique à SAINT JULIEN DE BRIOLA, nous constatons que seul un affichage de l'avis a été apposé en Mairie de PLAVILLA. Ce mode d'information est totalement insuffisant et ne répond pas à l'Article 5 de l'arrêté préfectoral sus visé. Nous vous demandons par le présent courriel de mettre en oeuvre l'Article 5 sus visé, par les moyens déjà en usage dans votre commune pour informer les habitant.es : à savoir par l'envoi d'un mail aux habitant.es ou d'un courrier dans leurs boîtes aux lettres. Sans la mise en oeuvre de ce procédé d'information, nous considérons que la publicité de l'avis d'enquête publique aux habitant.es de PLAVILLA n'a pas été faite correctement, et notamment par les moyens en usage dans votre commune, et que de ce fait l'Article 5 sus visé n'a pas été respecté. Si les modalités de l'article 5 ont été respectées dans votre commune, veuillez ne pas tenir compte de cet email. Veuillez agréer\n\n[COURRIEL]\n\n[PERSONNE-0a750099]\n\nCommissaire enquêteur de l'enquête publique de la centrale photovoltaïque \"Pas de Mirepoix >>, [PERSONNE-89090a23] Chef de projet, SASU Centrale Solaire Pas de Mirepoix, [NOM] [NOM].",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
@@ -666,7 +666,7 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 12/11/2024 à 10:25:16",
    "lieu": "Par email",
    "objet": "Publicité de l'enquête publique centrale photovoltaïque au sol PAS DE MIREPOIX - SAINT JULIEN DE BRIOLA",
-   "texte": "Monsieur le Maire de RIBOUISSE, Christian LUCATOMonsieur Le Maire, Dans le cadre de l'information aux habitant.es de votre commune concernant l'enquête publique de la centrale photovoltaïque au sol << Pas de Mirepoix >> à SAINT JULIEN DE BRIOLA, qui débute ce jour le 12/11/2024, et conformément à l'Article 5 de l'arrêté préfectoral du 15/10/2024 relatif à la dite enquête publique :1 - L'information de l'ouverture de l'enquête publique, doit être faite aux habitant.es au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024.2 - L'information doit dans la mesure du possible être publiée par tout procédé en usage dans la commune au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024 et pendant toute la durée de l'enquête publique.Sur la commune de RIBOUISSE, les usages sont de communiquer les informations aux habitant.es par mail.A ce jour, 12/11/2024 date de l'ouverture de l'enquête publique à SAINT JULIEN DE BRIOLA, nous constatons que seul un affichage de l'avis a été apposé en Mairie.Ce mode d'information est totalement insuffisant et ne répond pas à l'Article 5 de l'arrêté préfectoral sus visé.Nous vous demandons par le présent courriel de mettre en oeuvre l'Article 5 sus visé, par les moyens déjà en usage dans votre commune pour informer les habitant.es : à savoir par l'envoi d'un mail aux habitant.es de votre commune.Sans la mise en oeuvre de ce procédé d'information, nous considérons que la publicité de l'avis d'enquête publique aux habitant.es de RIBOUISSE n'a pas été faite correctement, et notamment par les moyens en usage dans votre commune, et que de ce fait l'Article 5 sus visé n'a pas été respecté.Veuillez agréer Monsieur le maire, nos meilleures [COURRIEL] à :- Préfecture de l'Aude, suivi du dossier [PERSONNE U] Commissaire enquêteur del'enquête publique de la centrale photovoltaïque \"Pas de Mirepoix >>, [PERSONNE T] Chef de projet, SASU Centrale Solaire Pas de Mirepoix, Quentin SEYER.",
+   "texte": "Monsieur le Maire de RIBOUISSE, [NOM] [NOM]onsieur Le Maire, Dans le cadre de l'information aux habitant.es de votre commune concernant l'enquête publique de la centrale photovoltaïque au sol << Pas de Mirepoix >> à SAINT JULIEN DE BRIOLA, qui débute ce jour le 12/11/2024, et conformément à l'Article 5 de l'arrêté préfectoral du 15/10/2024 relatif à la dite enquête publique :1 - L'information de l'ouverture de l'enquête publique, doit être faite aux habitant.es au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024.2 - L'information doit dans la mesure du possible être publiée par tout procédé en usage dans la commune au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024 et pendant toute la durée de l'enquête publique.Sur la commune de RIBOUISSE, les usages sont de communiquer les informations aux habitant.es par mail.A ce jour, 12/11/2024 date de l'ouverture de l'enquête publique à SAINT JULIEN DE BRIOLA, nous constatons que seul un affichage de l'avis a été apposé en Mairie.Ce mode d'information est totalement insuffisant et ne répond pas à l'Article 5 de l'arrêté préfectoral sus visé.Nous vous demandons par le présent courriel de mettre en oeuvre l'Article 5 sus visé, par les moyens déjà en usage dans votre commune pour informer les habitant.es : à savoir par l'envoi d'un mail aux habitant.es de votre commune.Sans la mise en oeuvre de ce procédé d'information, nous considérons que la publicité de l'avis d'enquête publique aux habitant.es de RIBOUISSE n'a pas été faite correctement, et notamment par les moyens en usage dans votre commune, et que de ce fait l'Article 5 sus visé n'a pas été respecté.Veuillez agréer Monsieur le maire, nos meilleures [COURRIEL] à :- Préfecture de l'Aude, suivi du dossier [PERSONNE-0a750099] Commissaire enquêteur del'enquête publique de la centrale photovoltaïque \"Pas de Mirepoix >>, [PERSONNE-89090a23] Chef de projet, SASU Centrale Solaire Pas de Mirepoix, [NOM] [NOM].",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
@@ -676,7 +676,7 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 12/11/2024 à 10:26:40",
    "lieu": "Par email",
    "objet": "Publicité de l'enquête publique centrale photovoltaïque au sol PAS DE MIREPOIX - SAINT JULIEN DE BRIOLA",
-   "texte": "Monsieur le Maire de SAINT [PERSONNE Q] Le Maire, Dans le cadre de l'information aux habitant.es de votre commune concernant l'enquête publique de la centrale photovoltaïque au sol << Pas de Mirepoix >> à SAINT JULIEN DE BRIOLA, qui débute ce jour le 12/11/2024, et conformément à l'Article 5 de l'arrêté préfectoral du 15/10/2024 relatif à la dite enquête publique :1 - L'information de l'ouverture de l'enquête publique, doit être faite aux habitant.es au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024.2 - L'information doit dans la mesure du possible être publiée par tout procédé en usage dans la commune au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024 et pendant toute la durée de l'enquête publique. A ce jour, 12/11/2024 date de l'ouverture de l'enquête publique à SAINT JULIEN DE BRIOLA, nous constatons que seul un affichage de l'avis a été apposé en Mairie de SAINT GAUDÉRIC. Ce mode d'information est totalement insuffisant et ne répond pas à l'Article 5 de l'arrêté préfectoral sus visé. Nous vous demandons par le présent courriel de mettre en oeuvre l'Article 5 sus visé, par les moyens déjà en usage dans votre commune pour informer les habitant.es : à savoir par l'envoi d'un mail aux habitant.es ou d'un courrier dans leurs boîtes aux lettres. Sans la mise en oeuvre de ce procédé d'information, nous considérons que la publicité de l'avis d'enquête publique aux habitant.es de SAINT GAUDÉRIC n'a pas été faite correctement, et notamment par les moyens en usage dans votre commune, et que de ce fait l'Article 5 sus visé n'a pas été respecté. Si les modalités de l'article 5 ont été respectées dans votre commune, veuillez ne\n\n[COURRIEL]\n\n[PERSONNE U]\n\nMirepoix >>, [PERSONNE T] Chef de projet, SASU Centrale Solaire Pas de Mirepoix, Quentin SEYER.",
+   "texte": "Monsieur le Maire de SAINT [PERSONNE-ef02a28f] Le Maire, Dans le cadre de l'information aux habitant.es de votre commune concernant l'enquête publique de la centrale photovoltaïque au sol << Pas de Mirepoix >> à SAINT JULIEN DE BRIOLA, qui débute ce jour le 12/11/2024, et conformément à l'Article 5 de l'arrêté préfectoral du 15/10/2024 relatif à la dite enquête publique :1 - L'information de l'ouverture de l'enquête publique, doit être faite aux habitant.es au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024.2 - L'information doit dans la mesure du possible être publiée par tout procédé en usage dans la commune au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024 et pendant toute la durée de l'enquête publique. A ce jour, 12/11/2024 date de l'ouverture de l'enquête publique à SAINT JULIEN DE BRIOLA, nous constatons que seul un affichage de l'avis a été apposé en Mairie de SAINT GAUDÉRIC. Ce mode d'information est totalement insuffisant et ne répond pas à l'Article 5 de l'arrêté préfectoral sus visé. Nous vous demandons par le présent courriel de mettre en oeuvre l'Article 5 sus visé, par les moyens déjà en usage dans votre commune pour informer les habitant.es : à savoir par l'envoi d'un mail aux habitant.es ou d'un courrier dans leurs boîtes aux lettres. Sans la mise en oeuvre de ce procédé d'information, nous considérons que la publicité de l'avis d'enquête publique aux habitant.es de SAINT GAUDÉRIC n'a pas été faite correctement, et notamment par les moyens en usage dans votre commune, et que de ce fait l'Article 5 sus visé n'a pas été respecté. Si les modalités de l'article 5 ont été respectées dans votre commune, veuillez ne\n\n[COURRIEL]\n\n[PERSONNE-0a750099] [NOM] >>, [PERSONNE-89090a23] Chef de projet, SASU Centrale Solaire Pas de Mirepoix, [NOM] [NOM].",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
@@ -686,13 +686,13 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 12/11/2024 à 10:58:57",
    "lieu": "Par email",
    "objet": "Publicité de l'enquête publique centrale photovoltaïque au sol PAS DE MIREPOIX - SAINT JULIEN DE BRIOLA",
-   "texte": "Monsieur le Maire de [PERSONNE R] Le Maire, Dans le cadre de l'information aux habitant.es de votre commune concernant l'enquête publique de la centrale photovoltaïque au sol << Pas de Mirepoix >> à SAINT JULIEN DE BRIOLA, qui débute ce jour le 12/11/2024, et conformément à l'Article 5 de l'arrêté préfectoral du 15/10/2024 relatif à la dite enquête publique :1 - L'information de l'ouverture de l'enquête publique, doit être faite aux habitant.es au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024.2 - L'information doit dans la mesure du possible être publiée par tout procédé en usage dans la commune au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024 et pendant toute la durée de l'enquête publique.Sur la commune de ORSANS, les usages sont de communiquer les informations aux habitant.es par mail.A ce jour, 12/11/2024 date de l'ouverture de l'enquête publique à SAINT JULIEN DE BRIOLA, nous constatons que seul un affichage de l'avis a été apposé en Mairie.Ce mode d'information est totalement insuffisant et ne répond pas à l'Article 5 de l'arrêté préfectoral sus visé.Nous vous demandons par le présent courriel de mettre en oeuvre l'Article 5 sus visé, par les moyens déjà en usage dans votre commune pour informer les habitant.es : à savoir par l'envoi d'un mail aux habitant.es de votre commune.Sans la mise en oeuvre de ce procédé d'information nous considérons que la publicité de l'avis d'enquête publique aux habitant.es de ORSANS n'a pas été faite correctement, et notamment par les moyens en usage dans votre commune, et que de ce fait l'Article 5 sus visé n'a pas été respecté.Veuillez agréer Monsieur le maire, nos meilleures [COURRIEL] à :- Préfecture de l'Aude, suivi du dossier [PERSONNE U] Commissaire enquêteur del'enquête publique de la centrale photovoltaïque \"Pas de Mirepoix >>, [PERSONNE T] Chef de projet, SASU Centrale Solaire Pas de Mirepoix, Quentin SEYER.",
+   "texte": "Monsieur le Maire de [PERSONNE-b3c0cd58] Le Maire, Dans le cadre de l'information aux habitant.es de votre commune concernant l'enquête publique de la centrale photovoltaïque au sol << Pas de Mirepoix >> à SAINT JULIEN DE BRIOLA, qui débute ce jour le 12/11/2024, et conformément à l'Article 5 de l'arrêté préfectoral du 15/10/2024 relatif à la dite enquête publique :1 - L'information de l'ouverture de l'enquête publique, doit être faite aux habitant.es au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024.2 - L'information doit dans la mesure du possible être publiée par tout procédé en usage dans la commune au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024 et pendant toute la durée de l'enquête publique.Sur la commune de ORSANS, les usages sont de communiquer les informations aux habitant.es par mail.A ce jour, 12/11/2024 date de l'ouverture de l'enquête publique à SAINT JULIEN DE BRIOLA, nous constatons que seul un affichage de l'avis a été apposé en Mairie.Ce mode d'information est totalement insuffisant et ne répond pas à l'Article 5 de l'arrêté préfectoral sus visé.Nous vous demandons par le présent courriel de mettre en oeuvre l'Article 5 sus visé, par les moyens déjà en usage dans votre commune pour informer les habitant.es : à savoir par l'envoi d'un mail aux habitant.es de votre commune.Sans la mise en oeuvre de ce procédé d'information nous considérons que la publicité de l'avis d'enquête publique aux habitant.es de ORSANS n'a pas été faite correctement, et notamment par les moyens en usage dans votre commune, et que de ce fait l'Article 5 sus visé n'a pas été respecté.Veuillez agréer Monsieur le maire, nos meilleures [COURRIEL] à :- Préfecture de l'Aude, suivi du dossier [PERSONNE-0a750099] Commissaire enquêteur del'enquête publique de la centrale photovoltaïque \"Pas de Mirepoix >>, [PERSONNE-89090a23] Chef de projet, SASU Centrale Solaire Pas de Mirepoix, [NOM] [NOM].",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
    "id": "E5",
    "type": "ecrite",
-   "auteur": "[PERSONNE V]",
+   "auteur": "[PERSONNE-ae49dcde]",
    "date": "Le 13/11/2024 à 13:51:49",
    "lieu": "Par email",
    "objet": "Documents dématérialisés non disponibles",
@@ -706,7 +706,7 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 13/11/2024 à 16:28:39",
    "lieu": "Par email",
    "objet": "Publicité de l'enquête publique centrale photovoltaïque au sol PAS DE MIREPOIX - SAINT JULIEN DE BRIOLA",
-   "texte": "Monsieur [PERSONNE T] bonjour, Nous vous renvoyons notre courriel qui a été envoyé avant l'ouverture de\n\n[COURRIEL]\n\nCollectif Citoyen Occitanie Aude\n\n[COURRIEL] Publicité de l'enquête publique centrale photovoltaïque au sol PAS DE MIREPOIX - SAINT JULIEN DE BRIOLA Date: 7 novembre 2024 à 15:44:03 UTC+1 À: commune-de-\n\n[COURRIEL] [COURRIEL]\n\n[ADRESSE COURRIEL DU REGISTRE D'EXQUÊTE]\n\n[PERSONNE S] concernant l'enquête publique de la centrale photovoltaïque au sol \"Pas de Mirepoix >> à Saint Julien DE BRIOLA, qui va débuter le 12/11/2024, et conformément à l'Article 5 de l'arrêté préfectoral du 15/10/2024 relatif à la dite enquête publique :1 - L'information de l'ouverture de l'enquête publique, doit être faite aux habitant.es au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024.2 - L'information doit dans la mesure du possible être publiée par tout procédé en usage dans la commune au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024 et pendant toute la durée de l'enquête publique. Sur la commune de CAZALRENOUX, les usages sont de communiquer les informations aux habitant.es par mail et par courrier dans les boites aux lettres. A ce jour, 7/11/2024, nous constatons que seul un affichage de l'avis a été apposé en Mairie. Ce mode d'information est totalement insuffisant et ne répond pas à l'Article 5 de l'arrêté préfectoral sus visé. Nous vous demandons par le présent courriel de mettre en oeuvre l'Article 5 sus visé, par les moyens déjà en usage dans votre commune pour informer les habitant.es :1 - par l'envoi d'un mail et 2 - par un courrier dans leurs boites aux lettres. Sans la mise en oeuvre de ces deux procédés d'information, nous considérerons que la publicité de l'avis d'enquête publique aux habitant.es de CAZALRENOUX n'a pas été faite correctement et notamment par les moyens en usage dans votre commune, et que de ce fait l'Article 5 sus visé n'a pas été respecté. Veuillez agréer\n\n[COURRIEL]\n\n[PERSONNE U]\n\nCommissaire enquêteur de l'enquête publique de la centrale photovoltaïque \"Pas de Mirepoix >>,",
+   "texte": "Monsieur [PERSONNE-89090a23] bonjour, Nous vous renvoyons notre courriel qui a été envoyé avant l'ouverture de\n\n[COURRIEL]\n\nCollectif Citoyen Occitanie Aude\n\n[COURRIEL] Publicité de l'enquête publique centrale photovoltaïque au sol PAS DE MIREPOIX - SAINT JULIEN DE BRIOLA Date: 7 novembre 2024 à 15:44:03 UTC+1 À: commune-de-\n\n[COURRIEL] [COURRIEL]\n\n[ADRESSE]\n\n[PERSONNE-21fcb403] concernant l'enquête publique de la centrale photovoltaïque au sol \"Pas de Mirepoix >> à Saint Julien DE BRIOLA, qui va débuter le 12/11/2024, et conformément à l'Article 5 de l'arrêté préfectoral du 15/10/2024 relatif à la dite enquête publique :1 - L'information de l'ouverture de l'enquête publique, doit être faite aux habitant.es au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024.2 - L'information doit dans la mesure du possible être publiée par tout procédé en usage dans la commune au moins 15 jours avant l'ouverture de l'enquête publique, soit au plus tard le 28/10/2024 et pendant toute la durée de l'enquête publique. Sur la commune de CAZALRENOUX, les usages sont de communiquer les informations aux habitant.es par mail et par courrier dans les boites aux lettres. A ce jour, 7/11/2024, nous constatons que seul un affichage de l'avis a été apposé en Mairie. Ce mode d'information est totalement insuffisant et ne répond pas à l'Article 5 de l'arrêté préfectoral sus visé. Nous vous demandons par le présent courriel de mettre en oeuvre l'Article 5 sus visé, par les moyens déjà en usage dans votre commune pour informer les habitant.es :1 - par l'envoi d'un mail et 2 - par un courrier dans leurs boites aux lettres. Sans la mise en oeuvre de ces deux procédés d'information, nous considérerons que la publicité de l'avis d'enquête publique aux habitant.es de CAZALRENOUX n'a pas été faite correctement et notamment par les moyens en usage dans votre commune, et que de ce fait l'Article 5 sus visé n'a pas été respecté. Veuillez agréer\n\n[COURRIEL]\n\n[PERSONNE-0a750099]\n\nCommissaire enquêteur de l'enquête publique de la centrale photovoltaïque \"Pas de Mirepoix >>,",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
@@ -716,7 +716,7 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 13/11/2024 à 16:30:31",
    "lieu": "Par email",
    "objet": "Publicité de l'enquête publique centrale photovoltaïque au sol PAS DE MIREPOIX - SAINT JULIEN DE BRIOLA",
-   "texte": "Monsieur [PERSONNE T] bonjour, Nous vous renvoyons notre courriel qui a été envoyé avant l'ouverture de\n\n[COURRIEL]\n\nCollectif Citoyen Occitanie Aude\n\n[COURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL]\n\n[COURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL]\n\n[COURRIEL]\n\n[PERSONNE U]\n\nCommissaire enquêteur de l'enquête publique de la centrale photovoltaïque \"Pas de Mirepoix >>,\n[PERSONNE T] Chef de projet, SASU Centrale Solaire Pas de Mirepoix, Quentin SEYER.",
+   "texte": "Monsieur [PERSONNE-89090a23] bonjour, Nous vous renvoyons notre courriel qui a été envoyé avant l'ouverture de\n\n[COURRIEL]\n\nCollectif Citoyen Occitanie Aude\n\n[COURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL]\n\n[COURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL] [LOURRIEL]\n\n[COURRIEL]\n\n[PERSONNE-0a750099]\n\nCommissaire enquêteur de l'enquête publique de la centrale photovoltaïque \"Pas de Mirepoix >>,\n[PERSONNE-89090a23] Chef de projet, SASU Centrale Solaire Pas de Mirepoix, [NOM] [NOM].",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
@@ -742,7 +742,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E10",
    "type": "ecrite",
-   "auteur": "[PERSONNE DY]",
+   "auteur": "[PERSONNE-072e9d3d]",
    "date": "Le 17/11/2024 à 22:08:56",
    "lieu": "Sur le registre électronique",
    "objet": "Recyclage panneaux",
@@ -752,17 +752,17 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E11",
    "type": "ecrite",
-   "auteur": "[PERSONNE W]",
+   "auteur": "[PERSONNE-c14e89d2]",
    "date": "Le 17/11/2024 à 23:41:17",
    "lieu": "Par email",
    "objet": "Projet de St Julien de Briola Aude",
-   "texte": "Je sous signée [PERSONNE W] co-propriétaire avec mes frères et sœurs d'une propriété de 120 hectares de bois de terres agricoles dans le territoire de la Piège dans l'Aude. Bien que profondément convaincue que la transition énergétique est plus que nécessaire et doit aussi passer aussi par les PV, je suis contre l'implantation de panneaux solaires à St Julien de Briola, pour les raisons suivantes: - Mettre des panneaux solaires sur des terres agraires n'est pas de l'agri-voltaïsme mais bien de l'industrialisation de terres nourricières qui a pour effet: - une destruction de la bio diversité, des écosystèmes et de notre patrimoine paysagé au détriment de toute une population qui vit dans ce pays et de ce pays. - Ce n'est pas de cette manière que l'on préservera l'indépendance alimentaire! - Ni que fera reculer le réchauffement climatique. - Pourquoi ne commençons nous pas par couvrir les toits des grandes surfaces, les parkings? - La zone commerciale de Castelnaudary offre une énorme surface de toits pour les PV, cela épargnerait les frais d'acheminement de l'électricité produite depuis la Piège jusqu'à Castelnaudary justement. Tant que l'on ne commencera pas couvrir ces surfaces déjà artificialisées, je serai contre la transformation de terre agricoles en générateur d'électricité. Cordialement. [PERSONNE W]",
+   "texte": "Je sous signée [PERSONNE-c14e89d2] co-propriétaire avec mes frères et sœurs d'une propriété de 120 hectares de bois de terres agricoles dans le territoire de la Piège dans l'Aude. Bien que profondément convaincue que la transition énergétique est plus que nécessaire et doit aussi passer aussi par les PV, je suis contre l'implantation de panneaux solaires à St Julien de Briola, pour les raisons suivantes: - Mettre des panneaux solaires sur des terres agraires n'est pas de l'agri-voltaïsme mais bien de l'industrialisation de terres nourricières qui a pour effet: - une destruction de la bio diversité, des écosystèmes et de notre patrimoine paysagé au détriment de toute une population qui vit dans ce pays et de ce pays. - Ce n'est pas de cette manière que l'on préservera l'indépendance alimentaire! - Ni que fera reculer le réchauffement climatique. - Pourquoi ne commençons nous pas par couvrir les toits des grandes surfaces, les parkings? - La zone commerciale de Castelnaudary offre une énorme surface de toits pour les PV, cela épargnerait les frais d'acheminement de l'électricité produite depuis la Piège jusqu'à Castelnaudary justement. Tant que l'on ne commencera pas couvrir ces surfaces déjà artificialisées, je serai contre la transformation de terre agricoles en générateur d'électricité. Cordialement. [PERSONNE-c14e89d2]",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
    "id": "E12",
    "type": "ecrite",
-   "auteur": "[PERSONNE Z]",
+   "auteur": "[PERSONNE-e9d0e7f3]",
    "date": "Le 18/11/2024 à 10:01:19",
    "lieu": "Sur le registre électronique",
    "objet": "projet agrivoltaïque",
@@ -772,7 +772,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E13",
    "type": "ecrite",
-   "auteur": "[PERSONNE AA]",
+   "auteur": "[PERSONNE-afc1627c]",
    "date": "Le 18/11/2024 à 11:43:14",
    "lieu": "Sur le registre électronique",
    "objet": "Contre le parc photovoltaïque de St Julien de Briola",
@@ -786,7 +786,7 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 18/11/2024 à 15:48:50",
    "lieu": "Par email",
    "objet": "Objection au projet mentionné",
-   "texte": "cela détruit la vue cela enlève des terres agricoles utiles cela nuit au bon développement de l'environnement cela engendre des pollutions électromagnétique il y a des espèces protégées tout près vous êtes contre tous les projets photovoltaïques la liaison vers mirepoix est insensé en terme de coût les installations sont anti écologique en terme d'aménagement du [PERSONNE X]",
+   "texte": "cela détruit la vue cela enlève des terres agricoles utiles cela nuit au bon développement de l'environnement cela engendre des pollutions électromagnétique il y a des espèces protégées tout près vous êtes contre tous les projets photovoltaïques la liaison vers mirepoix est insensé en terme de coût les installations sont anti écologique en terme d'aménagement du [PERSONNE-0e22f283]",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
@@ -796,7 +796,7 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 18/11/2024 à 16:26:01",
    "lieu": "Par email",
    "objet": "objection au projet",
-   "texte": "bonjour,\"je suis contre ce projet\".je trouve que cela impactera vraiment trop l'environnement de la commune de Saint-Julien de [PERSONNE Y]",
+   "texte": "bonjour,\"je suis contre ce projet\".je trouve que cela impactera vraiment trop l'environnement de la commune de Saint-Julien de [PERSONNE-c4bfd520]",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
@@ -812,7 +812,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E17",
    "type": "ecrite",
-   "auteur": "[PERSONNE AB]",
+   "auteur": "[PERSONNE-f706cbfd]",
    "date": "Le 19/11/2024 à 00:31:00",
    "lieu": "Sur le registre électronique",
    "objet": "Et que fait-on de Natura2000, de la biodiversité et du tourisme ?",
@@ -822,7 +822,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E18",
    "type": "ecrite",
-   "auteur": "[PERSONNE AC]",
+   "auteur": "[PERSONNE-8124d4a8]",
    "date": "Le 19/11/2024 à 09:03:06",
    "lieu": "Par email",
    "objet": "Contre le projet photovoltaïque",
@@ -832,7 +832,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E19",
    "type": "ecrite",
-   "auteur": "[PERSONNE AD]",
+   "auteur": "[PERSONNE-91a9ba0b]",
    "date": "Le 19/11/2024 à 09:56:09",
    "lieu": "Sur le registre électronique",
    "objet": "DE L'INUTILITÉ à L'ABSURDITÉ DU PROJET",
@@ -842,7 +842,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E20",
    "type": "ecrite",
-   "auteur": "[PERSONNE AE]",
+   "auteur": "[PERSONNE-3a5b5445]",
    "date": "Le 19/11/2024 à 10:01:04",
    "lieu": "Sur le registre électronique",
    "objet": "Protégeons l'environnement de la Piège et d'ailleurs",
@@ -852,7 +852,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E21",
    "type": "ecrite",
-   "auteur": "[PERSONNE AF]",
+   "auteur": "[PERSONNE-2d6bf690]",
    "date": "Le 19/11/2024 à 10:18:31",
    "lieu": "Sur le registre électronique",
    "objet": "Nathalie-Pech Luna",
@@ -862,7 +862,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E22",
    "type": "ecrite",
-   "auteur": "[PERSONNE AG]",
+   "auteur": "[PERSONNE-23430313]",
    "date": "Le 19/11/2024 à 15:17:07",
    "lieu": "Sur le registre électronique",
    "objet": "Contre ce mode de déploiement",
@@ -872,7 +872,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E23",
    "type": "ecrite",
-   "auteur": "[PERSONNE AH]",
+   "auteur": "[PERSONNE-3aedbd1f]",
    "date": "Le 19/11/2024 à 21:31:58",
    "lieu": "Sur le registre électronique",
    "objet": "projet agrivoltaïque St Julien de Briola",
@@ -882,7 +882,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E24",
    "type": "ecrite",
-   "auteur": "[PERSONNE AI]",
+   "auteur": "[PERSONNE-912e5e57]",
    "date": "Le 20/11/2024 à 06:30:55",
    "lieu": "Sur le registre électronique",
    "objet": "Participation enquête publique centrale photovoltaïque pas de mirepoix",
@@ -892,17 +892,17 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E25",
    "type": "ecrite",
-   "auteur": "[PERSONNE AJ]",
+   "auteur": "[PERSONNE-c3e0c97f]",
    "date": "Le 20/11/2024 à 10:07:29",
    "lieu": "Sur le registre électronique",
    "objet": "Avis de l'association ECCLA",
-   "texte": "A-Remarques et avis formulés par les autorités administrativesRemarques formulées par la MRAe (Avis du 25/01/2024) : la synthèse des remarques de la MRAE est rappelée ci-dessous.Le projet de parc photovoltaïque au sol, porté par la société « Centrale solaire du Pas de Mirepoix », filiale de la société Energiter, est situé sur la commune de Saint-Julien-de-Briola, dans le département de l'Aude (11). Il concerne une surface totale clôturée de 25,4 ha, sur des parcelles à caractère agricole. Le projet aura une puissance installée d'environ 17,4 MWc. Le projet agrivoltaïque du Pas de Mirepoix prend place au droit de la Ferme de Briola, au sein de laquelle la parcelle du projet sera destinée au pâturage des génisses. La MRAe relève qu'une ébauche d'analyse des « solutions de substitution raisonnables » au sens du CE (Art. R. 122-5) est disponible dans l'étude d'impact. Toutefois, le document ne fait que lister les sites ne pouvant accueillir de parc photovoltaïque sans apporter des éléments probants sur la mise en place d'une activité de pâturage notable ni réellement comparer les sites non retenus avec le site choisi, alors qu'il s'agit d'un site à usage de production de blé qui, de plus, comporte des enjeux importants en termes de biodiversité. L'étude d'impact et ses compléments omettent une grande partie des impacts sur le Busard cendré. La MRAe recommande de réévaluer les impacts du projet sur le Busard cendré et de prop oser de nouvelles mesures d'évitement et/ ou de réduction voire le cas échéant des mesures de compensation.Eccla ne peut que souscrire à ces remarques dont le bien fondé, dans l'état actuel du dossier, ne fait pas de doute.Avis formulés par la CDPENAF (plusieurs avis)Eccla prend note des avis favorables émis par la CDPENAF vis-à-vis de l'ECCA et du PC.B-Les règles de détermination du positionnement d'EcclaEn complément des critères utilisés par les administrations de l'état pour évaluer l'opportunité d'accorder une autorisation pour construire et exploiter une installation photovoltaïque sur un terrain agricole ou naturel, ECCLA a établi ses propres indicateurs, faciles à mesurer.Les indicateurs déterminés par ECCLA permettent un développement raisonné et prudent des EnR photovoltaïques. Ils ont pour finalité :•L'atténuation des pertes en biodiversité.•La réduction des risques d'incendie et de modification du microclimat.•La diminution de l'impact sur le paysage et les sites remarquables.Ces indicateurs sont les suivants :Parcs au sol et agrivoltaïque-élevage•Interdiction des nouveaux projets sur les zones ayant fait l'objet d'un évitement ou d'une réduction lors d'une précédente séquence ERC ;•Sous réserve que les enjeux faune-flore, paysages, sites et risques d'incendie le permettent et sous réserve que la saturation en installation EnR soit faible à modérée, acceptation du projet si :oEmprise clôturée du parc <10 ha (15ha dans les zones d'accélération) ; < 5ha s'il y a des enjeux modérés.oSuperficie des parcs PV exploités, autorisés, en instruction et en projet < 5% de la superficie communale.•Degré de saturation de la zone : superficie totale des projets exploités, autorisés, en instruction et en projet <5% du territoire englobant.Agrivoltaïque hors élevage•Sous réserve que les enjeux faune-flore, paysages, sites et risques d'incendie le permettent, acceptation du projet si :oEmprise clôturée du parc <5 ha.oSuperficie des parcs agri-PV exploités, autorisés, en instruction <5% SAU communale.Serres PV•Acceptation du projet si superficie < 1 haC-Situation du projet vis-à-vis des règles d'ECCLAEu égard à ces critères, la situation du projet de parc agri-PV de St Julien de Briola est la suivante :•Données générales : oSuperficie de la zone englobante : 11713 haoSuperficie de la commune : 1100 haoSAU de la commune : 787 ha•Données propres au dossier PV0523 :oEnjeux biodiversité : non négligeablesoEmprise clôturée du dossier : 25,4 ha Non conforme aux règles d'EcclaoSuperficie des parcs exploités, autorisés, en instruction et en projet sur la zone englobante : 345,48 ha / 11713ha = ConformeoPart du dossier PV0523/SAU communale= 3,2% ConformeVoir carte et tableau sur le document joint.D-Conclusion et avis d'EcclaCompte-tenu de l'avis de la MRAE\n\n\n\n\n\net de la non-conformité avec les indicateurs de taille élaborés par notre association, Eccla émet un avis défavorable dans le cadre de cette enquête Le President : [PERSONNE AJ]",
+   "texte": "A-Remarques et avis formulés par les autorités administrativesRemarques formulées par la MRAe (Avis du 25/01/2024) : la synthèse des remarques de la MRAE est rappelée ci-dessous.Le projet de parc photovoltaïque au sol, porté par la société « Centrale solaire du Pas de Mirepoix », filiale de la société Energiter, est situé sur la commune de Saint-Julien-de-Briola, dans le département de l'Aude (11). Il concerne une surface totale clôturée de 25,4 ha, sur des parcelles à caractère agricole. Le projet aura une puissance installée d'environ 17,4 MWc. Le projet agrivoltaïque du Pas de Mirepoix prend place au droit de la Ferme de Briola, au sein de laquelle la parcelle du projet sera destinée au pâturage des génisses. La MRAe relève qu'une ébauche d'analyse des « solutions de substitution raisonnables » au sens du CE (Art. R. 122-5) est disponible dans l'étude d'impact. Toutefois, le document ne fait que lister les sites ne pouvant accueillir de parc photovoltaïque sans apporter des éléments probants sur la mise en place d'une activité de pâturage notable ni réellement comparer les sites non retenus avec le site choisi, alors qu'il s'agit d'un site à usage de production de blé qui, de plus, comporte des enjeux importants en termes de biodiversité. L'étude d'impact et ses compléments omettent une grande partie des impacts sur le Busard cendré. La MRAe recommande de réévaluer les impacts du projet sur le Busard cendré et de prop oser de nouvelles mesures d'évitement et/ ou de réduction voire le cas échéant des mesures de compensation.Eccla ne peut que souscrire à ces remarques dont le bien fondé, dans l'état actuel du dossier, ne fait pas de doute.Avis formulés par la CDPENAF (plusieurs avis)Eccla prend note des avis favorables émis par la CDPENAF vis-à-vis de l'ECCA et du PC.B-Les règles de détermination du positionnement d'EcclaEn complément des critères utilisés par les administrations de l'état pour évaluer l'opportunité d'accorder une autorisation pour construire et exploiter une installation photovoltaïque sur un terrain agricole ou naturel, ECCLA a établi ses propres indicateurs, faciles à mesurer.Les indicateurs déterminés par ECCLA permettent un développement raisonné et prudent des EnR photovoltaïques. Ils ont pour finalité :•L'atténuation des pertes en biodiversité.•La réduction des risques d'incendie et de modification du microclimat.•La diminution de l'impact sur le paysage et les sites remarquables.Ces indicateurs sont les suivants :Parcs au sol et agrivoltaïque-élevage•Interdiction des nouveaux projets sur les zones ayant fait l'objet d'un évitement ou d'une réduction lors d'une précédente séquence ERC ;•Sous réserve que les enjeux faune-flore, paysages, sites et risques d'incendie le permettent et sous réserve que la saturation en installation EnR soit faible à modérée, acceptation du projet si :oEmprise clôturée du parc <10 ha (15ha dans les zones d'accélération) ; < 5ha s'il y a des enjeux modérés.oSuperficie des parcs PV exploités, autorisés, en instruction et en projet < 5% de la superficie communale.•Degré de saturation de la zone : superficie totale des projets exploités, autorisés, en instruction et en projet <5% du territoire englobant.Agrivoltaïque hors élevage•Sous réserve que les enjeux faune-flore, paysages, sites et risques d'incendie le permettent, acceptation du projet si :oEmprise clôturée du parc <5 ha.oSuperficie des parcs agri-PV exploités, autorisés, en instruction <5% SAU communale.Serres PV•Acceptation du projet si superficie < 1 haC-Situation du projet vis-à-vis des règles d'ECCLAEu égard à ces critères, la situation du projet de parc agri-PV de St Julien de Briola est la suivante :•Données générales : oSuperficie de la zone englobante : 11713 haoSuperficie de la commune : 1100 haoSAU de la commune : 787 ha•Données propres au dossier PV0523 :oEnjeux biodiversité : non négligeablesoEmprise clôturée du dossier : 25,4 ha Non conforme aux règles d'EcclaoSuperficie des parcs exploités, autorisés, en instruction et en projet sur la zone englobante : 345,48 ha / 11713ha = ConformeoPart du dossier PV0523/SAU communale= 3,2% ConformeVoir carte et tableau sur le document joint.D-Conclusion et avis d'EcclaCompte-tenu de l'avis de la MRAE\n\n\n\n\n\net de la non-conformité avec les indicateurs de taille élaborés par notre association, Eccla émet un avis défavorable dans le cadre de cette enquête Le President : [PERSONNE-c3e0c97f]",
    "pieces": "*"
   },
   {
    "id": "E26",
    "type": "ecrite",
-   "auteur": "[PERSONNE AK]",
+   "auteur": "[PERSONNE-3665b128]",
    "date": "Le 20/11/2024 à 15:45:22",
    "lieu": "Sur le registre électronique",
    "objet": "Panneaux photovoltaïques",
@@ -912,7 +912,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E27",
    "type": "ecrite",
-   "auteur": "[PERSONNE AL]",
+   "auteur": "[PERSONNE-9c91cb3e]",
    "date": "Le 20/11/2024 à 17:12:02",
    "lieu": "Sur le registre électronique",
    "objet": "CONTRIBUTION PROJET PHOTOVOLTAÏQUE DT JULIEN DE BRIOLA",
@@ -922,7 +922,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E28",
    "type": "ecrite",
-   "auteur": "[PERSONNE AM]",
+   "auteur": "[PERSONNE-fc6b116f]",
    "date": "Le 20/11/2024 à 17:46:21",
    "lieu": "Sur le registre électronique",
    "objet": "Projet agri photovoltaïque Saint Julien de Briola .",
@@ -936,13 +936,13 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 21/11/2024 à 14:13:14",
    "lieu": "Sur le registre électronique",
    "objet": "CONCERNANT LA PUBLICITÉ DE L'ENQUETE PUBLIQUE DU PARC PHOTOVOLTAÏQUE AU SOL A SAINT JULIEN DE BRIOLA",
-   "texte": "A l'attention de Monsieur [PERSONNE T] Commissaire enquêteur Le Collectif Citoyen Occitanie Aude (CCOA11) a pour but, entre autres, de soutenir les citoyen-e-s dans leur volonté et leurs démarches de vigilance environnementale et de favoriser l'accès à l'information des habitant.es sur les projets en cours sur le territoire.C'est à ce titre là que nous vous interpellons car ce n'est pas la première fois que des informations importantes sont cachées aux habitant.es. Cette pratique est malheureusement courante.Vu l'importance du projet photovoltaïque de Saint Julien de Briola et son impact,Vu le code des collectivités locales,Vu la charte de l'élu local qui doit exercer son mandat « dans le respect des principes déontologiques consacrés par la charte de l'élu local ; Il exerce ses fonctions avec impartialité, diligence, dignité, probité et intégrité, etc. » Vu le code de l'environnement,Vu l'arrêté du 9/09/2021 relatif à l'affichage des enquêtes publiques,Vu les articles L123-10, R123-10 et R123.11 du code de l'environnement,Vu l'arrêté préfectoral en date du 15/10/2024 relatif à l'ouverture d'une enquête publique à Saint Julien de Briola,Vu l'article 5 du dit arrêté portant sur : LA PUBLICITE DE L'ENQUETE,Vu l'article 11 du dit arrêté portant sur : L'EXÉCUTION du présent arrêté par Madame la secrétaire générale de la préfecture et Madame la directrice départementale des territoires et de la mer de l'Aude.Nous vous informons que les 6 communes concernées par l'arrêté préfectoral en date du 15/10/2024 n'ont pas respecté l'article 5 du dit arrêté portant sur : LA PUBLICITE DE L'ENQUETE.Il s'agit des communes de : SAINT JULIEN DE BRIOLA – CAZALRENOUX – ORSANS – PLAVILLA – RIBOUISSE - SAINT GAUDERIC.En effet,- Aucune des 6 mairies n'a informé ses habitants de l'ouverture de l'EP dans le délai d'au moins 15 jours avant l'ouverture de l'enquête publique, ni par voie d'affichage, ni par voie électronique- Aucune des 6 mairies n'avait informé ses habitants de l'ouverture de l'EP par le procédé en usage dans leur commune à savoir l'envoi d'un email informant les habitants,- Entre le 4 et le 12 novembre notre association CCOA11 a demandé par mail aux 6 Mairies d'appliquer l'article 5 en procédant à l'usage dans leur commune à savoir l'information des habitants par voie électronique- Aucune des 6 communes ne nous a répondu.A notre connaissance, à la suite de notre mail rappelant les obligations légales et réglementaires des maires en matière de publicité des enquêtes publiques, seules 2 communes ont envoyé un mail à leurs habitants : SAINT JULIEN DE BRIOLA et CAZALRENOUX.Nous souhaitons Monsieur le commissaire enquêteur, que vous notiez ces informations importantes dans votre rapport, afin que Monsieur le Préfet mesure en toute objectivité, à quel point les citoyens sont tenus à l'écart d'informations majeures sur des projets majeurs de leur lieu d'habitation, alors qu'ils reçoivent régulièrement des mails de la part des mairies, pour des informations diverses et variées.Bien\n\nCollectif Citoyen Occitanie Aude\n\n- [COURRIEL]",
+   "texte": "A l'attention de Monsieur [PERSONNE-89090a23] Commissaire enquêteur Le Collectif Citoyen Occitanie Aude (CCOA11) a pour but, entre autres, de soutenir les citoyen-e-s dans leur volonté et leurs démarches de vigilance environnementale et de favoriser l'accès à l'information des habitant.es sur les projets en cours sur le territoire.C'est à ce titre là que nous vous interpellons car ce n'est pas la première fois que des informations importantes sont cachées aux habitant.es. Cette pratique est malheureusement courante.Vu l'importance du projet photovoltaïque de Saint Julien de Briola et son impact,Vu le code des collectivités locales,Vu la charte de l'élu local qui doit exercer son mandat « dans le respect des principes déontologiques consacrés par la charte de l'élu local ; Il exerce ses fonctions avec impartialité, diligence, dignité, probité et intégrité, etc. » Vu le code de l'environnement,Vu l'arrêté du 9/09/2021 relatif à l'affichage des enquêtes publiques,Vu les articles L123-10, R123-10 et R123.11 du code de l'environnement,Vu l'arrêté préfectoral en date du 15/10/2024 relatif à l'ouverture d'une enquête publique à Saint Julien de Briola,Vu l'article 5 du dit arrêté portant sur : LA PUBLICITE DE L'ENQUETE,Vu l'article 11 du dit arrêté portant sur : L'EXÉCUTION du présent arrêté par Madame la secrétaire générale de la préfecture et Madame la directrice départementale des territoires et de la mer de l'Aude.Nous vous informons que les 6 communes concernées par l'arrêté préfectoral en date du 15/10/2024 n'ont pas respecté l'article 5 du dit arrêté portant sur : LA PUBLICITE DE L'ENQUETE.Il s'agit des communes de : SAINT JULIEN DE BRIOLA – CAZALRENOUX – ORSANS – PLAVILLA – RIBOUISSE - SAINT GAUDERIC.En effet,- Aucune des 6 mairies n'a informé ses habitants de l'ouverture de l'EP dans le délai d'au moins 15 jours avant l'ouverture de l'enquête publique, ni par voie d'affichage, ni par voie électronique- Aucune des 6 mairies n'avait informé ses habitants de l'ouverture de l'EP par le procédé en usage dans leur commune à savoir l'envoi d'un email informant les habitants,- Entre le 4 et le 12 novembre notre association CCOA11 a demandé par mail aux 6 Mairies d'appliquer l'article 5 en procédant à l'usage dans leur commune à savoir l'information des habitants par voie électronique- Aucune des 6 communes ne nous a répondu.A notre connaissance, à la suite de notre mail rappelant les obligations légales et réglementaires des maires en matière de publicité des enquêtes publiques, seules 2 communes ont envoyé un mail à leurs habitants : SAINT JULIEN DE BRIOLA et CAZALRENOUX.Nous souhaitons Monsieur le commissaire enquêteur, que vous notiez ces informations importantes dans votre rapport, afin que Monsieur le Préfet mesure en toute objectivité, à quel point les citoyens sont tenus à l'écart d'informations majeures sur des projets majeurs de leur lieu d'habitation, alors qu'ils reçoivent régulièrement des mails de la part des mairies, pour des informations diverses et variées.Bien\n\nCollectif Citoyen Occitanie Aude\n\n- [COURRIEL]",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
    "id": "E30",
    "type": "ecrite",
-   "auteur": "[PERSONNE AN]",
+   "auteur": "[PERSONNE-2ec7e076]",
    "date": "Le 21/11/2024 à 16:46:07",
    "lieu": "Sur le registre électronique",
    "objet": "Refus du projet photovoltaïque \"Le Pas de Mirepoix\" sur la commune de Saint Julien de Briola",
@@ -952,7 +952,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E31",
    "type": "ecrite",
-   "auteur": "[PERSONNE AN]",
+   "auteur": "[PERSONNE-2ec7e076]",
    "date": "Le 21/11/2024 à 17:00:54",
    "lieu": "Sur le registre électronique",
    "objet": "Refus du projet photovoltaïque \"Le Pas de Mirepoix\" sur la commune de Saint Julien de Briola",
@@ -962,7 +962,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E32",
    "type": "ecrite",
-   "auteur": "[PERSONNE AO]",
+   "auteur": "[PERSONNE-80ef2be7]",
    "date": "Le 21/11/2024 à 20:13:52",
    "lieu": "Sur le registre électronique",
    "objet": "Refus du projet photovoltaïque \"Le Pas de Mirepoix\" sur la commune de Saint Julien de Briola",
@@ -972,7 +972,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E33",
    "type": "ecrite",
-   "auteur": "[PERSONNE AP]",
+   "auteur": "[PERSONNE-ef49e6f4]",
    "date": "Le 22/11/2024 à 08:17:03",
    "lieu": "Sur le registre électronique",
    "objet": "projet agrivoltaïque du pas de Mirepoix",
@@ -982,7 +982,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E34",
    "type": "ecrite",
-   "auteur": "[PERSONNE AP]",
+   "auteur": "[PERSONNE-ef49e6f4]",
    "date": "Le 22/11/2024 à 08:22:20",
    "lieu": "Sur le registre électronique",
    "objet": "projet agrivoltaïque du pas de Mirepoix",
@@ -992,7 +992,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E35",
    "type": "ecrite",
-   "auteur": "[PERSONNE AP]",
+   "auteur": "[PERSONNE-ef49e6f4]",
    "date": "Le 22/11/2024 à 09:35:51",
    "lieu": "Sur le registre électronique",
    "objet": "projet agrivoltaïque du pas de Mirepoix",
@@ -1002,7 +1002,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E36",
    "type": "ecrite",
-   "auteur": "[PERSONNE AQ]",
+   "auteur": "[PERSONNE-dc73c2cc]",
    "date": "Le 22/11/2024 à 09:45:24",
    "lieu": "Sur le registre électronique",
    "objet": "projet agri voltaïque pas de Mirepoix",
@@ -1012,7 +1012,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E37",
    "type": "ecrite",
-   "auteur": "[PERSONNE AP]",
+   "auteur": "[PERSONNE-ef49e6f4]",
    "date": "Le 22/11/2024 à 10:00:55",
    "lieu": "Sur le registre électronique",
    "objet": "projet agrivoltaïque du pas de Mirepoix",
@@ -1022,7 +1022,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E38",
    "type": "ecrite",
-   "auteur": "[PERSONNE AR]",
+   "auteur": "[PERSONNE-e80992c3]",
    "date": "Le 22/11/2024 à 13:59:13",
    "lieu": "Sur le registre électronique",
    "objet": "Registre numérique",
@@ -1032,7 +1032,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E39",
    "type": "ecrite",
-   "auteur": "[PERSONNE AS]",
+   "auteur": "[PERSONNE-0be69b2d]",
    "date": "Le 22/11/2024 à 14:33:10",
    "lieu": "Sur le registre électronique",
    "objet": "Absolument favorable au projet",
@@ -1042,7 +1042,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E40",
    "type": "ecrite",
-   "auteur": "[PERSONNE AT]",
+   "auteur": "[PERSONNE-ceb5dc75]",
    "date": "Le 22/11/2024 à 14:48:51",
    "lieu": "Par email",
    "objet": "Opposition au projet",
@@ -1052,7 +1052,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E41",
    "type": "ecrite",
-   "auteur": "[PERSONNE AU]",
+   "auteur": "[PERSONNE-91dad32c]",
    "date": "Le 24/11/2024 à 11:34:57",
    "lieu": "Sur le registre électronique",
    "objet": "OPPOSITION au PROJET",
@@ -1062,7 +1062,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E42",
    "type": "ecrite",
-   "auteur": "[PERSONNE AV]",
+   "auteur": "[PERSONNE-bca6e137]",
    "date": "Le 24/11/2024 à 18:44:49",
    "lieu": "Sur le registre électronique",
    "objet": "Vive le fric !",
@@ -1076,13 +1076,13 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 24/11/2024 à 19:44:00",
    "lieu": "Par email",
    "objet": "Enquête publique projet solaire à St Julien du Briola 11",
-   "texte": "Monsieur le Commissaire Enquêteur, Notre société, spécialisée dans les travaux de terrassement, plateformes et réseaux, emploie près de 200 personnes dans le département de l'Aude. Une part importante de notre activité est liée au développement des énergies renouvelables dans ce département. C'est pourquoi, en tant qu'employeur et entrepreneur du territoire, nous apportons notre soutien plein et entier à ce projet. Il pourrait mobiliser 6 personnes pendant 3 mois environ.\n\n[PERSONNE AW]\n\n[COURRIEL]\n\nCOLAS FRANCE, [ADRESSE]\n\nhttps://www.youtube.com/channel/UCvq7LPHUiTB9Hb8oxGGMZ6ghttp://www.blog-groupecolas.com/https://www.instagram.com/groupe_colas/https://www.linkedin.com/company/colas/C2 - COLAS GROUP INTERNAL: Employees and partners who need to know.",
+   "texte": "Monsieur le Commissaire Enquêteur, Notre société, spécialisée dans les travaux de terrassement, plateformes et réseaux, emploie près de 200 personnes dans le département de l'Aude. Une part importante de notre activité est liée au développement des énergies renouvelables dans ce département. C'est pourquoi, en tant qu'employeur et entrepreneur du territoire, nous apportons notre soutien plein et entier à ce projet. Il pourrait mobiliser 6 personnes pendant 3 mois environ.\n\n[PERSONNE-e4d5e2fe]\n\n[COURRIEL]\n\nCOLAS FRANCE, [ADRESSE]\n\nhttps://www.youtube.com/channel/UCvq7LPHUiTB9Hb8oxGGMZ6ghttp://www.blog-groupecolas.com/https://www.instagram.com/groupe_colas/https://www.linkedin.com/company/colas/C2 - COLAS GROUP INTERNAL: Employees and partners who need to know.",
    "pieces": "*"
   },
   {
    "id": "E44",
    "type": "ecrite",
-   "auteur": "[PERSONNE AX]",
+   "auteur": "[PERSONNE-ae5a5bdb]",
    "date": "Le 24/11/2024 à 20:32:52",
    "lieu": "Sur le registre électronique",
    "objet": "Avis FAVORABLE",
@@ -1092,7 +1092,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E45",
    "type": "ecrite",
-   "auteur": "[PERSONNE AY]",
+   "auteur": "[PERSONNE-1b483530]",
    "date": "Le 24/11/2024 à 20:34:11",
    "lieu": "Sur le registre électronique",
    "objet": "FAVORABLE POUR LE PROJET PAS DE MIREPOIX",
@@ -1102,7 +1102,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E46",
    "type": "ecrite",
-   "auteur": "[PERSONNE AZ]",
+   "auteur": "[PERSONNE-4c4455eb]",
    "date": "Le 24/11/2024 à 21:13:23",
    "lieu": "Sur le registre électronique",
    "objet": "Avis favorable",
@@ -1112,7 +1112,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E47",
    "type": "ecrite",
-   "auteur": "[PERSONNE BA]",
+   "auteur": "[PERSONNE-d6233890]",
    "date": "Le 25/11/2024 à 11:38:24",
    "lieu": "Sur le registre électronique",
    "objet": "Projet photovoltaïque",
@@ -1122,7 +1122,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E48",
    "type": "ecrite",
-   "auteur": "[PERSONNE BB]",
+   "auteur": "[PERSONNE-e0f0b93f]",
    "date": "Le 25/11/2024 à 11:54:44",
    "lieu": "Sur le registre électronique",
    "objet": "Projet écocide : la LPO Occitanie est contre",
@@ -1132,27 +1132,27 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E49",
    "type": "ecrite",
-   "auteur": "[PERSONNE G]",
+   "auteur": "[PERSONNE-e901953f]",
    "date": "Le 25/11/2024 à 12:50:21",
    "lieu": "Par email",
-   "objet": "pièces complémentaires à l'attention de Monsieur [PERSONNE T]",
-   "texte": "Monsieur, Lors de notre entretien de jeudi dernier à Saint Julien de Briola je vous ai parlé de la Charte de la Communauté de Communes relative aux énergies renouvelables. Nous avons convenu que je vous enverrais ce document qui ne vous a pas été communiqué. Vous le trouverez donc en pièce jointe. Vous pourrez constater que le projet de Saint Julien de Briola est en contradiction totale avec diverses préconisations de cette charte : règles d'implantation (chapitre 6), engagements du porteur de projet sur la transparence (chapitre 3), recherche de mutualisation du foncier (chapitre 2), non participation aux débats et au vote d'un élu détenant un intérêt dans le projet (en bas de la page 7 chapitre 2). Sur ce dernier point il faut préciser que [PERSONNE N] a participé au vote du Conseil Municipal de février 2021 qui émet un avis favorable. Vous remerciant encore de nous avoir reçus je vous souhaite une bonne [COURRIEL]",
+   "objet": "pièces complémentaires à l'attention de Monsieur [PERSONNE-89090a23]",
+   "texte": "Monsieur, Lors de notre entretien de jeudi dernier à Saint Julien de Briola je vous ai parlé de la Charte de la Communauté de Communes relative aux énergies renouvelables. Nous avons convenu que je vous enverrais ce document qui ne vous a pas été communiqué. Vous le trouverez donc en pièce jointe. Vous pourrez constater que le projet de Saint Julien de Briola est en contradiction totale avec diverses préconisations de cette charte : règles d'implantation (chapitre 6), engagements du porteur de projet sur la transparence (chapitre 3), recherche de mutualisation du foncier (chapitre 2), non participation aux débats et au vote d'un élu détenant un intérêt dans le projet (en bas de la page 7 chapitre 2). Sur ce dernier point il faut préciser que [PERSONNE-c58c2587] a participé au vote du Conseil Municipal de février 2021 qui émet un avis favorable. Vous remerciant encore de nous avoir reçus je vous souhaite une bonne [COURRIEL]",
    "pieces": "*"
   },
   {
    "id": "E50",
    "type": "ecrite",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "date": "Le 25/11/2024 à 17:02:02",
    "lieu": "Sur le registre électronique",
    "objet": "Je m'oppose à ce projet",
-   "texte": "Monsieur le commissaire enquêteur, Vous trouverez en pièce jointe à ce message ma contribution détaillée. En résumé, je m'oppose fermement à ce projet pour plusieurs raisons dont voici les principales : 1-Il comporte de multiples incohérences avec les recommandations disponibles, que ce soit en termes d'implantation, d'intégration paysagères ou encore de communication et de conduite du projet ? 2-Il représente des risques très significatifs en termes de biodiversité, notamment sur quelques espèces menacées mentionnées plus haut, mais aussi plus largement sur les insectes et la chaîne trophique qui en dépend. 3-Il s'appuie sur le concept d'agrivoltaïsme, justifié ici par des arguments de faible valeur des terres d'implantation et d'amélioration du potentiel agronomique ou d'apport notamment sur le bien-être animal. Rien ne permet de raisonnablement faire cette démonstration dans les éléments apportés par le promoteur. Il apparaît clairement qu'il est aujourd'hui nécessaire de mieux encadrer le développement du photovoltaïque en France et notamment sur terres agricoles. Les implications sur le monde de l'agriculture (spéculation foncière, pertes de terres productives, etc...) ainsi que sur les paysages qui font la valeur des territoires sont énormes. Nous nous devons pour les générations futures de structurer ce développement à l'échelle des territoires afin de ne pas sacrifier nos patrimoines sur l'autel d'une transition qui aurait des desseins plus économiques qu'écologiques. Le CEREMA et l'ADEME l'ont plusieurs fois écrit : les objectifs ENR sont atteignables en exploitant les seuls gisements de friches industrielles et commerciales ainsi que les toitures. Bien [PERSONNE J]",
+   "texte": "Monsieur le commissaire enquêteur, Vous trouverez en pièce jointe à ce message ma contribution détaillée. En résumé, je m'oppose fermement à ce projet pour plusieurs raisons dont voici les principales : 1-Il comporte de multiples incohérences avec les recommandations disponibles, que ce soit en termes d'implantation, d'intégration paysagères ou encore de communication et de conduite du projet ? 2-Il représente des risques très significatifs en termes de biodiversité, notamment sur quelques espèces menacées mentionnées plus haut, mais aussi plus largement sur les insectes et la chaîne trophique qui en dépend. 3-Il s'appuie sur le concept d'agrivoltaïsme, justifié ici par des arguments de faible valeur des terres d'implantation et d'amélioration du potentiel agronomique ou d'apport notamment sur le bien-être animal. Rien ne permet de raisonnablement faire cette démonstration dans les éléments apportés par le promoteur. Il apparaît clairement qu'il est aujourd'hui nécessaire de mieux encadrer le développement du photovoltaïque en France et notamment sur terres agricoles. Les implications sur le monde de l'agriculture (spéculation foncière, pertes de terres productives, etc...) ainsi que sur les paysages qui font la valeur des territoires sont énormes. Nous nous devons pour les générations futures de structurer ce développement à l'échelle des territoires afin de ne pas sacrifier nos patrimoines sur l'autel d'une transition qui aurait des desseins plus économiques qu'écologiques. Le CEREMA et l'ADEME l'ont plusieurs fois écrit : les objectifs ENR sont atteignables en exploitant les seuls gisements de friches industrielles et commerciales ainsi que les toitures. Bien [PERSONNE-6e07e219]",
    "pieces": "*"
   },
   {
    "id": "E51",
    "type": "ecrite",
-   "auteur": "[PERSONNE BC]",
+   "auteur": "[PERSONNE-36b769cb]",
    "date": "Le 25/11/2024 à 19:37:02",
    "lieu": "Sur le registre électronique",
    "objet": "Totalement contre ce projet",
@@ -1162,7 +1162,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E52",
    "type": "ecrite",
-   "auteur": "[PERSONNE BD]",
+   "auteur": "[PERSONNE-547fc892]",
    "date": "Le 26/11/2024 à 10:04:00",
    "lieu": "Sur le registre électronique",
    "objet": "Non à l'artificialisation de nos paysages",
@@ -1172,7 +1172,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E53",
    "type": "ecrite",
-   "auteur": "[PERSONNE BE]",
+   "auteur": "[PERSONNE-77334692]",
    "date": "Le 26/11/2024 à 18:19:55",
    "lieu": "Sur le registre électronique",
    "objet": "Centrale photovoltaïque du Pas de Mirepoix",
@@ -1182,7 +1182,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E54",
    "type": "ecrite",
-   "auteur": "[PERSONNE BF]",
+   "auteur": "[PERSONNE-f26a492e]",
    "date": "Le 27/11/2024 à 08:30:00",
    "lieu": "Sur le registre électronique",
    "objet": "Contre",
@@ -1192,7 +1192,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E55",
    "type": "ecrite",
-   "auteur": "[PERSONNE J]",
+   "auteur": "[PERSONNE-6e07e219]",
    "date": "Le 27/11/2024 à 09:52:30",
    "lieu": "Par email",
    "objet": "Questions et demande de rendez vous",
@@ -1202,7 +1202,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E56",
    "type": "ecrite",
-   "auteur": "[PERSONNE BG]",
+   "auteur": "[PERSONNE-8952cd3f]",
    "date": "Le 27/11/2024 à 11:46:01",
    "lieu": "Sur le registre électronique",
    "objet": "Avis défavorable pour le projet agrovoltaïque du Pas de Mirepoix",
@@ -1212,7 +1212,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E57",
    "type": "ecrite",
-   "auteur": "[PERSONNE BH]",
+   "auteur": "[PERSONNE-458c3a9b]",
    "date": "Le 27/11/2024 à 18:08:06",
    "lieu": "Sur le registre électronique",
    "objet": "Refus du projet photovoltaïque \"Le Pas de Mirepoix\" sur la commune de Saint Julien de Briola",
@@ -1222,7 +1222,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E58",
    "type": "ecrite",
-   "auteur": "[PERSONNE BI]",
+   "auteur": "[PERSONNE-1913aa73]",
    "date": "Le 27/11/2024 à 18:34:18",
    "lieu": "Sur le registre électronique",
    "objet": "dossier la Piège",
@@ -1232,27 +1232,27 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E59",
    "type": "ecrite",
-   "auteur": "[PERSONNE BI]",
+   "auteur": "[PERSONNE-1913aa73]",
    "date": "Le 27/11/2024 à 18:51:34",
    "lieu": "Par email",
    "objet": "Projet Saint Julien de Briola",
-   "texte": "Ci-joint le texte en pdf désapprouvant le projet de Saint Julien de Briola [PERSONNE BI]\n[COURRIEL]",
+   "texte": "Ci-joint le texte en pdf désapprouvant le projet de Saint Julien de Briola [PERSONNE-1913aa73]\n[COURRIEL]",
    "pieces": "*"
   },
   {
    "id": "E60",
    "type": "ecrite",
-   "auteur": "[PERSONNE BJ]",
+   "auteur": "[PERSONNE-536dcbc7]",
    "date": "Le 27/11/2024 à 19:33:57",
    "lieu": "Par email",
    "objet": "projet",
-   "texte": "Madame, Monsieur, Je tiens à dire mon désaccord avec le projet du parc photovoltaïque de Saint Julien de Briola. Mon principal argument concerne la pollution visuelle. Nous vivons dans une magnifique région, un peu sauvage. Ce serait une véritable catastrophe que des champs de panneaux viennent détruire ces paysages. Je doute fort que les touristes amoureux de la région apprécient. Autre argument : Le Busard cendré, qui est une espèce protégée, sera mis en danger si ce projet voit le jour dans la mesure où les lieux de nidification seront détruits. Par ailleurs la parcelle concernée touche la zone Nature 2000 et se situe dans un couloir migratoire. Les scientifiques ont décrit les dégâts produits par de tels sites sur les populations d'oiseaux. Je désapprouve, par ailleurs, la dimension spéculative de cette entreprise. Un céréalier propriétaire du terrain et un éleveur associé au projet, proches des élus locaux, vont retirer d'énormes revenus en sacrifiant des terrains à faible rendement au détriment de l'écosystème. Pourquoi ne pas intégrer des panneaux sur des bâtiments agricoles existants ou sur des sites déjà artificialisés ou dégradés ? J'espère que les habitants seront entendus et que la protection de la nature gagnera face au profit de quelques uns. [PERSONNE BJ] habitante de Saint Amans",
+   "texte": "Madame, Monsieur, Je tiens à dire mon désaccord avec le projet du parc photovoltaïque de Saint Julien de Briola. Mon principal argument concerne la pollution visuelle. Nous vivons dans une magnifique région, un peu sauvage. Ce serait une véritable catastrophe que des champs de panneaux viennent détruire ces paysages. Je doute fort que les touristes amoureux de la région apprécient. Autre argument : Le Busard cendré, qui est une espèce protégée, sera mis en danger si ce projet voit le jour dans la mesure où les lieux de nidification seront détruits. Par ailleurs la parcelle concernée touche la zone Nature 2000 et se situe dans un couloir migratoire. Les scientifiques ont décrit les dégâts produits par de tels sites sur les populations d'oiseaux. Je désapprouve, par ailleurs, la dimension spéculative de cette entreprise. Un céréalier propriétaire du terrain et un éleveur associé au projet, proches des élus locaux, vont retirer d'énormes revenus en sacrifiant des terrains à faible rendement au détriment de l'écosystème. Pourquoi ne pas intégrer des panneaux sur des bâtiments agricoles existants ou sur des sites déjà artificialisés ou dégradés ? J'espère que les habitants seront entendus et que la protection de la nature gagnera face au profit de quelques uns. [PERSONNE-536dcbc7] habitante de Saint Amans",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
    "id": "E61",
    "type": "ecrite",
-   "auteur": "[PERSONNE BK]",
+   "auteur": "[PERSONNE-3d060787]",
    "date": "Le 28/11/2024 à 10:12:26",
    "lieu": "Sur le registre électronique",
    "objet": "défavorable au projet",
@@ -1262,7 +1262,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E62",
    "type": "ecrite",
-   "auteur": "[PERSONNE BL]",
+   "auteur": "[PERSONNE-bf244f9f]",
    "date": "Le 28/11/2024 à 18:31:52",
    "lieu": "Sur le registre électronique",
    "objet": "Pourquoi ce projet agrivoltaïque ne paraît pas résilient",
@@ -1272,17 +1272,17 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E63",
    "type": "ecrite",
-   "auteur": "[PERSONNE BM]",
+   "auteur": "[PERSONNE-bb68000a]",
    "date": "Le 28/11/2024 à 21:14:33",
    "lieu": "Sur le registre électronique",
    "objet": "Opposition au projet",
-   "texte": "Bonjour, Concernant le projet de centrale photovoltaïque à Saint-Julien-de-Briola, mon avis personnel est négatif. En effet, ce projet représente une détérioration de l'habitat de nombreuses espèces naturels, notamment le Busard cendré qui est protégé au titre de l'article 3 de l'arrêté du 29 octobre 2009 fixant la liste des oiseaux protégés sur l'ensemble du territoire. De plus, ce projet implique de lourds travaux de raccordements, y compris le franchissement de plusieurs cours d'eau. Il me semble qu'un projet de ce type serait plus judicieux à s'implanter sur un site à enjeu environnemental plus faible, tel qu'une friche [PERSONNE BM]",
+   "texte": "Bonjour, Concernant le projet de centrale photovoltaïque à Saint-Julien-de-Briola, mon avis personnel est négatif. En effet, ce projet représente une détérioration de l'habitat de nombreuses espèces naturels, notamment le Busard cendré qui est protégé au titre de l'article 3 de l'arrêté du 29 octobre 2009 fixant la liste des oiseaux protégés sur l'ensemble du territoire. De plus, ce projet implique de lourds travaux de raccordements, y compris le franchissement de plusieurs cours d'eau. Il me semble qu'un projet de ce type serait plus judicieux à s'implanter sur un site à enjeu environnemental plus faible, tel qu'une friche [PERSONNE-bb68000a]",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
    "id": "E64",
    "type": "ecrite",
-   "auteur": "[PERSONNE BN]",
+   "auteur": "[PERSONNE-09253f94]",
    "date": "Le 29/11/2024 à 10:36:22",
    "lieu": "Sur le registre électronique",
    "objet": "PROJET PHOTOVOLTAÏQUE SAINT-JULIEN-DE-BRIOLA",
@@ -1292,7 +1292,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E65",
    "type": "ecrite",
-   "auteur": "[PERSONNE BO]",
+   "auteur": "[PERSONNE-c4505c57]",
    "date": "Le 29/11/2024 à 12:23:00",
    "lieu": "Sur le registre électronique",
    "objet": "PROJET SAINT-JULIEN-DE-BRIOLA",
@@ -1302,7 +1302,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E66",
    "type": "ecrite",
-   "auteur": "[PERSONNE BP]",
+   "auteur": "[PERSONNE-5b9df85e]",
    "date": "Le 29/11/2024 à 17:23:28",
    "lieu": "Sur le registre électronique",
    "objet": "PROJET AGRIVOLTAÏQUE DU PAS DE MIREPOIX (SAINT-JULIEN-DE-BRIOLA)",
@@ -1312,7 +1312,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E67",
    "type": "ecrite",
-   "auteur": "[PERSONNE BQ]",
+   "auteur": "[PERSONNE-b4e1858f]",
    "date": "Le 30/11/2024 à 18:01:06",
    "lieu": "Sur le registre électronique",
    "objet": "Favorable au projet",
@@ -1322,7 +1322,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E68",
    "type": "ecrite",
-   "auteur": "[PERSONNE BR]",
+   "auteur": "[PERSONNE-85c48585]",
    "date": "Le 30/11/2024 à 18:03:41",
    "lieu": "Sur le registre électronique",
    "objet": "Favorable au projet",
@@ -1332,7 +1332,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E69",
    "type": "ecrite",
-   "auteur": "[PERSONNE BS]",
+   "auteur": "[PERSONNE-5d63846b]",
    "date": "Le 30/11/2024 à 21:12:44",
    "lieu": "Sur le registre électronique",
    "objet": "enquete publique projet agrivoltaïque st julien de briola avis défavorable",
@@ -1346,13 +1346,13 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 01/12/2024 à 11:04:08",
    "lieu": "Par email",
    "objet": "Enregistrement préfecture",
-   "texte": "Bonjour Mr [PERSONNE T] à votre demande ci-dessous, nous vous adressons à nouveau :- parution au JO avec objet de notre association- récépissé de déclaration en préfecture (modification du nom)Nous confirmer la bonne réception des documents.Veuillez agréer, Monsieur le commissaire enquêteur nos sincères [COURRIEL]",
+   "texte": "Bonjour Mr [PERSONNE-89090a23] à votre demande ci-dessous, nous vous adressons à nouveau :- parution au JO avec objet de notre association- récépissé de déclaration en préfecture (modification du nom)Nous confirmer la bonne réception des documents.Veuillez agréer, Monsieur le commissaire enquêteur nos sincères [COURRIEL]",
    "pieces": "*"
   },
   {
    "id": "E71",
    "type": "ecrite",
-   "auteur": "[PERSONNE BT]",
+   "auteur": "[PERSONNE-137a160f]",
    "date": "Le 01/12/2024 à 17:02:23",
    "lieu": "Sur le registre électronique",
    "objet": "consultation",
@@ -1372,17 +1372,17 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E73",
    "type": "ecrite",
-   "auteur": "[PERSONNE BU]",
+   "auteur": "[PERSONNE-3a12aa3a]",
    "date": "Le 01/12/2024 à 18:34:57",
    "lieu": "Sur le registre électronique",
    "objet": "PAS DE CENTRALE PHOTOVOLTAIQUE SUR LES TERRES AGRICOLES A SAINT JULIEN DE BRIOLA",
-   "texte": "SAINT JULIEN DE BRIOLA le 1/12/2024Je réside à Saint julien de Briola depuis de nombreuses annees lu attentivement tous les documents du projet de centrale photovoltaïque, ainsi que les avis des différentes institutions.Ce projet, son montage tenu secret, ses arguments fallacieux, le non-respect d'un certain nombre de textes de lois Européennes, Nationales, Régionales, le non-respect d'arrêtés et de chartes, le non-respect des différents avis, contreviennent en tout point au respect des lois, de nos institutions et de la démocratie.Je m'oppose fermement à ce projet pour les raisons suivantes : VOIR MES ARGUMENTS EN PIECE JOINTE.1 – PROJET TENU SECRET, PAS D'INFORMATION ET ENCORE MOINS DE CONCERTATION AVEC LES HABITANTS.2 – ATTEINTE GRAVE A LA BIODIVERSITE ET DESTRUCTION DE PLUSIEURS ESPECES PROTEGEES.3 – AUCUNE MESURE CONTRE LE FEU NE SERA SUFFISANTE AU REGARD DE LA PROXIMITE DE LA PARCELLE AVEC UNE PINEDE CENTENAIRE ET DES TERRAINS BOISÉS TOUT AUTOUR.4 – UN ACHEMINEMENT DE L'ELECTRICITE A PLUS DE 15 KM : UNE ABERRATION !5 – NON-RESPECT DE LA CHARTE DE LA COMMUNAUTE DE COMMUNES, POURTANT SIGNÉE PAR LA SOCIÉTÉ Dev'ENR ET LA MAIRIE DE SAINT JULIEN DE BRIOLA !6 – UN CABLAGE SOUTERRAIN INCOMPATIBLE AVEC LE TRAVAIL AGRICOLE !7 – DEPRECIATION DES BIENS IMMOBILIERS.LE PROJET DE CENTRALE PHOTOVOLTAÏQUE A SAINT JULIEN DE BRIOLA EST UN PROJET ARCHAÏQUE. COMME TOUS CEUX DU MEME TYPE SUR LES TERRES AGRICOLES.POUR LA DEFENSE DE LA DEMOCRATIE, DU BIEN COMMUN ET POUR LE RESPECT DES GENERATIONS FUTURES, LE PROJET DE CENTRALE PHOTOVOLTAÏQUE DE SAINT JULIEN DE BRIOLA DEVRAIT IMPERATIVEMENT FAIRE L'OBJET D'UN AVIS DEFAVORABLE DE LA PART DU PREFET DE L'AUDE. [PERSONNE BU]\n\nPièce(s) jointes(s) :\n\n\n\n\n\nDocument : BM contribution EP.pdf, page 1 sur 3\n\nSCAN RETIRE - ANONYMISATION : image non redactable automatiquement (scan ou photo de la contribution d'origine). Le contenu figure anonymise dans le texte de cette page. A valider par le commissaire enquêteur.\n\n\n\n\n\nDocument : BM contribution EP.pdf, page 2 sur 3\n\nSCAN RETIRE - ANONYMISATION : image non redactable automatiquement (scan ou photo de la contribution d'origine). Le contenu figure anonymise dans le texte de cette page. A valider par le commissaire enquêteur.\n\n\n\n\n\nDocument : BM contribution EP.pdf, page 3 sur 3\n\nSCAN RETIRE - ANONYMISATION : image non redactable automatiquement (scan ou photo de la contribution d'origine). Le contenu figure anonymise dans le texte de cette page. A valider par le commissaire enquêteur.",
+   "texte": "SAINT JULIEN DE BRIOLA le 1/12/2024Je réside à Saint julien de Briola depuis de nombreuses annees lu attentivement tous les documents du projet de centrale photovoltaïque, ainsi que les avis des différentes institutions.Ce projet, son montage tenu secret, ses arguments fallacieux, le non-respect d'un certain nombre de textes de lois Européennes, Nationales, Régionales, le non-respect d'arrêtés et de chartes, le non-respect des différents avis, contreviennent en tout point au respect des lois, de nos institutions et de la démocratie.Je m'oppose fermement à ce projet pour les raisons suivantes : VOIR MES ARGUMENTS EN PIECE JOINTE.1 – PROJET TENU SECRET, PAS D'INFORMATION ET ENCORE MOINS DE CONCERTATION AVEC LES HABITANTS.2 – ATTEINTE GRAVE A LA BIODIVERSITE ET DESTRUCTION DE PLUSIEURS ESPECES PROTEGEES.3 – AUCUNE MESURE CONTRE LE FEU NE SERA SUFFISANTE AU REGARD DE LA PROXIMITE DE LA PARCELLE AVEC UNE PINEDE CENTENAIRE ET DES TERRAINS BOISÉS TOUT AUTOUR.4 – UN ACHEMINEMENT DE L'ELECTRICITE A PLUS DE 15 KM : UNE ABERRATION !5 – NON-RESPECT DE LA CHARTE DE LA COMMUNAUTE DE COMMUNES, POURTANT SIGNÉE PAR LA SOCIÉTÉ Dev'ENR ET LA MAIRIE DE SAINT JULIEN DE BRIOLA !6 – UN CABLAGE SOUTERRAIN INCOMPATIBLE AVEC LE TRAVAIL AGRICOLE !7 – DEPRECIATION DES BIENS IMMOBILIERS.LE PROJET DE CENTRALE PHOTOVOLTAÏQUE A SAINT JULIEN DE BRIOLA EST UN PROJET ARCHAÏQUE. COMME TOUS CEUX DU MEME TYPE SUR LES TERRES AGRICOLES.POUR LA DEFENSE DE LA DEMOCRATIE, DU BIEN COMMUN ET POUR LE RESPECT DES GENERATIONS FUTURES, LE PROJET DE CENTRALE PHOTOVOLTAÏQUE DE SAINT JULIEN DE BRIOLA DEVRAIT IMPERATIVEMENT FAIRE L'OBJET D'UN AVIS DEFAVORABLE DE LA PART DU PREFET DE L'AUDE. [PERSONNE-3a12aa3a]\n\nPièce(s) jointes(s) :\n\n\n\n\n\nDocument : BM contribution EP.pdf, page 1 sur 3\n\nSCAN RETIRE - ANONYMISATION : image non redactable automatiquement (scan ou photo de la contribution d'origine). Le contenu figure anonymise dans le texte de cette page. A valider par le commissaire enquêteur.\n\n\n\n\n\nDocument : BM contribution EP.pdf, page 2 sur 3\n\nSCAN RETIRE - ANONYMISATION : image non redactable automatiquement (scan ou photo de la contribution d'origine). Le contenu figure anonymise dans le texte de cette page. A valider par le commissaire enquêteur.\n\n\n\n\n\nDocument : BM contribution EP.pdf, page 3 sur 3\n\nSCAN RETIRE - ANONYMISATION : image non redactable automatiquement (scan ou photo de la contribution d'origine). Le contenu figure anonymise dans le texte de cette page. A valider par le commissaire enquêteur.",
    "pieces": ""
   },
   {
    "id": "E74",
    "type": "ecrite",
-   "auteur": "[PERSONNE BV]",
+   "auteur": "[PERSONNE-d3681e5f]",
    "date": "Le 01/12/2024 à 21:17:23",
    "lieu": "Sur le registre électronique",
    "objet": "Atteinte environnementale et visuelle",
@@ -1392,7 +1392,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E75",
    "type": "ecrite",
-   "auteur": "[PERSONNE BW]",
+   "auteur": "[PERSONNE-30608cd7]",
    "date": "Le 02/12/2024 à 18:43:09",
    "lieu": "Sur le registre électronique",
    "objet": "mon avis ao projet à St.Juloen de Briola",
@@ -1402,7 +1402,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E76",
    "type": "ecrite",
-   "auteur": "[PERSONNE BX]",
+   "auteur": "[PERSONNE-89ae7da2]",
    "date": "Le 02/12/2024 à 19:59:40",
    "lieu": "Sur le registre électronique",
    "objet": "Pour ce projet d'énergie renouvelable",
@@ -1412,7 +1412,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E77",
    "type": "ecrite",
-   "auteur": "[PERSONNE BY]",
+   "auteur": "[PERSONNE-f1ed1d69]",
    "date": "Le 02/12/2024 à 20:17:55",
    "lieu": "Sur le registre électronique",
    "objet": "Oui au projet !",
@@ -1422,7 +1422,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E78",
    "type": "ecrite",
-   "auteur": "[PERSONNE BZ]",
+   "auteur": "[PERSONNE-bc8d4182]",
    "date": "Le 03/12/2024 à 09:10:36",
    "lieu": "Sur le registre électronique",
    "objet": "NON au projet agrivoltaïque du Pas de Mirepoix / St Julien-de-Briola",
@@ -1432,7 +1432,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E79",
    "type": "ecrite",
-   "auteur": "[PERSONNE CA]",
+   "auteur": "[PERSONNE-61a86835]",
    "date": "Le 03/12/2024 à 15:16:10",
    "lieu": "Sur le registre électronique",
    "objet": "Projet de parc photovoltaïque - LE PAS DE MIREPOIX - Commune de ST JULIEN DE BRIOLA 11",
@@ -1442,47 +1442,47 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E80",
    "type": "ecrite",
-   "auteur": "[PERSONNE CA]",
+   "auteur": "[PERSONNE-61a86835]",
    "date": "Le 03/12/2024 à 15:18:31",
    "lieu": "Par email",
    "objet": "Contribution enquête publique projet parc photovoltaïque PAS DE MIREPOIX - Commune St Julien de Briola",
-   "texte": "Bonjour, Je vous remercie de bien vouloir trouver ci-annexée ma contribution à l'enquête publique relative au projet de parc photovoltaïque PAS DE MIREPOIX - Commune St Julien de Briola. Bonne réception, Cdt [PERSONNE CA], GF du bois du roi",
+   "texte": "Bonjour, Je vous remercie de bien vouloir trouver ci-annexée ma contribution à l'enquête publique relative au projet de parc photovoltaïque PAS DE MIREPOIX - Commune St Julien de Briola. Bonne réception, Cdt [PERSONNE-61a86835], GF du bois du roi",
    "pieces": "*"
   },
   {
    "id": "E81",
    "type": "ecrite",
-   "auteur": "[PERSONNE G]",
+   "auteur": "[PERSONNE-e901953f]",
    "date": "Le 03/12/2024 à 15:21:44",
    "lieu": "Sur le registre électronique",
    "objet": "Centrale photovoltaïque du Pas de Mirepoix",
-   "texte": "J'ai rencontré Monsieur [PERSONNE G] et je lui ai fait part de mon opposition à ce projet avec des arguments qu'il doit retranscrire. Je reprends néanmoins la parole car je suis excédée de voir dans les contributions une analyse récurrente, réductrice et fallacieuse selon laquelle nous serions en présence de deux camps aux intérêts opposés : d'un côté les agriculteurs présents de longue date sur le territoire avec leurs difficultés, notamment financières, et de l'autre une bande de bobos écolos crétins récemment débarqués des villes pour faire des histoires à tout le monde et s'opposer à tout et n'importe quoi. Cette vision est fausse : à titre personnel j'ai une exploitation agricole sur la commune voisine, ma famille est présente depuis de nombreuses générations, nous sommes viscéralement attachés à ce territoire et à ses habitants et jamais nous ne nous étions opposés en quoi que ce soit au projet de quiconque. Aujourd'hui et à mon très grand regret je suis obligée de sortir de cette réserve et de réagir pour préserver notre patrimoine visuel commun et contrer une aberration écologique. Un monsieur a dit dans sa contribution : \" et comment ils vont faire les écolos pour produire de l'électricité ?\" Monsieur je vous réponds : les écolos que vous prenez pour des idiots et pire que ça ils vont produire de l'électricité sur des surfaces déjà artificialisées. De nombreuses études parfaitement scientifiques et irréfutables démontrent que cela suffit largement à couvrir nos besoins et nos objectifs à l'échelle nationale. Il faut arrêter de monter les gens les uns contre les autres sur la base de schémas faux et réducteurs. Il est tout à fait légitime de vouloir gagner de l'argent (car toute cette affaire ne repose que là-dessus) mais il existe des limites à ne pas franchir. Personne n'a le droit de détruire des paysages pour son seul profit et sans le moindre bénéfice réel pour la collectivité. L'électricité doit être produite aux abords des zones urbaines qui sont aussi les lieux de consommation et en aucun cas en pleine nature. Depuis des décennies on interdit à juste titre toute construction en dehors des agglomérations pour ne pas \"miter\" le paysage et là, subitement, on accepte de le dégrader de manière bien plus grave, sur des surfaces énormes et sans la moindre nécessité. C'est inacceptable.",
+   "texte": "J'ai rencontré Monsieur [PERSONNE-e901953f] et je lui ai fait part de mon opposition à ce projet avec des arguments qu'il doit retranscrire. Je reprends néanmoins la parole car je suis excédée de voir dans les contributions une analyse récurrente, réductrice et fallacieuse selon laquelle nous serions en présence de deux camps aux intérêts opposés : d'un côté les agriculteurs présents de longue date sur le territoire avec leurs difficultés, notamment financières, et de l'autre une bande de bobos écolos crétins récemment débarqués des villes pour faire des histoires à tout le monde et s'opposer à tout et n'importe quoi. Cette vision est fausse : à titre personnel j'ai une exploitation agricole sur la commune voisine, ma famille est présente depuis de nombreuses générations, nous sommes viscéralement attachés à ce territoire et à ses habitants et jamais nous ne nous étions opposés en quoi que ce soit au projet de quiconque. Aujourd'hui et à mon très grand regret je suis obligée de sortir de cette réserve et de réagir pour préserver notre patrimoine visuel commun et contrer une aberration écologique. Un monsieur a dit dans sa contribution : \" et comment ils vont faire les écolos pour produire de l'électricité ?\" Monsieur je vous réponds : les écolos que vous prenez pour des idiots et pire que ça ils vont produire de l'électricité sur des surfaces déjà artificialisées. De nombreuses études parfaitement scientifiques et irréfutables démontrent que cela suffit largement à couvrir nos besoins et nos objectifs à l'échelle nationale. Il faut arrêter de monter les gens les uns contre les autres sur la base de schémas faux et réducteurs. Il est tout à fait légitime de vouloir gagner de l'argent (car toute cette affaire ne repose que là-dessus) mais il existe des limites à ne pas franchir. Personne n'a le droit de détruire des paysages pour son seul profit et sans le moindre bénéfice réel pour la collectivité. L'électricité doit être produite aux abords des zones urbaines qui sont aussi les lieux de consommation et en aucun cas en pleine nature. Depuis des décennies on interdit à juste titre toute construction en dehors des agglomérations pour ne pas \"miter\" le paysage et là, subitement, on accepte de le dégrader de manière bien plus grave, sur des surfaces énormes et sans la moindre nécessité. C'est inacceptable.",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
    "id": "E82",
    "type": "ecrite",
-   "auteur": "[PERSONNE CB]",
+   "auteur": "[PERSONNE-ec1fd034]",
    "date": "Le 04/12/2024 à 11:05:36",
    "lieu": "Sur le registre électronique",
    "objet": "NON À CE PROJET",
-   "texte": "[PERSONNE CB] / Commune de Saint Amans dans La Piège. Monsieur le commissaire enquêteur, Plus je me documente et réfléchis à ce projet, plus il m'apparaît, aberrant, mensonger, dangereux, irrespectueux des lois et des habitants de La Piège et de surcroît inutile. Qui peut croire que la terre, l'herbe et les animaux qui vivent sous des panneaux photovoltaïques auront une vie meilleur grâce à leurs présences? L'ombre de ces panneaux, que l'on nous fait miroiter comme protection de la terre contre la pluie et fraîcheur pour les animaux vont en réalité sécher la terre et augmenter la température de plusieurs degrés (3 à 4° d'après le CNPN). À terme, une terre morte, sans humus et des génisses ne pouvant supporter cette chaleur excessive, voilà plutôt à quelle réalité sont voués ces 28 ha de terre agricoles. A quoi cela va-t-il ressembler? Le spectacle d'un camps fermé derrière un grillage de 2 mètres de hauteur protégeant 28 ha de terre couvertes d'aluminum anodisé. Autrement dit, une surface supérieur à la surface habitable du village de Saint-Julien-de-Briola lui-même. Ce spectacle sera visible depuis biens des endroits, voisins, route de Belpech (D101), le village de Cazalrenoux et biens d'autres. Je vous laisse apprécier la nuisance visuelle imposée aux habitants de la région. ce projet ne sert pas le bien commun mais uniquement le profit d'une seule entreprise agricole au mépris de la dépression que subiront tous les biens immobiliers à proximité ou ayant vu sur ces champs de panneaux photovoltaïques. Cela engendre déjà des discordes et des brouilles au sein de la population et sont très dommageables à la vie sociale de notre région. Si ces terres ne sont à l'origine pas très riches et si par malheur ce projet devait aboutir il est certain qu'elles perdraient définitivement leur valeur. La véritable richesse de La Piège, ce qu'elle a de plus précieux, c'est sa beauté. Ne la bradons pas. L'argument à l'initiative de ce projet était la perte de subvention accordée aux éleveurs en terre défavorisé. Celui-ci ne tient plus, car les subventions ont été rétablies et l'arriéré des 6 années non versé sera rendu aux éleveurs. Raison supplémentaire à ne pas poursuivre ce projet. Saint-Julien-de-Briola n'est que le premier d'une longue liste de projet similaire dans la Piège. Entre Saint-Julien-de-Briola et Belpech on en dénombre 10 à l'étude et de nouveaux se présentent sans arrêt. Si celui-ci voit le jour, c'est la porte ouverte à l'aboutissement de tous les autres, ce qui lui donne un statue et une responsabilité particulière dont je suis sûre que vous saurez prendre la mesure. Je porte à votre attention le non respecté pas la charte de la CCPLM en plusieurs points dont celui qui suit chapitre 2 paragraphe 8: « il est prévu que si un élu détient un intérêt (direct ou indirect) sur le projet (s'il est propriétaire, exploitant agricole de parcelles susceptible d'accueillir une partie du projet), il s'abstiendra de toute présence lors des débats, et de toute participation aux votes et délibérations du conseil municipal et/ou communautaire sur ce projet. » Il est manifeste que ça n'a pas été le cas concernant le conseil municipal de Saint-Julien-de-Briola au vu de la participation d'un élu concerné. Cette irrégularité à la procédure est loin d'être la seule, je ne les listerais pas ici, d'autres citoyens l'ayant déjà fait avant moi. Pour finir, Je vous rappelle que le département de l'Aude a déjà atteint et dépassé le cota d'énergies renouvelables demandée pour 2050. Cela nous donne le temps de penser à des projets plus respectueux de notre pays et en accord avec ses citoyens. J'arpente ce pays depuis ma naissance avec toujours autant de plaisir à en admirer la beauté qu'il m'est impossible d'imaginer détruit par la laideur ces parcs. Je vous demande de prendre en considération les arguments développés dans ce courrier ainsi que ceux de toutes les autres personnes participant à cette enquête public. Je vous en remercie par avance Bien respectueusement. [PERSONNE CB]",
+   "texte": "[PERSONNE-ec1fd034] / Commune de Saint Amans dans La Piège. Monsieur le commissaire enquêteur, Plus je me documente et réfléchis à ce projet, plus il m'apparaît, aberrant, mensonger, dangereux, irrespectueux des lois et des habitants de La Piège et de surcroît inutile. Qui peut croire que la terre, l'herbe et les animaux qui vivent sous des panneaux photovoltaïques auront une vie meilleur grâce à leurs présences? L'ombre de ces panneaux, que l'on nous fait miroiter comme protection de la terre contre la pluie et fraîcheur pour les animaux vont en réalité sécher la terre et augmenter la température de plusieurs degrés (3 à 4° d'après le CNPN). À terme, une terre morte, sans humus et des génisses ne pouvant supporter cette chaleur excessive, voilà plutôt à quelle réalité sont voués ces 28 ha de terre agricoles. A quoi cela va-t-il ressembler? Le spectacle d'un camps fermé derrière un grillage de 2 mètres de hauteur protégeant 28 ha de terre couvertes d'aluminum anodisé. Autrement dit, une surface supérieur à la surface habitable du village de Saint-Julien-de-Briola lui-même. Ce spectacle sera visible depuis biens des endroits, voisins, route de Belpech (D101), le village de Cazalrenoux et biens d'autres. Je vous laisse apprécier la nuisance visuelle imposée aux habitants de la région. ce projet ne sert pas le bien commun mais uniquement le profit d'une seule entreprise agricole au mépris de la dépression que subiront tous les biens immobiliers à proximité ou ayant vu sur ces champs de panneaux photovoltaïques. Cela engendre déjà des discordes et des brouilles au sein de la population et sont très dommageables à la vie sociale de notre région. Si ces terres ne sont à l'origine pas très riches et si par malheur ce projet devait aboutir il est certain qu'elles perdraient définitivement leur valeur. La véritable richesse de La Piège, ce qu'elle a de plus précieux, c'est sa beauté. Ne la bradons pas. L'argument à l'initiative de ce projet était la perte de subvention accordée aux éleveurs en terre défavorisé. Celui-ci ne tient plus, car les subventions ont été rétablies et l'arriéré des 6 années non versé sera rendu aux éleveurs. Raison supplémentaire à ne pas poursuivre ce projet. Saint-Julien-de-Briola n'est que le premier d'une longue liste de projet similaire dans la Piège. Entre Saint-Julien-de-Briola et Belpech on en dénombre 10 à l'étude et de nouveaux se présentent sans arrêt. Si celui-ci voit le jour, c'est la porte ouverte à l'aboutissement de tous les autres, ce qui lui donne un statue et une responsabilité particulière dont je suis sûre que vous saurez prendre la mesure. Je porte à votre attention le non respecté pas la charte de la CCPLM en plusieurs points dont celui qui suit chapitre 2 paragraphe 8: « il est prévu que si un élu détient un intérêt (direct ou indirect) sur le projet (s'il est propriétaire, exploitant agricole de parcelles susceptible d'accueillir une partie du projet), il s'abstiendra de toute présence lors des débats, et de toute participation aux votes et délibérations du conseil municipal et/ou communautaire sur ce projet. » Il est manifeste que ça n'a pas été le cas concernant le conseil municipal de Saint-Julien-de-Briola au vu de la participation d'un élu concerné. Cette irrégularité à la procédure est loin d'être la seule, je ne les listerais pas ici, d'autres citoyens l'ayant déjà fait avant moi. Pour finir, Je vous rappelle que le département de l'Aude a déjà atteint et dépassé le cota d'énergies renouvelables demandée pour 2050. Cela nous donne le temps de penser à des projets plus respectueux de notre pays et en accord avec ses citoyens. J'arpente ce pays depuis ma naissance avec toujours autant de plaisir à en admirer la beauté qu'il m'est impossible d'imaginer détruit par la laideur ces parcs. Je vous demande de prendre en considération les arguments développés dans ce courrier ainsi que ceux de toutes les autres personnes participant à cette enquête public. Je vous en remercie par avance Bien respectueusement. [PERSONNE-ec1fd034]",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
    "id": "E83",
    "type": "ecrite",
-   "auteur": "[PERSONNE W]",
+   "auteur": "[PERSONNE-c14e89d2]",
    "date": "Le 04/12/2024 à 12:42:39",
    "lieu": "Sur le registre électronique",
    "objet": "Les PV en pleine Nature",
-   "texte": "Monsieur, Je me permet de vous faire suivre cet article qui est paru le 1 décembre 24 dans le journal le point. « Nous dénonçons le développement à marche forcée des énergies renouvelables »TRIBUNE. Henri Proglio, Louis Gallois... Dans une lettre ouverte, 10 anciens dirigeants alertent le Premier ministre Michel Barnier, et dénoncent une politique ruineuse de développement massif des renouvelables.Nous, anciens ministres, anciens parlementaires, anciens dirigeants d'entreprises et de production d'électricité, animateurs de centres de réflexion et spécialistes des questions énergétiques, dénonçons par cette lettre, l'extrême gravité pour la France de poursuivre la politique énergétique proposée par le projet de Programmation Pluriannuelle de l'Énergie récemment publié par la DGEC.Nous dénonçons la poursuite à marche forcée d'installation d'éoliennes marines ou terrestres, ou de panneaux solaires qui ne servent en aucun cas à la décarbonation de notre pays puisque, grâce au nucléaire et à l'hydraulique, l'électricité y est abondante et déjà décarbonée à 95 %.Nous dénonçons l'illusion répandue par les rapports officiels de RTE que les énergies renouvelables intermittentes et l'énergie nucléaire seraient complémentaires et qu'une production d'électricité totalement dépendante de la météo et impossible à stocker à grande échelle, puisse offrir aux Français la sécurité d'approvisionnement électrique.Nous dénonçons les garanties de prix accordées aux producteurs de cette électricité intermittente qui leur donnent un accès prioritaire sur le marché de l'électricité, faussent les règles de fixation des prix, déstabilisent les marchés jusqu'à des prix négatifs, et nuisent à EDF qui doit ralentir sa production nucléaire pour laisser écouler les surplus d'électricité éolienne et solaire, tout en supportant tous les coûts fixes de ses centrales nucléaires.Nous dénonçons les engagements de plusieurs centaines de milliards d'euros que les garanties de prix et subventions à ces énergies intermittentes ont coûté, coûtent et vont coûter à la collectivité nationale, au seul bénéfice des producteurs privés, et de leurs fournisseurs d'éoliennes et de panneaux photovoltaïques, en quasi-totalité importés de l'étranger qui déséquilibrent notre balance commerciale.Nous dénonçons l'inflation des prix de l'électricité, pour les particuliers et les entreprises, que génèrent notamment les coûts de raccordement et d'adaptation des réseaux électriques à ces productions intermittentes émiettées sur tout le territoire, financés par les consommateurs et non par les producteurs.Nous dénonçons la nécessité technique, illustrée par l'exemple de l'Allemagne, de construire, au fur et à mesure de la montée de la part des énergies intermittentes, de nouvelles usines électriques fossiles afin de compenser les chutes brutales et imprévisibles de production en cas d'absence de vent ou de soleil.Nous dénonçons les arbitrages budgétaires nuisibles à la neutralité carbone et au climat, illustrés par le projet de Budget pour 2025 dans lequel sont portés à 4 milliards d'Euros les crédits pour les garanties de prix données aux producteurs d'énergies intermittentes, sans effet sur le climat, tandis que sont réduites les aides à la décarbonation des secteurs les plus responsables des émissions de CO2, dans l'habitat ou l'électrification des transports.Nous dénonçons les effets anti sociaux et défavorables au climat de cette politique qui a fait augmenter le prix de l'électricité de 120 % en 12 ans, rendant inaccessible aux ménages français les plus défavorisés l'électrification de leur chauffage et encore d'avantage de leur véhicule tout en enrichissant les producteurs d'électricité éolienne ou solaire.Nous dénonçons les pressions exercées sur la France, notamment via les directives européennes qui refusent la prise en compte de la contribution de l'énergie nucléaire à la décarbonation et sanctionnent financièrement la France, pour imposer le modèle de transition énergétique allemand d'« Energiewende » dont l'échec est patent sur le plan économique et de l'impact sur le climat. Non, la France n'est en aucun cas « en retard » et – contrairement à sa voisine d'Outre-Rhin – émet, grâce à son nucléaire, très peu de CO2 pour\n\n\n\n\n\nproduire son électricité. Nous dénonçons les opérations d'ingérences étrangères en France visant également à promouvoir le modèle énergétique allemand, telles que dévoilées par les rapports de l'École de Guerre Économique. Nous dénonçons la présence au sein de notre administration, comme dans les institutions et entreprises énergétiques publiques, de responsables provenant de la mouvance antinucléaire et pro-éolien, avec des parcours professionnels imbriqués dans les syndicats professionnels des énergies renouvelables, qui jettent un doute légitime sur leur neutralité pour défendre un modèle énergétique conforme aux intérêts de notre pays. Nous dénonçons enfin le financement par l'État ou des entreprises énergétiques étatiques, d'associations et officines antinucléaires, pro-éolien et photovoltaïque, qui dénigrent le modèle énergétique français et auxquelles sont confiées, dans certaines régions, les études d'élaboration des politiques énergétiques régionales. L'adoption par votre gouvernement d'une Programmation Pluriannuelle de l'Énergie qui persisterait dans cette politique de développement accéléré des énergies intermittentes, constituerait une véritable catastrophe économique et écologique pour notre pays et irait à l'encontre de l'annonce très opportune dans votre Déclaration de Politique Générale, qu'allait être réévalué l'impact de ces énergies, avant de persister dans le soutien public qui leur est donné. Elle méconnaîtrait également les conclusions des récents rapports d'enquêtes parlementaires de l'Assemblée nationale en 2023 et du Sénat en 2024. Parce que nous avons été, pour certains d'entre nous, au cœur de la gouvernance énergétique de notre pays, nous pouvons vous affirmer que la poursuite aveugle du développement accéléré des énergies intermittentes en France, contribuera à un affaiblissement de notre souveraineté énergétique, à la déstabilisation de notre économie par la poursuite de l'augmentation du prix de l'électricité et l'inflation énergétique qu'elles génèrent, à la baisse de notre compétitivité industrielle, à une dépendance accrue vis-à-vis d'équipements importés de l'étranger, à une régression sociale et à des risques importants de coupures d'électricité à grande échelle. Monsieur le Premier ministre, cette politique ruineuse dont l'échec est patent en Allemagne, ne sert que quelques intérêts particuliers, majoritairement étrangers, aux dépens de l'économie française, des consommateurs et des contribuables français. Malgré l'évidence de ses conséquences désastreuses, une partie de l'administration et du personnel politique continue de promouvoir cette politique au nom d'une idéologie antinucléaire aujourd'hui totalement dépassée et de la défense d'intérêts particuliers au détriment de l'intérêt général. C'est pourquoi, Monsieur le Premier ministre, nous avons l'honneur de vous demander solennellement de mettre un terme définitif à une politique énergétique qui cause d'énormes dommages à notre pays. Signataires : Henri Proglio, ancien Président [PERSONNE DL] Machenaud, ancien Directeur exécutif d'EDF André Merlin, ancien Président fondateur de RTEMichel Rousseau, Président de la Fondation Concorde Xavier Moréno, Président du Cercle d'Étude Réalités Écologiques et Mix Énergétique Louis Gallois, ancien chef d'entreprise, ancien Commissaire Général à [PERSONNE AU] Accoyer, ancien Président de l'Assemblée Nationale, Président de Patrimoine Nucléaire et Climat François Goulard, ancien ministre de l'Enseignement supérieur et à la Recherche Christian Gérondeau, haut fonctionnaire français. Ancien délégué interministériel à la sécurité routière Fabien Bouglé, essayiste, expert en politique énergétique Envoyé de mon iPhone",
+   "texte": "Monsieur, Je me permet de vous faire suivre cet article qui est paru le 1 décembre 24 dans le journal le point. « Nous dénonçons le développement à marche forcée des énergies renouvelables »TRIBUNE. Henri [NOM], Louis [NOM]... Dans une lettre ouverte, 10 anciens dirigeants alertent le Premier ministre Michel [NOM], et dénoncent une politique ruineuse de développement massif des renouvelables.Nous, anciens ministres, anciens parlementaires, anciens dirigeants d'entreprises et de production d'électricité, animateurs de centres de réflexion et spécialistes des questions énergétiques, dénonçons par cette lettre, l'extrême gravité pour la France de poursuivre la politique énergétique proposée par le projet de Programmation Pluriannuelle de l'Énergie récemment publié par la DGEC.Nous dénonçons la poursuite à marche forcée d'installation d'éoliennes marines ou terrestres, ou de panneaux solaires qui ne servent en aucun cas à la décarbonation de notre pays puisque, grâce au nucléaire et à l'hydraulique, l'électricité y est abondante et déjà décarbonée à 95 %.Nous dénonçons l'illusion répandue par les rapports officiels de RTE que les énergies renouvelables intermittentes et l'énergie nucléaire seraient complémentaires et qu'une production d'électricité totalement dépendante de la météo et impossible à stocker à grande échelle, puisse offrir aux Français la sécurité d'approvisionnement électrique.Nous dénonçons les garanties de prix accordées aux producteurs de cette électricité intermittente qui leur donnent un accès prioritaire sur le marché de l'électricité, faussent les règles de fixation des prix, déstabilisent les marchés jusqu'à des prix négatifs, et nuisent à EDF qui doit ralentir sa production nucléaire pour laisser écouler les surplus d'électricité éolienne et solaire, tout en supportant tous les coûts fixes de ses centrales nucléaires.Nous dénonçons les engagements de plusieurs centaines de milliards d'euros que les garanties de prix et subventions à ces énergies intermittentes ont coûté, coûtent et vont coûter à la collectivité nationale, au seul bénéfice des producteurs privés, et de leurs fournisseurs d'éoliennes et de panneaux photovoltaïques, en quasi-totalité importés de l'étranger qui déséquilibrent notre balance commerciale.Nous dénonçons l'inflation des prix de l'électricité, pour les particuliers et les entreprises, que génèrent notamment les coûts de raccordement et d'adaptation des réseaux électriques à ces productions intermittentes émiettées sur tout le territoire, financés par les consommateurs et non par les producteurs.Nous dénonçons la nécessité technique, illustrée par l'exemple de l'Allemagne, de construire, au fur et à mesure de la montée de la part des énergies intermittentes, de nouvelles usines électriques fossiles afin de compenser les chutes brutales et imprévisibles de production en cas d'absence de vent ou de soleil.Nous dénonçons les arbitrages budgétaires nuisibles à la neutralité carbone et au climat, illustrés par le projet de Budget pour 2025 dans lequel sont portés à 4 milliards d'Euros les crédits pour les garanties de prix données aux producteurs d'énergies intermittentes, sans effet sur le climat, tandis que sont réduites les aides à la décarbonation des secteurs les plus responsables des émissions de CO2, dans l'habitat ou l'électrification des transports.Nous dénonçons les effets anti sociaux et défavorables au climat de cette politique qui a fait augmenter le prix de l'électricité de 120 % en 12 ans, rendant inaccessible aux ménages français les plus défavorisés l'électrification de leur chauffage et encore d'avantage de leur véhicule tout en enrichissant les producteurs d'électricité éolienne ou solaire.Nous dénonçons les pressions exercées sur la France, notamment via les directives européennes qui refusent la prise en compte de la contribution de l'énergie nucléaire à la décarbonation et sanctionnent financièrement la France, pour imposer le modèle de transition énergétique allemand d'« Energiewende » dont l'échec est patent sur le plan économique et de l'impact sur le climat. Non, la France n'est en aucun cas « en retard » et – contrairement à sa voisine d'Outre-Rhin – émet, grâce à son nucléaire, très peu de CO2 pour\n\n\n\n\n\nproduire son électricité. Nous dénonçons les opérations d'ingérences étrangères en France visant également à promouvoir le modèle énergétique allemand, telles que dévoilées par les rapports de l'École de Guerre Économique. Nous dénonçons la présence au sein de notre administration, comme dans les institutions et entreprises énergétiques publiques, de responsables provenant de la mouvance antinucléaire et pro-éolien, avec des parcours professionnels imbriqués dans les syndicats professionnels des énergies renouvelables, qui jettent un doute légitime sur leur neutralité pour défendre un modèle énergétique conforme aux intérêts de notre pays. Nous dénonçons enfin le financement par l'État ou des entreprises énergétiques étatiques, d'associations et officines antinucléaires, pro-éolien et photovoltaïque, qui dénigrent le modèle énergétique français et auxquelles sont confiées, dans certaines régions, les études d'élaboration des politiques énergétiques régionales. L'adoption par votre gouvernement d'une Programmation Pluriannuelle de l'Énergie qui persisterait dans cette politique de développement accéléré des énergies intermittentes, constituerait une véritable catastrophe économique et écologique pour notre pays et irait à l'encontre de l'annonce très opportune dans votre Déclaration de Politique Générale, qu'allait être réévalué l'impact de ces énergies, avant de persister dans le soutien public qui leur est donné. Elle méconnaîtrait également les conclusions des récents rapports d'enquêtes parlementaires de l'Assemblée nationale en 2023 et du Sénat en 2024. Parce que nous avons été, pour certains d'entre nous, au cœur de la gouvernance énergétique de notre pays, nous pouvons vous affirmer que la poursuite aveugle du développement accéléré des énergies intermittentes en France, contribuera à un affaiblissement de notre souveraineté énergétique, à la déstabilisation de notre économie par la poursuite de l'augmentation du prix de l'électricité et l'inflation énergétique qu'elles génèrent, à la baisse de notre compétitivité industrielle, à une dépendance accrue vis-à-vis d'équipements importés de l'étranger, à une régression sociale et à des risques importants de coupures d'électricité à grande échelle. Monsieur le Premier ministre, cette politique ruineuse dont l'échec est patent en Allemagne, ne sert que quelques intérêts particuliers, majoritairement étrangers, aux dépens de l'économie française, des consommateurs et des contribuables français. Malgré l'évidence de ses conséquences désastreuses, une partie de l'administration et du personnel politique continue de promouvoir cette politique au nom d'une idéologie antinucléaire aujourd'hui totalement dépassée et de la défense d'intérêts particuliers au détriment de l'intérêt général. C'est pourquoi, Monsieur le Premier ministre, nous avons l'honneur de vous demander solennellement de mettre un terme définitif à une politique énergétique qui cause d'énormes dommages à notre pays. Signataires : Henri [NOM], ancien Président [PERSONNE-18b3f37e] [NOM], ancien Directeur exécutif d'EDF André [NOM], ancien Président fondateur de RTEMichel [NOM], Président de la Fondation Concorde Xavier [NOM], Président du Cercle d'Étude Réalités Écologiques et Mix Énergétique Louis [NOM], ancien chef d'entreprise, ancien Commissaire Général à [PERSONNE-91dad32c] [NOM], ancien Président de l'Assemblée Nationale, Président de Patrimoine Nucléaire et Climat François Goulard, ancien ministre de l'Enseignement supérieur et à la Recherche [NOM] Gérondeau, haut fonctionnaire français. Ancien délégué interministériel à la sécurité routière Fabien Bouglé, essayiste, expert en politique énergétique Envoyé de mon iPhone",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
    "id": "E84",
    "type": "ecrite",
-   "auteur": "[PERSONNE CC]",
+   "auteur": "[PERSONNE-69e35771]",
    "date": "Le 04/12/2024 à 14:41:04",
    "lieu": "Sur le registre électronique",
    "objet": "Non au photovoltaïque au sol",
@@ -1492,7 +1492,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E85",
    "type": "ecrite",
-   "auteur": "[PERSONNE CD]",
+   "auteur": "[PERSONNE-848b7de0]",
    "date": "Le 05/12/2024 à 08:24:16",
    "lieu": "Sur le registre électronique",
    "objet": "FAVORABLE",
@@ -1502,7 +1502,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E86",
    "type": "ecrite",
-   "auteur": "[PERSONNE CE]",
+   "auteur": "[PERSONNE-0f63ed5d]",
    "date": "Le 05/12/2024 à 12:08:58",
    "lieu": "Sur le registre électronique",
    "objet": "NON À CE PROJET HONTEUX",
@@ -1512,7 +1512,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E87",
    "type": "ecrite",
-   "auteur": "[PERSONNE CF]",
+   "auteur": "[PERSONNE-1d7df143]",
    "date": "Le 06/12/2024 à 09:14:00",
    "lieu": "Sur le registre électronique",
    "objet": "Avis favorable",
@@ -1522,7 +1522,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E88",
    "type": "ecrite",
-   "auteur": "[PERSONNE CG]",
+   "auteur": "[PERSONNE-d30efeb6]",
    "date": "Le 06/12/2024 à 10:59:20",
    "lieu": "Sur le registre électronique",
    "objet": "La terre aux citoyens",
@@ -1532,7 +1532,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E89",
    "type": "ecrite",
-   "auteur": "[PERSONNE CH]",
+   "auteur": "[PERSONNE-efa91588]",
    "date": "Le 06/12/2024 à 12:27:17",
    "lieu": "Sur le registre électronique",
    "objet": "Avis négatif",
@@ -1542,7 +1542,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E90",
    "type": "ecrite",
-   "auteur": "[PERSONNE CI]",
+   "auteur": "[PERSONNE-7134c16a]",
    "date": "Le 06/12/2024 à 15:30:46",
    "lieu": "Sur le registre électronique",
    "objet": "OPPOSITION A CE PROJET ECONOMIQUEMENT ABERRANT",
@@ -1552,17 +1552,17 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E91",
    "type": "ecrite",
-   "auteur": "[PERSONNE CJ]",
+   "auteur": "[PERSONNE-79d5bad5]",
    "date": "Le 06/12/2024 à 15:42:12",
    "lieu": "Sur le registre électronique",
    "objet": "CENTRALE PHOTOVOLTAÏQUE DANS LES CHAMPS A SAINT JULIEN DE BRIOLA : UNE HERESIE ZOOTECHNIQUE, ECOLOGIQUE, SCIENTIFIQUE, STRUCTURELLE ET REGLEMENTAIRE.",
-   "texte": "CENTRALE PHOTOVOLTAÏQUE DANS LES CHAMPS A SAINT JULIEN DE BRIOLA : UNE HERESIE ZOOTECHNIQUE, ECOLOGIQUE, SCIENTIFIQUE, STRUCTURELLE ET REGLEMENTAIRE. EN PIECE JOINTE : MES ARGUMENTS COMPLETS CONTRE CE PROJET. Ce projet ne s'inscrit aucunement dans une raison impérative d'intérêt public. Il ne se justifie absolument pas au regard de toutes ses incohérences et surtout au regard de ses impacts négatifs et irrégularités. Il contrevient à plusieurs titres aux réglementations, aux lois ainsi qu'aux chartes locales. J'habite à Saint Julien de Briola depuis de nombreuses années suis retraitée cheffe d'exploitation agricole. Je me suis installée en GAEC en 1977 sur une exploitation agricole de 120 ha dont 60 en propriété sur les coteaux de la vallée de l'Hers près de Mirepoix. Production vaches allaitantes, génisses et taurillons, polyculture avec irrigation. Je connais parfaitement le travail de la terre et la conduite d'un élevage, dont j'ai assuré toutes les tâches et la gestion. Conduite de l'élevage, mise bas, soins vétérinaires, alimentation, travail du sol, labour, mécanique, ensilage, irrigation, gestion administrative, PAC et ICHN... Je connais et respecte ce métier agricole, j'en évalue parfaitement les côtés merveilleux comme les côtés difficiles. J'ai longuement étudié le dossier de PC et toutes les pièces versées au dossier du projet de centrale photovoltaïque dans les champs de St Julien de Briola. Je connais parfaitement le site du projet et j'ai analysé ses impacts et c'est à ce titre que je m'oppose à ce projet. Voir mes arguments en PJ. D'abord il ne s'agit pas d'agrivoinisme, ni pour le céréalier, ni pour l'éleveur. Il n'y a aucune plus-value zootechnique à faire pâturer des génisses sous des panneaux photovoltaïques. Rien n'a été démontré à ce sujet. L'expérience en matière d'élevage me permet d'affirmer que :- des génisses se couchent très souvent en plein soleil l'été alors qu'elles ont des bois à disposition. Ce qui ne manquent pas sur les parcelles à St Julien de Briola.- les génisses pâturent souvent la nuit ou le matin de bonne heure. Donc les panneaux n'ont aucune plus-value zootechnique voire le contraire, car il fait plus chaud sous des panneaux photovoltaïques (chaleur sèche) que sous des arbres (chaleur humide). Si on cherche une plus-value possible dans nos coteaux pour l'alimentation des bovins en période sèche, c'est l'irrigation des luzernes pour avoir du fourrage l'été. Irrigation qui n'est pas possible sous des panneaux. De plus je ne vois pas comment l'éleveur va pouvoir travailler ce terrain avec tous les poteaux, les câbles aériens et souterrains. Dans le dossier il est bien mentionné que l'éleveur doit renouveler les prairies. Quand on voit qu'un seul poteau dans un champ ou même au bord d'un champ est régulièrement couché ou arraché par les engins agricoles, c'est une aberration de prétendre que l'éleveur travaillera entre les panneaux. Le propriétaire du terrain peut tout simplement louer sa parcelle à l'éleveur ou continuer à l'exploiter comme céréalier, comme il le fait depuis plusieurs générations et sur le reste de son exploitation. Et comme tous ses voisins agriculteurs. La parcelle n'est pas une friche. J'en suis témoin depuis 20 ans. Tout ce qu'il y a dans le dossier de DEVenr et ARTIFEX ne sont que des rhétoriques de brouillage et beaucoup de contre-vérités. Je suis favorable aux énergies renouvelables dans la mesure où elles s'inscrivent dans un schéma d'aménagement du territoire cohérent. Qu'elles soient installées sur des toitures des parkings, des friches industrielles. Il y a assez de sites disponibles pour ne pas avoir à étendre leur implantation dans des zones de biodiversité. Zones qui sont par ailleurs nécessaires à la régulation du CO2. L'argument du projet de décarboner l'électricité produite en France est faux, puisque l'électricité française est déjà à 95% décarbonée. Et il ne faut pas oublier que le photovoltaïque, comme l'éolien n'étant pas stockable c'est une énergie très compliquée à gérer.\n\n\n\n\n\nLorsqu'on a le choix d'un lieu de production d'électricité alternative, il serait impératif de le localiser à proximité de lieux de consommation et de proposer des heures creuses en journée. Ce qui est par ailleurs à l'étude par la Commission de Régulation de l'Energie. Tous ces travaux de raccordement à des kilomètres de la parcelle et toutes ces pertes en ligne sont des atteintes à l'environnement et vont coûter très cher inutilement. On pourrait équiper les toitures des maisons individuelles et donner au particulier autant de subvention que sur les projets de photovoltaïque dans les champs. Déjà cela résoudrait une partie de la production et de la consommation d'énergie. Plus équiper les toitures des industries, des grands commerces, des parkings, et autres zones hors zones naturelles. Sachant que ces travaux de raccordement sont à la charge de la collectivité (donc des contribuables) et que seuls les porteurs du projet en récoltent les revenus. Sachant que ces projets privés sont subventionnés, via un prix d'achat de l'électricité bien au-dessus des marchés. Permettant de réaliser des profits privés au détriment du collectif. En conclusion ce projet ne s'inscrit aucunement dans une raison impérative d'intérêt public. Dans le projet de centrale photovoltaïque à Saint Julien De Briola, on peut relever de nombreuses irrégularités et constater le mépris des lois et de la démocratie locale. En conclusion : Si ce projet ne répond à aucun critère mentionné ci-dessus (écologique, zootechnique, lutte contre le réchauffement climatique) alors nous pouvons penser que ce projet est dicté uniquement par des objectifs spéculatifs de la part de ses acteurs. Certains acteurs du projet ont des mandats électifs sur la commune et l'intercommunalité, qu'ils ont utilisés pour accompagner le projet : cherchez l'erreur ! Le service du contrôle de légalité de la préfecture devrait en vérifier la conformité. Dans le projet il est écrit que La Communauté de Communes CCPLM, compte s'engager par convention sur ce projet privé pour pallier à la défaillance du producteur. C'est avec l'argent des contribuables, notre argent, que la CCPLM contribuera à un projet privé. Cela est très choquant. Là aussi la préfecture devrait en vérifier la conformité. C'est le consortium des acteurs du projet qui doit prendre les risques, les assumer, puisqu'ils vont bénéficier de l'énorme manne financière, et non une collectivité locale. N'oublions pas que la vente de l'électricité de ces projets est subventionnée par des tarifs bien supérieurs au marché de l'électricité. Protégeons ce qui nous reste de nature, d'agriculture, d'élevage, de produits locaux excellents, d'environnement paisible et rural. Ne tombons pas dans les panneaux. Je déplore les contributions de ces personnes qui affirment que les citoyen.nes qui s'opposent à ce projet n'y connaissent rien et ne sont pas du coin. Bien au contraire nous sommes du coin et depuis longtemps ainsi que nos familles qui habitent un peu plus loin mais qui sont tout autant attachées à St Julien de Briola que nous. Je pense que ces gens qui nous dénigrent n'ont pas beaucoup étudié le projet. Ils n'ont en tout cas pas d'argumentation. J'espère que tous nos arguments d'experts sur ce projet (habitants, exploitants agricoles, retraité.es agricoles, juristes, biologistes, archéologues, techniciens agricoles, associations de protection de la nature et des habitants, association de protection des oiseaux, association départementale agréée ECCLA...), vous permettront de prendre la mesure :-que ce projet contrevient à la loi et à la réglementation,-de tous ses impacts négatifs,-et surtout de son inutilité au regard de tout ce que nous avons développé plus haut et bien loin de l'intérêt public. Arguments que nous avons étayés à partir d'une lecture attentive et sérieuse de tous les documents du projet et ses annexes depuis l'ouverture de l'enquête publique. Bien [PERSONNE BF] MOLINS EN PIECE JOINTE : MES ARGUMENTS COMPLETS CONTRE CE PROJET.",
+   "texte": "CENTRALE PHOTOVOLTAÏQUE DANS LES CHAMPS A SAINT JULIEN DE BRIOLA : UNE HERESIE ZOOTECHNIQUE, ECOLOGIQUE, SCIENTIFIQUE, STRUCTURELLE ET REGLEMENTAIRE. EN PIECE JOINTE : MES ARGUMENTS COMPLETS CONTRE CE PROJET. Ce projet ne s'inscrit aucunement dans une raison impérative d'intérêt public. Il ne se justifie absolument pas au regard de toutes ses incohérences et surtout au regard de ses impacts négatifs et irrégularités. Il contrevient à plusieurs titres aux réglementations, aux lois ainsi qu'aux chartes locales. J'habite à Saint Julien de Briola depuis de nombreuses années suis retraitée cheffe d'exploitation agricole. Je me suis installée en GAEC en 1977 sur une exploitation agricole de 120 ha dont 60 en propriété sur les coteaux de la vallée de l'Hers près de Mirepoix. Production vaches allaitantes, génisses et taurillons, polyculture avec irrigation. Je connais parfaitement le travail de la terre et la conduite d'un élevage, dont j'ai assuré toutes les tâches et la gestion. Conduite de l'élevage, mise bas, soins vétérinaires, alimentation, travail du sol, labour, mécanique, ensilage, irrigation, gestion administrative, PAC et ICHN... Je connais et respecte ce métier agricole, j'en évalue parfaitement les côtés merveilleux comme les côtés difficiles. J'ai longuement étudié le dossier de PC et toutes les pièces versées au dossier du projet de centrale photovoltaïque dans les champs de St Julien de Briola. Je connais parfaitement le site du projet et j'ai analysé ses impacts et c'est à ce titre que je m'oppose à ce projet. Voir mes arguments en PJ. D'abord il ne s'agit pas d'agrivoinisme, ni pour le céréalier, ni pour l'éleveur. Il n'y a aucune plus-value zootechnique à faire pâturer des génisses sous des panneaux photovoltaïques. Rien n'a été démontré à ce sujet. L'expérience en matière d'élevage me permet d'affirmer que :- des génisses se couchent très souvent en plein soleil l'été alors qu'elles ont des bois à disposition. Ce qui ne manquent pas sur les parcelles à St Julien de Briola.- les génisses pâturent souvent la nuit ou le matin de bonne heure. Donc les panneaux n'ont aucune plus-value zootechnique voire le contraire, car il fait plus chaud sous des panneaux photovoltaïques (chaleur sèche) que sous des arbres (chaleur humide). Si on cherche une plus-value possible dans nos coteaux pour l'alimentation des bovins en période sèche, c'est l'irrigation des luzernes pour avoir du fourrage l'été. Irrigation qui n'est pas possible sous des panneaux. De plus je ne vois pas comment l'éleveur va pouvoir travailler ce terrain avec tous les poteaux, les câbles aériens et souterrains. Dans le dossier il est bien mentionné que l'éleveur doit renouveler les prairies. Quand on voit qu'un seul poteau dans un champ ou même au bord d'un champ est régulièrement couché ou arraché par les engins agricoles, c'est une aberration de prétendre que l'éleveur travaillera entre les panneaux. Le propriétaire du terrain peut tout simplement louer sa parcelle à l'éleveur ou continuer à l'exploiter comme céréalier, comme il le fait depuis plusieurs générations et sur le reste de son exploitation. Et comme tous ses voisins agriculteurs. La parcelle n'est pas une friche. J'en suis témoin depuis 20 ans. Tout ce qu'il y a dans le dossier de DEVenr et ARTIFEX ne sont que des rhétoriques de brouillage et beaucoup de contre-vérités. Je suis favorable aux énergies renouvelables dans la mesure où elles s'inscrivent dans un schéma d'aménagement du territoire cohérent. Qu'elles soient installées sur des toitures des parkings, des friches industrielles. Il y a assez de sites disponibles pour ne pas avoir à étendre leur implantation dans des zones de biodiversité. Zones qui sont par ailleurs nécessaires à la régulation du CO2. L'argument du projet de décarboner l'électricité produite en France est faux, puisque l'électricité française est déjà à 95% décarbonée. Et il ne faut pas oublier que le photovoltaïque, comme l'éolien n'étant pas stockable c'est une énergie très compliquée à gérer.\n\n\n\n\n\nLorsqu'on a le choix d'un lieu de production d'électricité alternative, il serait impératif de le localiser à proximité de lieux de consommation et de proposer des heures creuses en journée. Ce qui est par ailleurs à l'étude par la Commission de Régulation de l'Energie. Tous ces travaux de raccordement à des kilomètres de la parcelle et toutes ces pertes en ligne sont des atteintes à l'environnement et vont coûter très cher inutilement. On pourrait équiper les toitures des maisons individuelles et donner au particulier autant de subvention que sur les projets de photovoltaïque dans les champs. Déjà cela résoudrait une partie de la production et de la consommation d'énergie. Plus équiper les toitures des industries, des grands commerces, des parkings, et autres zones hors zones naturelles. Sachant que ces travaux de raccordement sont à la charge de la collectivité (donc des contribuables) et que seuls les porteurs du projet en récoltent les revenus. Sachant que ces projets privés sont subventionnés, via un prix d'achat de l'électricité bien au-dessus des marchés. Permettant de réaliser des profits privés au détriment du collectif. En conclusion ce projet ne s'inscrit aucunement dans une raison impérative d'intérêt public. Dans le projet de centrale photovoltaïque à Saint Julien De Briola, on peut relever de nombreuses irrégularités et constater le mépris des lois et de la démocratie locale. En conclusion : Si ce projet ne répond à aucun critère mentionné ci-dessus (écologique, zootechnique, lutte contre le réchauffement climatique) alors nous pouvons penser que ce projet est dicté uniquement par des objectifs spéculatifs de la part de ses acteurs. Certains acteurs du projet ont des mandats électifs sur la commune et l'intercommunalité, qu'ils ont utilisés pour accompagner le projet : cherchez l'erreur ! Le service du contrôle de légalité de la préfecture devrait en vérifier la conformité. Dans le projet il est écrit que La Communauté de Communes CCPLM, compte s'engager par convention sur ce projet privé pour pallier à la défaillance du producteur. C'est avec l'argent des contribuables, notre argent, que la CCPLM contribuera à un projet privé. Cela est très choquant. Là aussi la préfecture devrait en vérifier la conformité. C'est le consortium des acteurs du projet qui doit prendre les risques, les assumer, puisqu'ils vont bénéficier de l'énorme manne financière, et non une collectivité locale. N'oublions pas que la vente de l'électricité de ces projets est subventionnée par des tarifs bien supérieurs au marché de l'électricité. Protégeons ce qui nous reste de nature, d'agriculture, d'élevage, de produits locaux excellents, d'environnement paisible et rural. Ne tombons pas dans les panneaux. Je déplore les contributions de ces personnes qui affirment que les citoyen.nes qui s'opposent à ce projet n'y connaissent rien et ne sont pas du coin. Bien au contraire nous sommes du coin et depuis longtemps ainsi que nos familles qui habitent un peu plus loin mais qui sont tout autant attachées à St Julien de Briola que nous. Je pense que ces gens qui nous dénigrent n'ont pas beaucoup étudié le projet. Ils n'ont en tout cas pas d'argumentation. J'espère que tous nos arguments d'experts sur ce projet (habitants, exploitants agricoles, retraité.es agricoles, juristes, biologistes, archéologues, techniciens agricoles, associations de protection de la nature et des habitants, association de protection des oiseaux, association départementale agréée ECCLA...), vous permettront de prendre la mesure :-que ce projet contrevient à la loi et à la réglementation,-de tous ses impacts négatifs,-et surtout de son inutilité au regard de tout ce que nous avons développé plus haut et bien loin de l'intérêt public. Arguments que nous avons étayés à partir d'une lecture attentive et sérieuse de tous les documents du projet et ses annexes depuis l'ouverture de l'enquête publique. Bien [PERSONNE-f26a492e] [NOM] EN PIECE JOINTE : MES ARGUMENTS COMPLETS CONTRE CE PROJET.",
    "pieces": "*"
   },
   {
    "id": "E92",
    "type": "ecrite",
-   "auteur": "[PERSONNE CK]",
+   "auteur": "[PERSONNE-53b27c96]",
    "date": "Le 06/12/2024 à 16:54:47",
    "lieu": "Sur le registre électronique",
    "objet": "CONTRE LE PROJET AGRIVOLTAÏQUE DU PAS DE MIREPOIX",
@@ -1572,7 +1572,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E93",
    "type": "ecrite",
-   "auteur": "[PERSONNE CL]",
+   "auteur": "[PERSONNE-72310d54]",
    "date": "Le 06/12/2024 à 17:07:31",
    "lieu": "Sur le registre électronique",
    "objet": "CONTRE LE PROJET AGRI PV DU PAS DE MIREPOIX",
@@ -1582,7 +1582,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E94",
    "type": "ecrite",
-   "auteur": "[PERSONNE CM]",
+   "auteur": "[PERSONNE-8ed598e5]",
    "date": "Le 07/12/2024 à 09:15:20",
    "lieu": "Sur le registre électronique",
    "objet": "avis enquete projet agrivoltaïque du pas de mirepoix",
@@ -1592,7 +1592,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E95",
    "type": "ecrite",
-   "auteur": "[PERSONNE CN]",
+   "auteur": "[PERSONNE-c7126762]",
    "date": "Le 07/12/2024 à 12:11:49",
    "lieu": "Sur le registre électronique",
    "objet": "Non aux projets sur les terres agricoles et sur les espaces préservés où la biodiversité survit tant bien que mal.",
@@ -1602,7 +1602,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E96",
    "type": "ecrite",
-   "auteur": "[PERSONNE CO]",
+   "auteur": "[PERSONNE-d0a29038]",
    "date": "Le 07/12/2024 à 15:41:29",
    "lieu": "Sur le registre électronique",
    "objet": "CONTRE CE PROJET",
@@ -1612,7 +1612,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E97",
    "type": "ecrite",
-   "auteur": "[PERSONNE CP]",
+   "auteur": "[PERSONNE-3b58fee8]",
    "date": "Le 07/12/2024 à 18:23:23",
    "lieu": "Sur le registre électronique",
    "objet": "projet de panneaux photovoltaïque dans des champs",
@@ -1622,7 +1622,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E98",
    "type": "ecrite",
-   "auteur": "[PERSONNE CQ]",
+   "auteur": "[PERSONNE-62d681be]",
    "date": "Le 07/12/2024 à 18:28:52",
    "lieu": "Sur le registre électronique",
    "objet": "Avis défavorable",
@@ -1632,7 +1632,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E99",
    "type": "ecrite",
-   "auteur": "[PERSONNE CR]",
+   "auteur": "[PERSONNE-3e9ed837]",
    "date": "Le 08/12/2024 à 11:50:35",
    "lieu": "Sur le registre électronique",
    "objet": "Projet photovoltaïque StJulien de Briola",
@@ -1642,7 +1642,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E100",
    "type": "ecrite",
-   "auteur": "[PERSONNE CS]",
+   "auteur": "[PERSONNE-eeffe5f8]",
    "date": "Le 08/12/2024 à 14:22:49",
    "lieu": "Sur le registre électronique",
    "objet": "Compréhension et utilité du projet ??",
@@ -1652,7 +1652,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E101",
    "type": "ecrite",
-   "auteur": "[PERSONNE CT]",
+   "auteur": "[PERSONNE-4bc63ac1]",
    "date": "Le 08/12/2024 à 16:10:35",
    "lieu": "Sur le registre électronique",
    "objet": "Projet agri photovoltaïque de Pas de Mirepoix",
@@ -1662,7 +1662,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E102",
    "type": "ecrite",
-   "auteur": "[PERSONNE CU]",
+   "auteur": "[PERSONNE-cb5bfa61]",
    "date": "Le 08/12/2024 à 17:01:48",
    "lieu": "Sur le registre électronique",
    "objet": "Centrale photovoltaïque au sol << Pas de Mirepoix >> à SAINT JULIEN DE BRIOLA",
@@ -1672,7 +1672,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E103",
    "type": "ecrite",
-   "auteur": "[PERSONNE CV]",
+   "auteur": "[PERSONNE-c0110d24]",
    "date": "Le 08/12/2024 à 17:05:03",
    "lieu": "Sur le registre électronique",
    "objet": "Centrale photovoltaïque au sol << Pas de Mirepoix >> à SAINT JULIEN DE BRIOLA",
@@ -1682,7 +1682,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E104",
    "type": "ecrite",
-   "auteur": "[PERSONNE CW]",
+   "auteur": "[PERSONNE-fd142530]",
    "date": "Le 09/12/2024 à 12:25:04",
    "lieu": "Sur le registre électronique",
    "objet": "Projet photovoltaïque st Julien de Briola",
@@ -1692,7 +1692,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E105",
    "type": "ecrite",
-   "auteur": "[PERSONNE CX]",
+   "auteur": "[PERSONNE-5588ac3f]",
    "date": "Le 09/12/2024 à 13:13:36",
    "lieu": "Sur le registre électronique",
    "objet": "projet agrivoltaïque pas mirepoix",
@@ -1702,7 +1702,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E106",
    "type": "ecrite",
-   "auteur": "[PERSONNE CY]",
+   "auteur": "[PERSONNE-50e59eff]",
    "date": "Le 09/12/2024 à 13:59:24",
    "lieu": "Sur le registre électronique",
    "objet": "projet photovoltaïque à saint julien de briola",
@@ -1712,7 +1712,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E107",
    "type": "ecrite",
-   "auteur": "[PERSONNE CZ]",
+   "auteur": "[PERSONNE-2ad91da4]",
    "date": "Le 09/12/2024 à 17:23:49",
    "lieu": "Sur le registre électronique",
    "objet": "PHOTOVOLTAÏQUE",
@@ -1722,7 +1722,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E108",
    "type": "ecrite",
-   "auteur": "[PERSONNE H]",
+   "auteur": "[PERSONNE-4c3eab31]",
    "date": "Le 09/12/2024 à 18:13:29",
    "lieu": "Sur le registre électronique",
    "objet": "PROJET AGRIVOLTAÏQUE DU PAS DE MIREPOIX (SAINT-JULIEN-DE-BRIOLA)",
@@ -1732,7 +1732,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E109",
    "type": "ecrite",
-   "auteur": "[PERSONNE DA]",
+   "auteur": "[PERSONNE-0d3fae7e]",
    "date": "Le 10/12/2024 à 09:22:51",
    "lieu": "Sur le registre électronique",
    "objet": "Destruction paysage",
@@ -1742,7 +1742,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E110",
    "type": "ecrite",
-   "auteur": "[PERSONNE DB]",
+   "auteur": "[PERSONNE-9b2113a8]",
    "date": "Le 10/12/2024 à 13:24:21",
    "lieu": "Sur le registre électronique",
    "objet": "PROJET PHOTOVOLTAIQUE ST JULIEN DE BRIOLA",
@@ -1752,7 +1752,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E111",
    "type": "ecrite",
-   "auteur": "[PERSONNE DC]",
+   "auteur": "[PERSONNE-1891a1d6]",
    "date": "Le 10/12/2024 à 14:00:31",
    "lieu": "Sur le registre électronique",
    "objet": "Destruction de la Piège",
@@ -1762,7 +1762,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E112",
    "type": "ecrite",
-   "auteur": "[PERSONNE DD]",
+   "auteur": "[PERSONNE-e7ca2445]",
    "date": "Le 10/12/2024 à 14:12:38",
    "lieu": "Sur le registre électronique",
    "objet": "Contribution de Sites & Monuments à l'enquête publique",
@@ -1772,7 +1772,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E113",
    "type": "ecrite",
-   "auteur": "[PERSONNE DE]",
+   "auteur": "[PERSONNE-b0b734f4]",
    "date": "Le 10/12/2024 à 14:40:15",
    "lieu": "Sur le registre électronique",
    "objet": "Contribution",
@@ -1782,7 +1782,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E114",
    "type": "ecrite",
-   "auteur": "[PERSONNE DF]",
+   "auteur": "[PERSONNE-9dab34db]",
    "date": "Le 10/12/2024 à 14:40:26",
    "lieu": "Sur le registre électronique",
    "objet": "Manque de respect!",
@@ -1792,7 +1792,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E115",
    "type": "ecrite",
-   "auteur": "[PERSONNE DG]",
+   "auteur": "[PERSONNE-f7bb9956]",
    "date": "Le 10/12/2024 à 19:34:54",
    "lieu": "Sur le registre électronique",
    "objet": "contestation",
@@ -1802,7 +1802,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E116",
    "type": "ecrite",
-   "auteur": "[PERSONNE DH]",
+   "auteur": "[PERSONNE-cba932f6]",
    "date": "Le 10/12/2024 à 21:37:31",
    "lieu": "Sur le registre électronique",
    "objet": "POUR LE PROJET",
@@ -1812,7 +1812,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E117",
    "type": "ecrite",
-   "auteur": "[PERSONNE DI]",
+   "auteur": "[PERSONNE-59cdd289]",
    "date": "Le 11/12/2024 à 06:21:24",
    "lieu": "Sur le registre électronique",
    "objet": "avis projet photovoltaïque",
@@ -1822,7 +1822,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E118",
    "type": "ecrite",
-   "auteur": "[PERSONNE DJ]",
+   "auteur": "[PERSONNE-b853716c]",
    "date": "Le 11/12/2024 à 08:37:03",
    "lieu": "Sur le registre électronique",
    "objet": "Panneaux photovoltaïques pas de mirepoix à St Julien de briola",
@@ -1832,7 +1832,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E119",
    "type": "ecrite",
-   "auteur": "[PERSONNE DK]",
+   "auteur": "[PERSONNE-fe82c876]",
    "date": "Le 11/12/2024 à 09:04:36",
    "lieu": "Sur le registre électronique",
    "objet": "pas favorable à l'implantation du projet",
@@ -1842,7 +1842,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E120",
    "type": "ecrite",
-   "auteur": "[PERSONNE DL]",
+   "auteur": "[PERSONNE-18b3f37e]",
    "date": "Le 11/12/2024 à 10:38:10",
    "lieu": "Sur le registre électronique",
    "objet": "NON à ce projet AGRIVOLTAÏQUE qui dénature et détruit nos campagnes et pâturages.",
@@ -1852,7 +1852,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E121",
    "type": "ecrite",
-   "auteur": "[PERSONNE DM]",
+   "auteur": "[PERSONNE-070ed3db]",
    "date": "Le 11/12/2024 à 12:52:55",
    "lieu": "Sur le registre électronique",
    "objet": "Paysage de la piège",
@@ -1866,7 +1866,7 @@ const OBSERVATIONS_REGISTRE = {
    "date": "Le 11/12/2024 à 13:06:02",
    "lieu": "Sur le registre électronique",
    "objet": "AVIS DEFAVORABLE au projet de parc agrivoltaïque à Saint-Julien-de-Briolat",
-   "texte": "commune du departement\n\nEnquêteur Dans le cadre de l'enquête publique concernant le projet de « parc agrivoltaïque » à Saint-Julien-de-Briola, notre Fédération souhaite vous faire part des observations suivantes : I SUR L'OBJECTIF DE PRODUCTION D'ELECTRICITE : 1) La France est en surproduction d'électricité et vend l'énergie à l'étranger. 2) En matière d'énergie renouvelable, d'autres formes de production sont bien moins dangereuses pour la biodiversité, (du moins si on évite le gigantisme) : solaire thermique, photovoltaïque en toiture, géothermie. 3) Pour des raisons de prix du foncier, les promoteurs d'énergies renouvelables développent leurs installations sur des sites naturels ou des terres agricoles où vit une faune menacée, ceci alors que les principaux consommateurs d'énergie sont dans les zones urbaines, (où le prix des terrains est sans commune mesure). II L'AGRIVOLTAÏQUE : La législation sur l'« agrivoltaïque » vise en réalité à apporter un revenu aux paysans, dont certains sont dans une situation financière critique. Dans un tel objectif, la formule du SPE « Paiement pour Service Environnemental » serait bien plus constructive, tant pour les agriculteurs que pour la préservation de la biodiversité. II s'agit d'une rétribution pour compenser la baisse de rendement engendrée par diverses mesures de protection de l'environnement (passage au bio...). III LA DEGRADATION DES PAYSAGES ET DE LA BIODIVERSITE : III-1° Sur la dégradation des paysages : La contribution de la Fédération « Sites et Monuments » démontre parfaitement la dégradation des paysages. III-2° L'atteinte à une faune sauvage menacée : Le rapport de la MRAe démontre que la sensibilité du site a été sous-évaluée et que les atteintes à la biodiversité et notamment à des espèces menacées sont bien réelles. Pour toutes raisons, Notre FEDERATION FASPA émet un AVIS DEFAVORABLE au projet de parc agrivoltaïque » à Saint-Julien-de-Briola, Nous vous prions d'agréer, Monsieur le Commissaire-Enquêteur, l'assurance de notre\n\nPour la FASPA Le President [PERSONNE EU]",
+   "texte": "commune du departement\n\nEnquêteur Dans le cadre de l'enquête publique concernant le projet de « parc agrivoltaïque » à Saint-Julien-de-Briola, notre Fédération souhaite vous faire part des observations suivantes : I SUR L'OBJECTIF DE PRODUCTION D'ELECTRICITE : 1) La France est en surproduction d'électricité et vend l'énergie à l'étranger. 2) En matière d'énergie renouvelable, d'autres formes de production sont bien moins dangereuses pour la biodiversité, (du moins si on évite le gigantisme) : solaire thermique, photovoltaïque en toiture, géothermie. 3) Pour des raisons de prix du foncier, les promoteurs d'énergies renouvelables développent leurs installations sur des sites naturels ou des terres agricoles où vit une faune menacée, ceci alors que les principaux consommateurs d'énergie sont dans les zones urbaines, (où le prix des terrains est sans commune mesure). II L'AGRIVOLTAÏQUE : La législation sur l'« agrivoltaïque » vise en réalité à apporter un revenu aux paysans, dont certains sont dans une situation financière critique. Dans un tel objectif, la formule du SPE « Paiement pour Service Environnemental » serait bien plus constructive, tant pour les agriculteurs que pour la préservation de la biodiversité. II s'agit d'une rétribution pour compenser la baisse de rendement engendrée par diverses mesures de protection de l'environnement (passage au bio...). III LA DEGRADATION DES PAYSAGES ET DE LA BIODIVERSITE : III-1° Sur la dégradation des paysages : La contribution de la Fédération « Sites et Monuments » démontre parfaitement la dégradation des paysages. III-2° L'atteinte à une faune sauvage menacée : Le rapport de la MRAe démontre que la sensibilité du site a été sous-évaluée et que les atteintes à la biodiversité et notamment à des espèces menacées sont bien réelles. Pour toutes raisons, Notre FEDERATION FASPA émet un AVIS DEFAVORABLE au projet de parc agrivoltaïque » à Saint-Julien-de-Briola, Nous vous prions d'agréer, Monsieur le Commissaire-Enquêteur, l'assurance de notre\n\nPour la FASPA Le President [PERSONNE-c8e15bf7]",
    "pieces": "*"
   },
   {
@@ -1882,7 +1882,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E124",
    "type": "ecrite",
-   "auteur": "[PERSONNE DZ]",
+   "auteur": "[PERSONNE-1120101d]",
    "date": "Le 11/12/2024 à 18:04:18",
    "lieu": "Sur le registre électronique",
    "objet": "Contre le projet photovoltaïque du Pas de Mirepoix à St Julien de Briola",
@@ -1892,7 +1892,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E125",
    "type": "ecrite",
-   "auteur": "[PERSONNE G]",
+   "auteur": "[PERSONNE-e901953f]",
    "date": "Le 11/12/2024 à 18:14:00",
    "lieu": "Sur le registre électronique",
    "objet": "Envoi de photos",
@@ -1902,7 +1902,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E126",
    "type": "ecrite",
-   "auteur": "[PERSONNE EA]",
+   "auteur": "[PERSONNE-2bd5ff36]",
    "date": "Le 11/12/2024 à 18:27:21",
    "lieu": "Sur le registre électronique",
    "objet": "NON AU PROJET PHOTOVOLTAÏQUE DE SAINT JULIEN DE BRIOLA",
@@ -1912,7 +1912,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E127",
    "type": "ecrite",
-   "auteur": "[PERSONNE DM]",
+   "auteur": "[PERSONNE-070ed3db]",
    "date": "Le 11/12/2024 à 20:16:13",
    "lieu": "Sur le registre électronique",
    "objet": "Panneaux photovoltaïques",
@@ -1922,7 +1922,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E128",
    "type": "ecrite",
-   "auteur": "[PERSONNE DP]",
+   "auteur": "[PERSONNE-8c983699]",
    "date": "Le 11/12/2024 à 21:06:27",
    "lieu": "Sur le registre électronique",
    "objet": "Oposition au projet \"Agrivoltaïque du Pas de Mirepoix\" à St Julien de Briola",
@@ -1932,7 +1932,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E129",
    "type": "ecrite",
-   "auteur": "[PERSONNE DQ]",
+   "auteur": "[PERSONNE-005f980a]",
    "date": "Le 11/12/2024 à 21:26:58",
    "lieu": "Sur le registre électronique",
    "objet": "Contre le projet de panneau photovoltaïque",
@@ -1942,7 +1942,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E130",
    "type": "ecrite",
-   "auteur": "[PERSONNE DR]",
+   "auteur": "[PERSONNE-9d1d4e00]",
    "date": "Le 11/12/2024 à 22:13:26",
    "lieu": "Sur le registre électronique",
    "objet": "Code de l'Environnement ERC",
@@ -1952,17 +1952,17 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E131",
    "type": "ecrite",
-   "auteur": "[PERSONNE DS]",
+   "auteur": "[PERSONNE-a87e8a19]",
    "date": "Le 11/12/2024 à 22:23:04",
    "lieu": "Sur le registre électronique",
    "objet": "Code Général des Collectivités et Charte ENR de la Communauté de Communes Piège Lauragais (CCPLM)",
-   "texte": "Page 7 de la charte ENR de la CCPLM : \"Les collectivités locales s'assurent que si un élu détient un intérêt (direct ou indirect) sur le projet (s'il est propriétaire, exploitant agricole de parcelles susceptibles d'accueillir une partie du projet ou actionnaire de la société du projet), il s'abstiendra de toute présence lors des sujets et débats, et de toute participation aux votes et délibérations du conseil municipal et/ou communautaire sur le projet\". Article L1111-1-1 du Code Général des Collectivités Les élus locaux sont les membres des conseils élus au suffrage universel pour administrer librement les collectivités territoriales dans les conditions prévues par la loi. Ils exercent leur mandat dans le respect des principes déontologiques consacrés par la présente charte de l'élu local. Charte de l'élu local : 1. L'élu local exerce ses fonctions avec impartialité, diligence, dignité, probité et intégrité. 2. Dans l'exercice de son mandat, l'élu local poursuit le seul intérêt général, à l'exclusion de tout intérêt qui lui soit personnel, directement ou indirectement, ou de tout autre intérêt particulier. 3. L'élu local veille à prévenir ou à faire cesser immédiatement tout conflit d'intérêts. Lorsque ses intérêts personnels sont en cause dans les affaires soumises à l'organe délibérant dont il est membre, l'élu local s'engage à les faire connaître avant le débat et le vote. 4. L'élu local s'engage à ne pas utiliser les ressources et les moyens mis à sa disposition pour l'exercice de son mandat ou de ses fonctions à d'autres fins. 5. Dans l'exercice de ses fonctions, l'élu local s'abstient de prendre des mesures lui accordant un avantage personnel ou professionnel futur après la cessation de son mandat et de ses fonctions. 6. L'élu local participe avec assiduité aux réunions de l'organe délibérant et des instances au sein desquelles il a été désigné. 7. Issu du suffrage universel, l'élu local est et reste responsable de ses actes pour la durée de son mandat devant l'ensemble des citoyens de la collectivité territoriale, à qui il rend compte des actes et décisions pris dans le cadre de ses fonctions. Tout élu local peut consulter un référent déontologue chargé de lui apporter tout conseil utile au respect des principes déontologiques consacrés dans la présente charte. Un décret en Conseil d'Etat détermine les modalités et les critères de désignation des référents déontologues. EN PLUS DE TOUS LES ARGUMENTS EVOQUÉS PAR LES CONTRIBUTEURS-TRICES DÉFAVORABLES AU PROJET, IL Y A VIOLATION DES TEXTES SUSVISÉS, CELA SUFFIT A CONSIDÉRER QUE CE PROJET S'INSCRIT DANS L'ILLÉGALITÉ LA PLUS MANIFESTE. CQFD. Simone VEILLE - Avocate",
+   "texte": "Page 7 de la charte ENR de la CCPLM : \"Les collectivités locales s'assurent que si un élu détient un intérêt (direct ou indirect) sur le projet (s'il est propriétaire, exploitant agricole de parcelles susceptibles d'accueillir une partie du projet ou actionnaire de la société du projet), il s'abstiendra de toute présence lors des sujets et débats, et de toute participation aux votes et délibérations du conseil municipal et/ou communautaire sur le projet\". Article L1111-1-1 du Code Général des Collectivités Les élus locaux sont les membres des conseils élus au suffrage universel pour administrer librement les collectivités territoriales dans les conditions prévues par la loi. Ils exercent leur mandat dans le respect des principes déontologiques consacrés par la présente charte de l'élu local. Charte de l'élu local : 1. L'élu local exerce ses fonctions avec impartialité, diligence, dignité, probité et intégrité. 2. Dans l'exercice de son mandat, l'élu local poursuit le seul intérêt général, à l'exclusion de tout intérêt qui lui soit personnel, directement ou indirectement, ou de tout autre intérêt particulier. 3. L'élu local veille à prévenir ou à faire cesser immédiatement tout conflit d'intérêts. Lorsque ses intérêts personnels sont en cause dans les affaires soumises à l'organe délibérant dont il est membre, l'élu local s'engage à les faire connaître avant le débat et le vote. 4. L'élu local s'engage à ne pas utiliser les ressources et les moyens mis à sa disposition pour l'exercice de son mandat ou de ses fonctions à d'autres fins. 5. Dans l'exercice de ses fonctions, l'élu local s'abstient de prendre des mesures lui accordant un avantage personnel ou professionnel futur après la cessation de son mandat et de ses fonctions. 6. L'élu local participe avec assiduité aux réunions de l'organe délibérant et des instances au sein desquelles il a été désigné. 7. Issu du suffrage universel, l'élu local est et reste responsable de ses actes pour la durée de son mandat devant l'ensemble des citoyens de la collectivité territoriale, à qui il rend compte des actes et décisions pris dans le cadre de ses fonctions. Tout élu local peut consulter un référent déontologue chargé de lui apporter tout conseil utile au respect des principes déontologiques consacrés dans la présente charte. Un décret en Conseil d'Etat détermine les modalités et les critères de désignation des référents déontologues. EN PLUS DE TOUS LES ARGUMENTS EVOQUÉS PAR LES CONTRIBUTEURS-TRICES DÉFAVORABLES AU PROJET, IL Y A VIOLATION DES TEXTES SUSVISÉS, CELA SUFFIT A CONSIDÉRER QUE CE PROJET S'INSCRIT DANS L'ILLÉGALITÉ LA PLUS MANIFESTE. CQFD. [NOM] [NOM] - Avocate",
    "pieces": "Il n'y a pas de pièce jointe à cette contribution."
   },
   {
    "id": "E132",
    "type": "ecrite",
-   "auteur": "[PERSONNE DN]",
+   "auteur": "[PERSONNE-b79ad213]",
    "date": "Le 11/12/2024 à 22:57:43",
    "lieu": "Sur le registre électronique",
    "objet": "L'agrivoltaïsme, une pratique dénué de tout sens. Mais tant qu'il y a profit tout va bien.",
@@ -1972,7 +1972,7 @@ const OBSERVATIONS_REGISTRE = {
   {
    "id": "E133",
    "type": "ecrite",
-   "auteur": "[PERSONNE CO]",
+   "auteur": "[PERSONNE-d0a29038]",
    "date": "Le 11/12/2024 à 23:29:57",
    "lieu": "Sur le registre électronique",
    "objet": "CONTRE le projet photovoltaïque du Pas de Mirepoix",

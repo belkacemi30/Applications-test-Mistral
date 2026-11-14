@@ -2,6 +2,8 @@
 
 const REFERENCE_EXEMPLE = "OBS-2025-0147 (exemple fictif)";
 
+const TITRE_ENQUETE = "Projet agrivoltaïque du Pas de Mirepoix — Saint-Julien-de-Briola (Aude)";
+
 const TEXTE_EXEMPLE = [
   "Bonjour,",
   "",
@@ -69,14 +71,34 @@ function compterThemes(entrees, themes) {
     .sort((a, b) => b.observations - a.observations || b.mentions - a.mentions);
 }
 
+function construireLignesDemo(reference) {
+  return TABLEAU_EXEMPLE.map(([rubrique, contenu]) => [rubrique, rubrique === "Référence" ? reference : contenu]);
+}
+
+function lignesDepuisAnalyseIA(data, reference) {
+  const liste = (v) =>
+    Array.isArray(v) ? v.filter((x) => typeof x === "string" && x.trim() !== "").join(" ; ") : "";
+  return [
+    ["Référence", reference || (typeof data.reference === "string" ? data.reference : "")],
+    ["Thèmes", liste(data.themes)],
+    ["Synthèse neutre", typeof data.synthese === "string" ? data.synthese : ""],
+    ["Demandes explicites", liste(data.demandes)],
+    ["Questions au maître d’ouvrage", liste(data.questions)],
+    ["Points à vérifier", liste(data.points)]
+  ];
+}
+
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     REFERENCE_EXEMPLE,
+    TITRE_ENQUETE,
     TEXTE_EXEMPLE,
     TABLEAU_EXEMPLE,
     THEMES,
     statutDemonstration,
-    compterThemes
+    compterThemes,
+    construireLignesDemo,
+    lignesDepuisAnalyseIA
   };
 }
 
@@ -87,6 +109,7 @@ if (typeof document !== "undefined") {
   const btnExemple = document.getElementById("btn-exemple");
   const btnDemo = document.getElementById("btn-demo");
   const btnEffacer = document.getElementById("btn-effacer");
+  const btnIa = document.getElementById("btn-ia");
   const sectionResultats = document.getElementById("resultats");
   const corpsTableau = document.getElementById("corps-tableau");
   const sectionMessage = document.getElementById("message");
@@ -110,21 +133,34 @@ if (typeof document !== "undefined") {
     }
   }
 
-  function afficherTableau() {
-    const reference = champReference.value.trim() !== "" ? champReference.value.trim() : REFERENCE_EXEMPLE;
+  const DEMO_BANDEAU = "Démonstration — aucune analyse par IA effectuée";
+  const DEMO_NOTE = "Ce tableau a été préparé à l’avance pour l’exemple fictif. Il ne résulte pas d’une analyse automatique du texte saisi.";
+  const DEMO_TITRE = "Tableau préparé pour l’exemple fictif";
+
+  function afficherResultat(lignes, bandeauTexte, classeBadge, noteTexte, titre) {
+    document.getElementById("titre-resultats").textContent = titre;
+    const bandeau = document.getElementById("bandeau-resultats");
+    bandeau.textContent = bandeauTexte;
+    bandeau.className = "badge " + classeBadge;
+    document.getElementById("note-resultats").textContent = noteTexte;
     corpsTableau.innerHTML = "";
-    for (const [rubrique, contenu] of TABLEAU_EXEMPLE) {
+    for (const [rubrique, contenu] of lignes) {
       const ligne = document.createElement("tr");
       const celluleRubrique = document.createElement("th");
       celluleRubrique.scope = "row";
       celluleRubrique.textContent = rubrique;
       const celluleContenu = document.createElement("td");
-      celluleContenu.textContent = rubrique === "Référence" ? reference : contenu;
+      celluleContenu.textContent = contenu;
       ligne.appendChild(celluleRubrique);
       ligne.appendChild(celluleContenu);
       corpsTableau.appendChild(ligne);
     }
     sectionResultats.hidden = false;
+  }
+
+  function afficherDemo() {
+    const reference = champReference.value.trim() !== "" ? champReference.value.trim() : REFERENCE_EXEMPLE;
+    afficherResultat(construireLignesDemo(reference), DEMO_BANDEAU, "badge-demo", DEMO_NOTE, DEMO_TITRE);
   }
 
   btnExemple.addEventListener("click", () => {
@@ -136,7 +172,7 @@ if (typeof document !== "undefined") {
   champTexte.addEventListener("input", mettreAJourAvertissement);
   champReference.addEventListener("input", () => {
     if (!sectionResultats.hidden && statutDemonstration(champTexte.value, TEXTE_EXEMPLE) === "exemple") {
-      afficherTableau();
+      afficherDemo();
     }
   });
 
@@ -150,9 +186,66 @@ if (typeof document !== "undefined") {
       afficherMessage("Le texte a été modifié par rapport à l’exemple fictif : le tableau préparé ne correspond pas à ce nouveau texte. Aucune analyse par IA n’est effectuée dans cette démonstration.");
     } else {
       sectionMessage.hidden = true;
-      afficherTableau();
+      afficherDemo();
     }
   });
+
+  btnIa.addEventListener("click", async () => {
+    const texte = champTexte.value;
+    if (!texte || texte.trim() === "") {
+      sectionResultats.hidden = true;
+      afficherMessage("Saisissez ou chargez d’abord un texte d’observation à analyser.");
+      return;
+    }
+    btnIa.disabled = true;
+    btnIa.textContent = "Analyse en cours…";
+    try {
+      const reponse = await fetch("/api/analyse", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reference: champReference.value.trim(), texte })
+      });
+      const data = await reponse.json().catch(() => ({}));
+      if (!reponse.ok) {
+        sectionResultats.hidden = true;
+        afficherMessage("Analyse IA indisponible : " + (data.erreur || "HTTP " + reponse.status) + ". Lancez le serveur local avec MISTRAL_API_KEY (voir README).");
+        return;
+      }
+      sectionMessage.hidden = true;
+      afficherResultat(
+        lignesDepuisAnalyseIA(data, champReference.value.trim()),
+        "Analyse IA — mistral-small-latest · à vérifier par le commissaire enquêteur",
+        "badge-ia",
+        "Résultat généré par IA à partir du texte saisi, dans le cadre de l’enquête « " + TITRE_ENQUETE + " ». Le commissaire enquêteur en reste pleinement responsable.",
+        "Analyse IA de l’observation"
+      );
+    } catch (e) {
+      sectionResultats.hidden = true;
+      afficherMessage("Analyse IA indisponible ici : aucun serveur local détecté (hébergement statique). Lancez `node serveur/server.js` avec MISTRAL_API_KEY pour activer l’analyse IA.");
+    } finally {
+      btnIa.disabled = false;
+      btnIa.textContent = "Analyser avec l’IA";
+    }
+  });
+
+  fetch("/api/etat")
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error("http " + r.status))))
+    .then((e) => {
+      const badge = document.getElementById("badge-ia");
+      if (e.ia_disponible) {
+        badge.textContent = "IA : disponible (serveur local)";
+        document.getElementById("aide-ia").hidden = true;
+      } else {
+        badge.textContent = "IA : non configurée";
+        btnIa.disabled = true;
+        document.getElementById("aide-ia").hidden = false;
+      }
+    })
+    .catch(() => {
+      document.getElementById("badge-ia").textContent = "IA : indisponible (hébergement statique)";
+      btnIa.disabled = true;
+      document.getElementById("aide-ia").hidden = false;
+    });
 
   btnEffacer.addEventListener("click", () => {
     champReference.value = "";
