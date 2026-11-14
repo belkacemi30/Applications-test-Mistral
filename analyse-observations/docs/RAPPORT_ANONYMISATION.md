@@ -1,14 +1,15 @@
-# Rapport d’anonymisation
+# Rapport d’anonymisation STRICTE (irréversible)
 
 - Fichier traité : `/tmp/observations.brut.js` -> `donnees/observations.js`
 - Entrées traitées : 204
-- Identifiants-lettres remplacés par des jetons aléatoires : 125 (table de correspondance générée en mémoire puis détruite : anonymisation irréversible)
-- Noms/prénoms remplacés par [NOM] : 32
-- Emails masqués : 0 ; téléphones masqués : 0
-- Placeholders normalisés : 1
-- Vérification automatique : OK, aucune fuite connue détectée
-- Mots capitalisés suivant un jeton personne (à revue manuelle) : Chef, Commissaire
+- Règles appliquées : uniquement des balises neutres, aucune donnée ajoutée :
+  - toute personne -> `[PERSONNE]` (balise unique, aucun recoupement possible) ;
+  - noms -> `[NOM]`, prénoms -> `[PRENOM]`, civilités supprimées ;
+  - fonctions identifiantes -> `[FONCTION]` ;
+  - groupes/associations -> `[COLLECTIF]`, sociétés -> `[SOCIÉTÉ]` ;
+  - adresses/lieux-dits -> `[ADRESSE]`, courriels -> `[EMAIL]`, téléphones -> `[TÉLÉPHONE]`.
+- Compteurs : personnes 246, noms/prénoms 39, fonctions 6,
+  collectifs 5, sociétés 5, adresses 2, emails 19, téléphones 0
+- Vérification automatique : OK, aucune fuite détectée
 
-Méthode : jetons `secrets.token_hex(4)` par identifiant-lettre, générés à chaque exécution ;
-aucune table de correspondance n'est écrite sur disque. Noms remplacés par [NOM],
-emails/téléphones masqués. Le retour à l'identité est impossible après exécution.
+Aucune table de correspondance n’est écrite : le retour à l’identité est impossible après exécution.

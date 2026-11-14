@@ -127,10 +127,11 @@ if (typeof document !== "undefined") {
 
   function mettreAJourAvertissement() {
     const statut = statutDemonstration(champTexte.value, TEXTE_EXEMPLE);
-    avertissement.hidden = statut !== "modifie";
+    const demoAffichee = !sectionResultats.hidden;
     if (statut !== "exemple") {
       sectionResultats.hidden = true;
     }
+    avertissement.hidden = !(demoAffichee && statut !== "exemple");
   }
 
   const DEMO_BANDEAU = "Démonstration — aucune analyse par IA effectuée";

@@ -38,7 +38,7 @@ MISTRAL_API_KEY=<votre clé> node serveur/server.js
 - **Données** : sur l’API payante, Mistral n’utilise pas les entrées/sorties pour entraîner ses modèles par défaut (opt-out possible dans la console) ; rétention d’environ 30 jours pour le monitoring d’abus sur les appels stateless, sauf option « zero data retention » (sur demande) ; hébergement UE par défaut (point d’API régional UE à 1,1× le tarif) ; DPA conforme RGPD disponible. Vérifier les conditions à jour sur legal.mistral.ai avant usage.
 - **Recommandation** : les données du registre étant déjà anonymisées de façon irréversible (voir le rapport), l’envoi à l’API ne porte plus de données personnelles identifiables.
 
-## Anonymisation
+## Anonymisation STRICTE (irréversible)
 
 Pipeline reproductible (ne jamais versionner les données brutes) :
 
@@ -47,9 +47,16 @@ python3 outils/extraction_observations.py transcript.md /tmp/brut.js
 python3 outils/anonymiser.py /tmp/brut.js donnees/observations.js --rapport docs/RAPPORT_ANONYMISATION.md
 ```
 
-- 125 identifiants-lettres `[PERSONNE X]` remplacés par des jetons aléatoires (`secrets.token_hex`) ; la table de correspondance est générée en mémoire puis détruite → **irréversible**.
-- Noms/prénoms réels détectés à l’audit remplacés par `[NOM]` ; emails/téléphones masqués si présents.
-- Vérifications automatiques en sortie (plus aucun `[PERSONNE X]`, aucun nom connu, aucun email/téléphone).
+Règles strictes — **aucune donnée ajoutée, uniquement des balises neutres**, aucun moyen de relier une observation à une personne ou un groupe :
+
+- toute personne → `[PERSONNE]` (balise **unique** pour tous : aucun recoupement possible entre contributions) ;
+- noms → `[NOM]`, prénoms → `[PRENOM]` ; civilités (Mme/Monsieur/…) supprimées ; fonctions identifiantes (maire de…, secrétaire de mairie…) → `[FONCTION]` ;
+- associations/collectifs → `[COLLECTIF]`, sociétés (SASU…) → `[SOCIÉTÉ]` ;
+- adresses/lieux-dits → `[ADRESSE]`, courriels → `[EMAIL]`, téléphones → `[TÉLÉPHONE]`.
+
+Aucune table de correspondance n’est écrite : le retour à l’identité est **impossible**. Vérifications automatiques en sortie (0 fuite détectée sur les 204 entrées) + `docs/RAPPORT_ANONYMISATION.md`.
+
+Fichier autonome pour test sans serveur : `python3 outils/assembler_page_unique.py` génère `analyse-observations.html` (CSS+JS+données en ligne, aucune référence externe).
 
 ## Déploiement GitHub Pages (hébergement statique)
 
