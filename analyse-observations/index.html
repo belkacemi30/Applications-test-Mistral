@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyse des observations — Enquête publique</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="entete">
+    <h1>Analyse des observations — Enquête publique</h1>
+    <p class="bandeau">Démonstration — aucune analyse par IA effectuée</p>
+  </header>
+
+  <main>
+    <section class="panneau" aria-labelledby="titre-saisie">
+      <h2 id="titre-saisie">Saisie de l’observation</h2>
+
+      <div class="champ">
+        <label for="reference">Référence de l’observation</label>
+        <input type="text" id="reference" name="reference" placeholder="Ex. : OBS-2025-0147" autocomplete="off">
+      </div>
+
+      <div class="champ">
+        <label for="texte">Texte de l’observation</label>
+        <textarea id="texte" name="texte" rows="10" placeholder="Saisissez ou collez ici le texte de l’observation…"></textarea>
+        <p id="avertissement-modification" class="avertissement" hidden>
+          Ce texte ne correspond pas à l’exemple fictif chargé : aucun résultat préparé ne sera présenté pour ce texte, car aucune analyse par IA n’est effectuée dans cette démonstration.
+        </p>
+      </div>
+
+      <div class="boutons">
+        <button type="button" id="btn-exemple">Charger un exemple fictif</button>
+        <button type="button" id="btn-demo" class="principal">Afficher la démonstration</button>
+        <button type="button" id="btn-effacer">Effacer</button>
+      </div>
+    </section>
+
+    <section id="resultats" class="panneau" hidden aria-labelledby="titre-resultats">
+      <h2 id="titre-resultats">Tableau préparé pour l’exemple fictif</h2>
+      <p class="bandeau">Démonstration — aucune analyse par IA effectuée</p>
+      <p class="note">Ce tableau a été préparé à l’avance pour l’exemple fictif. Il ne résulte pas d’une analyse automatique du texte saisi.</p>
+      <table id="tableau-demo">
+        <thead>
+          <tr>
+            <th scope="col">Rubrique</th>
+            <th scope="col">Contenu préparé (exemple fictif)</th>
+          </tr>
+        </thead>
+        <tbody id="corps-tableau"></tbody>
+      </table>
+    </section>
+
+    <section id="message" class="panneau message" hidden role="status"></section>
+
+    <section class="panneau" aria-labelledby="titre-registre">
+      <h2 id="titre-registre">Registre réel anonymisé</h2>
+      <p class="bandeau">Démonstration — aucune analyse par IA effectuée</p>
+      <p class="note">Export anonymisé du registre de l’enquête « Pas de Mirepoix » (Saint-Julien-de-Briola), fourni localement avec ce prototype. Rien n’est envoyé sur le réseau ni enregistré.</p>
+      <div class="champ">
+        <label for="liste-observations">Choisir une observation (<span id="nb-observations"></span> au total)</label>
+        <select id="liste-observations"></select>
+      </div>
+      <div id="detail-observation" hidden>
+        <p class="meta-observation"><strong id="detail-id"></strong> <span id="detail-meta"></span></p>
+        <p id="detail-objet" class="objet-observation"></p>
+        <div id="detail-texte" class="texte-observation"></div>
+        <div class="boutons">
+          <button type="button" id="btn-charger-observation" class="principal">Charger cette observation dans le formulaire</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panneau" aria-labelledby="titre-themes">
+      <h2 id="titre-themes">Aperçu des thèmes</h2>
+      <p class="bandeau">Comptage local de mots-clés — aucune analyse par IA effectuée</p>
+      <p class="note">Simple comptage de mots-clés réalisé dans votre navigateur sur les textes locaux. Ce n’est pas une analyse sémantique du contenu.</p>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Thème</th>
+            <th scope="col">Observations concernées</th>
+            <th scope="col">Mentions</th>
+          </tr>
+        </thead>
+        <tbody id="corps-themes"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="pied">
+    <p>Prototype local — aucune donnée n’est envoyée ni enregistrée.</p>
+  </footer>
+
+  <script src="donnees/observations.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
