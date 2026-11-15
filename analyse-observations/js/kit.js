@@ -1310,6 +1310,29 @@
     activerOnglet((location.hash || "#accueil").slice(1));
   })();
 
+  /* Surveillance : si le kit est arrêté (fenêtre fermée, arreter.bat) alors que la page reste ouverte,
+     on le signale clairement au lieu de laisser apparaître des erreurs d’IA incompréhensibles. */
+  let kitArreteSignale = false;
+  setInterval(async () => {
+    if (!kit.actif) return;
+    let vivant = false;
+    try {
+      vivant = (await fetch("api/etat", { cache: "no-store" })).ok;
+    } catch (e) {
+      vivant = false;
+    }
+    const b = $("badge-local");
+    if (!vivant && !kitArreteSignale) {
+      kitArreteSignale = true;
+      b.textContent = "✗ Kit arrêté — relancez demarrer.bat";
+      b.className = "badge badge-erreur";
+      toast("Le kit a été arrêté. Fermez cet onglet et double-cliquez sur « demarrer.bat » pour le relancer.");
+    } else if (vivant && kitArreteSignale) {
+      kitArreteSignale = false;
+      majBadgeLocal();
+    }
+  }, 20000);
+
   document.addEventListener("analyse:etat", () => {
     // Premier lancement : modèle adapté à l’ordinateur (diagnostic), sauf choix manuel du CE.
     const rec = recommander(diagnostic);

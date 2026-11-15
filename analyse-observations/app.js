@@ -772,12 +772,22 @@ if (typeof document !== "undefined") {
   }
 
   function messageOllamaInjoignable() {
+    if (!pageServieEnLocal()) {
+      return (
+        "l’IA locale (Ollama) est injoignable à " + etat.ollama.url +
+        " : cette page n’est pas servie depuis votre PC. Lancez le kit avec « demarrer.bat » (double-clic)"
+      );
+    }
+    if (etat.kit && etat.kit.ollama_url && sansBarreFinale(etat.kit.ollama_url) === sansBarreFinale(etat.ollama.url)) {
+      // IA intégrée au kit : elle s’arrête avec le kit (fenêtre fermée ou « arreter.bat »).
+      return (
+        "l’IA locale intégrée au kit ne répond pas (" + etat.ollama.url + ") : le kit a probablement été arrêté. " +
+        "Fermez cet onglet, double-cliquez sur « arreter.bat » puis sur « demarrer.bat »"
+      );
+    }
     return (
-      "Ollama injoignable à " +
-      etat.ollama.url +
-      (pageServieEnLocal()
-        ? " : vérifiez qu’Ollama est lancé (icône dans la barre des tâches)"
-        : " : cette page n’est pas servie depuis votre PC, Ollama refuse l’appel. Lancez l’application avec « lancer-local.bat » (ou définissez OLLAMA_ORIGINS, voir le README)")
+      "l’IA locale (Ollama) est injoignable à " + etat.ollama.url +
+      " : vérifiez qu’Ollama est lancé (icône dans la barre des tâches), ou relancez le kit avec « demarrer.bat »"
     );
   }
 
