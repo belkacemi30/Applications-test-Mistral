@@ -1,4 +1,22 @@
-# Journal des versions — Kit « Analyse des observations »
+# Journal des versions — Kit « Analyse des observations » (Campus IAlès)
+
+## 3.1.0 — 15/11/2026 — Kit complet sans installation (Campus IAlès)
+
+**Aucune installation pour le commissaire enquêteur**
+- Kit complet Windows : Ollama 0.40.16 portable, modèles `ministral-3:3b`, `ministral-3:8b`, `qwen3.5:9b`, `qwen2.5:7b-instruct`, Node.js 26.13.1 et Python 3.14.10 portables, dans `outils-integres/`.
+- L’IA intégrée démarre sur un port dédié (11435) avec ses propres modèles, sans toucher à un Ollama déjà installé.
+- Modèle choisi automatiquement selon le diagnostic de l’ordinateur (sauf choix manuel).
+- Démarrage de secours sans PowerShell (Node.js ou Python inclus) ; `arreter.bat` libère la mémoire ; `verifier-integrite.bat` contrôle les sommes SHA-256 de tous les fichiers.
+- Distribution sous forme de dossier prêt à copier (clé USB ou disque d’au moins 32 Go) ; paquet léger « application » pour les mises à jour.
+
+**IA externe**
+- Réservée aux contributions anonymisées de façon irréversible et validées (et au registre de démonstration anonymisé) : un texte saisi librement n’est plus jamais envoyé à une IA externe.
+
+**Identité Campus IAlès**
+- Bandeau « Campus IAlès en Occitanie — « IAlès » – Université populaire de l’intelligence artificielle », logo de l’association et photo d’Alès (le Gardon et son vieux pont, Krzysztof Golik, CC BY-SA 4.0).
+
+**Vidéo de sensibilisation**
+- Vidéo de l’atelier CCE-LR (3 min 50) intégrée ; plan détaillé des séquences. Sous-titres et transcription intégrale du commentaire à produire.
 
 ## 3.0.0 — 15/11/2026 — Kit autonome local
 

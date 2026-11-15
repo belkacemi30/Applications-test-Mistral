@@ -2,6 +2,100 @@
  * Kit v3 : onglets, accueil, anonymisation, export, guides, dialogues
  * (complète styles.css ; mêmes jetons de couleur, mode sombre inclus)
  * ===================================================================== */
+
+/* ---------- Bandeau Campus IAlès (photo d’Alès + logo) ---------- */
+.entete {
+  /* Voile sombre aux couleurs du logo (bleu nuit #0E2747) pour la lisibilité du texte sur la photo. */
+  background:
+    linear-gradient(180deg, rgba(9, 26, 52, 0.15) 0%, rgba(9, 26, 52, 0.35) 30%, rgba(9, 26, 52, 0.88) 62%, #0b1f3d 100%),
+    url("assets/ales-gardon.jpg") 20% 62% / cover no-repeat,
+    #0b1f3d;
+  padding-top: 0;
+}
+
+.bandeau-iales {
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 44px 0 26px;
+  position: relative;
+}
+
+.bandeau-iales-interieur {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.logo-iales {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 10px 16px;
+  height: 78px;
+  width: auto;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+.bandeau-iales-titre {
+  margin: 0;
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+
+.bandeau-iales-sous-titre {
+  margin: 4px 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #c9f2dc;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.credit-photo {
+  margin: 10px 0 0;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.72);
+  text-align: right;
+}
+
+.credit-photo abbr {
+  text-decoration: none;
+}
+
+.entete .entete-interieur {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 16px;
+  margin-top: 6px;
+}
+
+.entete h1 {
+  font-size: 1.45rem;
+}
+
+@media (max-width: 640px) {
+  .bandeau-iales {
+    padding-top: 16px;
+  }
+
+  .logo-iales {
+    height: 58px;
+  }
+
+  .bandeau-iales-titre {
+    font-size: 1.4rem;
+  }
+
+  .bandeau-iales-sous-titre {
+    font-size: 0.95rem;
+  }
+
+  .credit-photo {
+    text-align: left;
+  }
+}
+
 .bandeau-vitrine {
   background: #fff1d6;
   color: #5c3b00;

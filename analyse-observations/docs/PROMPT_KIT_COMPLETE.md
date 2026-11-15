@@ -98,3 +98,13 @@ Conservées (RGPD, accessibilité, portabilité, documentation, compatibilité, 
 
 ## 6. Méthode
 Phases 1 à 6 conservées. ✚ Livrer en fin d’exécution : code commenté, documentation, tests automatisés (logique, trois serveurs, pipeline réel avec Ollama sur un jeu fictif), archive versionnée et sa somme SHA-256, liste des points non vérifiés.
+
+---
+
+## 7. Évolutions de la version 3.1 (demande du 15/11/2026)
+
+- **Exigence F modifiée — aucune installation pour le CE** : le kit complet Windows embarque Ollama (portable, version identique à celle de référence), les modèles retenus (`ministral-3:3b`, `ministral-3:8b`, `qwen3.5:9b`, `qwen2.5:7b-instruct`), Node.js et Python portables. Distribution sous forme de **dossier** (clé USB / disque ≥ 32 Go) : au-delà de 20 Go, une archive ZIP n’apporte rien (les modèles ne se compressent pas). Intégrité par `SOMMES-SHA256.txt` et `verifier-integrite.bat`. Un paquet léger « application » sert aux mises à jour.
+- **Exigence G durcie** : l’IA externe (API ou abonnement) ne reçoit **que des contributions anonymisées de façon irréversible et validées** (et le registre de démonstration anonymisé) ; tout texte saisi librement est refusé, sans exception.
+- **Identité** : bandeau « Campus IAlès en Occitanie — « IAlès » – Université populaire de l’intelligence artificielle », logo de l’association, photo réelle d’Alès sous licence libre (crédit affiché).
+- **Vidéo** : vidéo de l’atelier CCE-LR intégrée ; sous-titres et transcription intégrale du commentaire à produire (aucun outil de transcription local disponible lors de la construction).
+- **Limites** : kit complet Windows x64 uniquement (choix de l’association) ; accélération GPU NVIDIA incluse, autres cartes graphiques en mode processeur.

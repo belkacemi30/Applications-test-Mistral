@@ -70,9 +70,9 @@ fi
 # Recommandation (même grille que l'application ; seuils tolérants : 32 Go ≈ 31,7 Go utilisables)
 recommande() {
   if [ "$APPLE" = true ]; then
-    awk -v r="$RAM" 'BEGIN { if (r >= 30) print "confortable ministral-3:14b"; else if (r >= 15) print "intermediaire ministral-3:8b"; else print "minimal ministral-3:3b" }'
+    awk -v r="$RAM" 'BEGIN { if (r >= 30) print "confortable ministral-3:8b"; else if (r >= 15) print "intermediaire ministral-3:8b"; else print "minimal ministral-3:3b" }'
   else
-    awk -v r="$RAM" -v v="$VRAM" 'BEGIN { if (r >= 30 && v >= 12) print "confortable ministral-3:14b"; else if (r >= 15 && v >= 6) print "intermediaire ministral-3:8b"; else print "minimal ministral-3:3b" }'
+    awk -v r="$RAM" -v v="$VRAM" 'BEGIN { if (r >= 30 && v >= 12) print "confortable ministral-3:8b"; else if (r >= 15 && v >= 6) print "intermediaire ministral-3:8b"; else print "minimal ministral-3:3b" }'
   fi
 }
 PALIER="$(recommande | cut -d' ' -f1)"

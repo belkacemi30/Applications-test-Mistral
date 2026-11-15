@@ -10,6 +10,7 @@
 param(
   [int]$Port = 3030,
   [string]$Donnees = "",
+  [string]$OllamaUrl = "",
   [switch]$OuvrirNavigateur
 )
 
@@ -21,9 +22,12 @@ New-Item -ItemType Directory -Force -Path $Donnees | Out-Null
 $Version = "inconnue"
 try { $Version = (Get-Content -Raw -Encoding UTF8 (Join-Path $Racine "VERSION")).Trim() } catch { }
 
+if (-not $OllamaUrl -and $env:KIT_OLLAMA_URL) { $OllamaUrl = $env:KIT_OLLAMA_URL }
+if ($OllamaUrl -notmatch '^http://(localhost|127\.0\.0\.1):\d{2,5}$') { $OllamaUrl = "" }
 $NomDonnee = '^[a-z0-9][a-z0-9_-]{0,63}\.(json|log|enc)$'
 $HoteExterne = '^https://[a-z0-9.-]+(:\d{1,5})?$'
 $TailleMax = 50MB
+$MorceauMax = 4MB  # taille maximale d'une réponse partielle (Range)
 $Utf8 = New-Object System.Text.UTF8Encoding($false)
 $Types = @{
   ".html" = "text/html; charset=utf-8"; ".css" = "text/css; charset=utf-8"; ".js" = "text/javascript; charset=utf-8"
@@ -104,7 +108,7 @@ function Traiter-Api($ctx, [string]$chemin) {
   $m = $req.HttpMethod
   if ($chemin -eq "/api/etat" -and $m -eq "GET") {
     $c = Lire-Config
-    return Json $ctx 200 @{ kit = $true; version = $Version; serveur = "PowerShell " + $PSVersionTable.PSVersion.ToString(); ia_externe = $c.ia_externe; hotes_externes = @($c.hotes_externes) }
+    return Json $ctx 200 @{ kit = $true; version = $Version; serveur = "PowerShell " + $PSVersionTable.PSVersion.ToString(); ia_externe = $c.ia_externe; hotes_externes = @($c.hotes_externes); ollama_url = $OllamaUrl }
   }
   if ($chemin -eq "/api/config") {
     if ($m -eq "GET") { $c = Lire-Config; return Json $ctx 200 @{ ia_externe = $c.ia_externe; hotes_externes = @($c.hotes_externes) } }
@@ -152,7 +156,53 @@ function Traiter-Statique($ctx, [string]$chemin) {
   if (-not (Test-Path -LiteralPath $f -PathType Leaf)) { return Json $ctx 404 @{ erreur = "introuvable" } }
   $ext = [IO.Path]::GetExtension($f).ToLowerInvariant()
   $type = if ($Types.ContainsKey($ext)) { $Types[$ext] } else { "application/octet-stream" }
-  Envoyer $ctx 200 ([IO.File]::ReadAllBytes($f)) $type
+  Envoyer-Fichier $ctx $f $type
+}
+
+# Envoi progressif d'un fichier, avec prise en charge des requêtes partielles (lecture vidéo).
+# Les réponses partielles sont limitées à 4 Mo : le serveur (une requête à la fois) reste réactif.
+function Envoyer-Fichier($ctx, [string]$f, [string]$type) {
+  $taille = (Get-Item -LiteralPath $f).Length
+  $debut = [int64]0
+  $fin = [int64]($taille - 1)
+  $code = 200
+  $r = $ctx.Response
+  $plage = "" + $ctx.Request.Headers["Range"]
+  if ($plage -and $plage.Trim() -match '^bytes=(\d*)-(\d*)$' -and $taille -gt 0) {
+    if ($Matches[1] -eq "") { $debut = [Math]::Max([int64]0, $taille - [int64]("0" + $Matches[2])) } else { $debut = [int64]$Matches[1] }
+    if ($Matches[1] -ne "" -and $Matches[2] -ne "") { $fin = [int64]$Matches[2] }
+    $fin = [Math]::Min([Math]::Min($fin, $taille - 1), $debut + $MorceauMax - 1)
+    if ($debut -gt $fin -or $debut -ge $taille) {
+      $r.Headers["Content-Range"] = "bytes */$taille"
+      Envoyer $ctx 416 ([byte[]]@()) $type
+      return
+    }
+    $code = 206
+    $r.Headers["Content-Range"] = "bytes $debut-$fin/$taille"
+  }
+  $r.StatusCode = $code
+  $r.ContentType = $type
+  $r.Headers["Content-Security-Policy"] = Politique
+  $r.Headers["X-Content-Type-Options"] = "nosniff"
+  $r.Headers["Referrer-Policy"] = "no-referrer"
+  $r.Headers["X-Frame-Options"] = "DENY"
+  $r.Headers["Cache-Control"] = "no-cache"
+  $r.Headers["Accept-Ranges"] = "bytes"
+  $longueur = $fin - $debut + 1
+  $r.ContentLength64 = $longueur
+  if ($ctx.Request.HttpMethod -eq "HEAD" -or $longueur -le 0) { return }
+  $fs = [IO.File]::Open($f, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+  try {
+    [void]$fs.Seek($debut, [IO.SeekOrigin]::Begin)
+    $tampon = New-Object byte[] (1MB)
+    $reste = $longueur
+    while ($reste -gt 0) {
+      $lu = $fs.Read($tampon, 0, [int][Math]::Min($tampon.Length, $reste))
+      if ($lu -le 0) { break }
+      $r.OutputStream.Write($tampon, 0, $lu)
+      $reste -= $lu
+    }
+  } finally { $fs.Close() }
 }
 
 $listener = New-Object System.Net.HttpListener

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
   <meta name="referrer" content="no-referrer">
-  <title>Analyse des observations — Poste de travail du commissaire enquêteur</title>
+  <title>Analyse des observations — Campus IAlès</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styles-kit.css">
 </head>
@@ -18,6 +18,16 @@
   </div>
 
   <header class="entete">
+    <div class="bandeau-iales" role="banner">
+      <div class="bandeau-iales-interieur">
+        <img class="logo-iales" src="assets/logo-iales.png" alt="Logo IAlès — Campus IA, Université populaire" width="220" height="70">
+        <div class="bandeau-iales-texte">
+          <p class="bandeau-iales-titre">Campus IAlès en Occitanie</p>
+          <p class="bandeau-iales-sous-titre">« IAlès » – Université populaire de l’intelligence artificielle</p>
+        </div>
+      </div>
+      <p class="credit-photo">Photo : Alès, le Gardon et son vieux pont — Krzysztof Golik, <abbr title="Creative Commons Attribution – Partage dans les mêmes conditions 4.0">CC BY-SA 4.0</abbr>, Wikimedia Commons</p>
+    </div>
     <div class="entete-interieur">
       <div class="entete-texte">
         <p class="sur-titre">Poste de travail local du commissaire enquêteur · <span id="version-kit">version —</span></p>
@@ -577,17 +587,15 @@
       <section class="carte" aria-labelledby="titre-video">
         <h2 id="titre-video">Vidéo de sensibilisation</h2>
         <div id="zone-video">
-          <video id="video-sensibilisation" controls preload="metadata" width="960" hidden>
-            <source src="docs/video/video-sensibilisation.mp4" type="video/mp4">
-            <track kind="subtitles" src="docs/video/video-sensibilisation.fr.vtt" srclang="fr" label="Français" default>
-          </video>
+          <!-- Source affectée à l’ouverture de l’onglet (évite de charger 99 Mo au démarrage). -->
+          <video id="video-sensibilisation" controls preload="metadata" width="960" hidden></video>
           <p id="video-absente" class="encadre-alerte" hidden>
             La vidéo n’est pas incluse dans cette version du kit (fichier attendu : <code>docs/video/video-sensibilisation.mp4</code>).
             Sa transcription complète est disponible ci-dessous.
           </p>
         </div>
         <details>
-          <summary>Transcription texte de la vidéo</summary>
+          <summary>Plan détaillé de la vidéo (sous-titres en préparation)</summary>
           <article id="transcription-video" class="contenu-guide"></article>
         </details>
       </section>

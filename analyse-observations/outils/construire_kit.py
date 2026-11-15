@@ -23,10 +23,10 @@ from pathlib import Path
 RACINE = Path(__file__).resolve().parent.parent
 VERSION = (RACINE / "VERSION").read_text(encoding="utf-8").strip()
 SORTIE = Path(sys.argv[sys.argv.index("--sortie") + 1]) if "--sortie" in sys.argv else RACINE.parent / "dist"
-NOM = f"kit-analyse-observations-v{VERSION}"
+NOM = f"kit-campus-iales-v{VERSION}-application"  # paquet léger : application seule (mise à jour)
 
 # Fichiers et dossiers de l'application livrés dans application/
-APPLICATION = ["index.html", "styles.css", "styles-kit.css", "app.js", "VERSION", "CHANGELOG.md", "js", "registre", "exemples", "kit", "docs"]
+APPLICATION = ["index.html", "styles.css", "styles-kit.css", "app.js", "VERSION", "CHANGELOG.md", "assets", "js", "registre", "exemples", "kit", "docs"]
 EXCLUS = {"kit/racine", "docs/PROMPT_KIT_COMPLETE.md"}
 GUIDES = ["GUIDE_INSTALLATION", "GUIDE_USAGE_ANONYMISATION", "GRILLE_MODELES", "RAPPORT_ANONYMISATION"]
 # Domaines d'IA externe : n'apparaissent que dans le code d'appel optionnel (Exigence G), jamais chargés au démarrage.
@@ -253,7 +253,7 @@ def construire():
     verifier_version()
     generer_guides()
     fichiers = list(fichiers_application())
-    racine_kit = [(RACINE / "kit/racine" / n, n) for n in ("demarrer.bat", "demarrer.command", "demarrer.sh", "LISEZMOI.txt")]
+    racine_kit = [(RACINE / "kit/racine" / n, n) for n in ("demarrer.bat", "arreter.bat", "demarrer.command", "demarrer.sh", "LISEZMOI.txt")]
     racine_kit += [(RACINE / "CHANGELOG.md", "CHANGELOG.md"), (RACINE / "VERSION", "VERSION")]
     tout = racine_kit + fichiers
     controler(tout)

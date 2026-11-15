@@ -31,9 +31,12 @@ const VERSION = (() => {
     return "inconnue";
   }
 })();
+// Adresse de l’Ollama intégré au kit (fournie par le script de démarrage), uniquement si locale.
+const OLLAMA_URL = /^http:\/\/(localhost|127\.0\.0\.1):\d{2,5}$/.test(process.env.KIT_OLLAMA_URL || "") ? process.env.KIT_OLLAMA_URL : "";
 const NOM_DONNEE = /^[a-z0-9][a-z0-9_-]{0,63}\.(json|log|enc)$/;
 const HOTE_EXTERNE = /^https:\/\/[a-z0-9.-]+(:\d{1,5})?$/;
 const TAILLE_MAX = 50 * 1024 * 1024;
+const MORCEAU_MAX = 4 * 1024 * 1024; // taille maximale d’une réponse partielle (Range)
 const TYPES = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -138,7 +141,7 @@ function ecrireAtomique(fichier, contenu) {
 async function api(req, res, chemin) {
   if (chemin === "/api/etat" && req.method === "GET") {
     const c = lireConfig();
-    return json(res, 200, { kit: true, version: VERSION, serveur: "Node.js " + process.version, ia_externe: c.ia_externe, hotes_externes: c.hotes_externes });
+    return json(res, 200, { kit: true, version: VERSION, serveur: "Node.js " + process.version, ia_externe: c.ia_externe, hotes_externes: c.hotes_externes, ollama_url: OLLAMA_URL });
   }
   if (chemin === "/api/config") {
     if (req.method === "GET") return json(res, 200, lireConfig());
@@ -206,7 +209,22 @@ function statique(req, res, chemin) {
   if (!fichier.startsWith(RACINE + path.sep)) return json(res, 403, { erreur: "accès interdit" });
   fs.stat(fichier, (err, st) => {
     if (err || !st.isFile()) return json(res, 404, { erreur: "introuvable" });
-    res.writeHead(200, entetes(TYPES[path.extname(fichier).toLowerCase()] || "application/octet-stream", { "Content-Length": st.size }));
+    const type = TYPES[path.extname(fichier).toLowerCase()] || "application/octet-stream";
+    // Requêtes partielles (lecture vidéo, avance rapide) : morceaux de 4 Mo au plus.
+    const plage = /^bytes=(\d*)-(\d*)$/.exec(String(req.headers.range || "").trim());
+    if (req.headers.range && plage && st.size > 0) {
+      let debut = plage[1] === "" ? Math.max(0, st.size - Number(plage[2] || 0)) : Number(plage[1]);
+      let fin = plage[1] !== "" && plage[2] !== "" ? Number(plage[2]) : st.size - 1;
+      fin = Math.min(fin, st.size - 1, debut + MORCEAU_MAX - 1);
+      if (!(debut <= fin) || debut >= st.size) {
+        res.writeHead(416, entetes(type, { "Content-Range": "bytes */" + st.size }));
+        return res.end();
+      }
+      res.writeHead(206, entetes(type, { "Content-Length": fin - debut + 1, "Content-Range": "bytes " + debut + "-" + fin + "/" + st.size, "Accept-Ranges": "bytes" }));
+      if (req.method === "HEAD") return res.end();
+      return fs.createReadStream(fichier, { start: debut, end: fin }).pipe(res);
+    }
+    res.writeHead(200, entetes(type, { "Content-Length": st.size, "Accept-Ranges": "bytes" }));
     if (req.method === "HEAD") return res.end();
     fs.createReadStream(fichier).pipe(res);
   });

@@ -7,7 +7,7 @@
   Mémoire vidéo : Win32_VideoController.AdapterRAM est plafonné à 4 Go (entier 32 bits) ;
   on lit donc en priorité nvidia-smi, puis la clé de registre HardwareInformation.qwMemorySize.
 #>
-param([string]$Sortie = "")
+param([string]$Sortie = "", [string]$OllamaUrl = "http://127.0.0.1:11434", [switch]$Integre)
 
 $ErrorActionPreference = "SilentlyContinue"
 $Utf8 = New-Object System.Text.UTF8Encoding($false)
@@ -60,7 +60,7 @@ $disque = Go ((Get-PSDrive -Name $lecteur).Free)
 # Ollama
 $ollamaCmd = Get-Command ollama -ErrorAction SilentlyContinue
 $ollamaExe = Join-Path $env:LOCALAPPDATA "Programs\Ollama\ollama.exe"
-$installe = [bool]$ollamaCmd -or (Test-Path $ollamaExe)
+$installe = [bool]$ollamaCmd -or (Test-Path $ollamaExe) -or [bool]$Integre
 $version = ""
 $actif = $false
 $modeles = @()
@@ -68,9 +68,9 @@ try {
   $wc = New-Object Net.WebClient
   $wc.Proxy = $null
   $wc.Encoding = [Text.Encoding]::UTF8
-  $version = ($wc.DownloadString("http://127.0.0.1:11434/api/version") | ConvertFrom-Json).version
+  $version = ($wc.DownloadString("$OllamaUrl/api/version") | ConvertFrom-Json).version
   $actif = $true
-  $modeles = @(($wc.DownloadString("http://127.0.0.1:11434/api/tags") | ConvertFrom-Json).models | ForEach-Object { $_.name })
+  $modeles = @(($wc.DownloadString("$OllamaUrl/api/tags") | ConvertFrom-Json).models | ForEach-Object { $_.name })
 } catch { }
 if (-not $version -and $installe) {
   $exe = if ($ollamaCmd) { $ollamaCmd.Source } else { $ollamaExe }
@@ -79,7 +79,7 @@ if (-not $version -and $installe) {
 
 # Seuils tolérants : 32 Go physiques apparaissent souvent comme ~31,7 Go utilisables.
 # Recommandation (même grille que l'application : js/kit.js et docs/GRILLE_MODELES.md)
-if ($ram -ge 30 -and $vram -ge 12) { $palier = "confortable"; $modele = "ministral-3:14b" }
+if ($ram -ge 30 -and $vram -ge 12) { $palier = "confortable"; $modele = "ministral-3:8b" }
 elseif ($ram -ge 15 -and $vram -ge 6) { $palier = "intermediaire"; $modele = "ministral-3:8b" }
 else { $palier = "minimal"; $modele = "ministral-3:3b" }
 
@@ -94,6 +94,7 @@ $diag = [ordered]@{
   apple_silicon = $false
   disque_libre_go = $disque
   ollama_installe = $installe
+  ollama_integre = [bool]$Integre
   ollama_version = "$version".Trim()
   ollama_actif = $actif
   modeles = $modeles
@@ -108,7 +109,7 @@ Write-Host ("Système          : " + $diag.systeme)
 Write-Host ("Mémoire vive     : " + $ram + " Go")
 Write-Host ("Carte graphique  : " + $(if ($gpuNom) { $gpuNom } else { "aucune détectée" }) + $(if ($vram) { " ($vram Go, source : $vramSource)" } else { "" }))
 Write-Host ("Disque libre     : " + $disque + " Go")
-Write-Host ("Ollama           : " + $(if ($actif) { "en fonctionnement (version $version)" } elseif ($installe) { "installé mais arrêté" } else { "non installé" }))
+Write-Host ("Ollama           : " + $(if ($actif -and $Integre) { "intégré au kit, en fonctionnement (version $version)" } elseif ($actif) { "en fonctionnement (version $version)" } elseif ($installe) { "installé mais arrêté" } else { "non installé" }))
 Write-Host ("Modèles installés: " + $(if ($modeles.Count) { $modeles -join ", " } else { "aucun" }))
 Write-Host ("Recommandation   : $modele (configuration $palier)") -ForegroundColor Green
 if (-not ($modeles -contains $modele) -and -not ($modele -eq "ministral-3:8b" -and $modeles -contains "ministral-3:latest")) {

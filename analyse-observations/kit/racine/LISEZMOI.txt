@@ -1,32 +1,32 @@
+CAMPUS IALÈS EN OCCITANIE — « IAlès » – Université populaire de l'intelligence artificielle
 KIT « ANALYSE DES OBSERVATIONS » — POSTE DE TRAVAIL LOCAL DU COMMISSAIRE ENQUÊTEUR
 Version : voir le fichier VERSION ; historique : CHANGELOG.md
 
-DÉMARRER
-  Windows : double-cliquez sur  demarrer.bat
-  macOS   : double-cliquez sur  demarrer.command  (la première fois : clic droit > Ouvrir)
-  Linux   : double-cliquez sur  demarrer.sh  (ou lancez ./demarrer.sh dans un terminal)
-  Puis laissez le navigateur s'ouvrir sur http://localhost:3030 et gardez la fenêtre noire ouverte.
+RIEN À INSTALLER
+  Le kit contient déjà l'IA locale (Ollama), ses modèles, Node.js et Python (dossier outils-integres).
+  Aucun programme n'est installé sur l'ordinateur, aucun droit d'administrateur n'est nécessaire,
+  aucune connexion à Internet n'est utilisée.
 
-  Ne pas ouvrir index.html directement : le navigateur bloquerait l'accès à l'IA locale.
+DÉMARRER (Windows 10/11)
+  1. Double-cliquez sur  demarrer.bat
+  2. Laissez le navigateur s'ouvrir sur http://localhost:3030 et gardez la fenêtre noire ouverte.
+  Ne pas ouvrir index.html directement.
+
+ARRÊTER
+  Fermez la fenêtre noire, puis double-cliquez sur  arreter.bat  (libère la mémoire de l'IA).
+
+VÉRIFIER LA COPIE DU KIT
+  Double-cliquez sur  verifier-integrite.bat  (compare chaque fichier à SOMMES-SHA256.txt).
 
 CONTENU
-  application/   le logiciel (remplacé à chaque mise à jour)
-  donnees/       VOS données (dossier de travail, journaux, tableau de correspondance chiffré,
-                 diagnostic) — créé au premier lancement, conservé lors des mises à jour
-  demarrer.*     scripts de démarrage
+  application/      le logiciel (remplacé à chaque mise à jour)
+  outils-integres/  IA locale, modèles, Node.js, Python (ne pas modifier)
+  donnees/          VOS données — conservé lors des mises à jour
 
-PREMIÈRE INSTALLATION
-  Suivez le guide : application/docs/GUIDE_INSTALLATION.html (aussi dans l'onglet « Installation »).
-  Internet n'est nécessaire qu'une fois, pour installer Ollama et télécharger le modèle d'IA.
-  Ensuite, tout fonctionne hors ligne.
-
-MISE À JOUR
-  Remplacez le dossier « application » par celui de la nouvelle archive ; ne touchez pas à « donnees ».
-
-DÉSINSTALLATION
-  Supprimez le dossier du kit (y compris « donnees ») ; voir la section « Désinstallation propre » du guide
-  pour supprimer aussi les modèles Ollama et purger le navigateur.
+GUIDES
+  application/docs/GUIDE_INSTALLATION.html et GUIDE_USAGE_ANONYMISATION.html (aussi dans l'application).
 
 DONNÉES PERSONNELLES
   Les observations du public contiennent des données personnelles (RGPD). Ne les chargez jamais dans
-  un service en ligne ; anonymisez-les avant toute diffusion. Purgez le dossier « donnees » à la clôture.
+  un service en ligne ; une IA externe ne reçoit que des contributions anonymisées irréversiblement
+  et validées. Purgez le dossier « donnees » à la clôture du dossier.

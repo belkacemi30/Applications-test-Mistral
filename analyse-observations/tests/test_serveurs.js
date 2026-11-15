@@ -46,6 +46,19 @@ function requete(port, methode, chemin, options) {
   });
 }
 
+/** GET avec en-tête Range ; corps renvoyé en Buffer. */
+function requeteBrute(port, chemin, plage) {
+  return new Promise((resoudre, rejeter) => {
+    const req = http.request({ host: "127.0.0.1", port, method: "GET", path: chemin, headers: { Host: "localhost:" + port, Range: plage } }, (res) => {
+      const morceaux = [];
+      res.on("data", (c) => morceaux.push(c));
+      res.on("end", () => resoudre({ statut: res.statusCode, entetes: res.headers, corps: Buffer.concat(morceaux) }));
+    });
+    req.on("error", rejeter);
+    req.end();
+  });
+}
+
 async function attendrePret(port) {
   for (let i = 0; i < 60; i++) {
     try {
@@ -62,7 +75,7 @@ async function attendrePret(port) {
 async function tester(nom, port) {
   const donnees = fs.mkdtempSync(path.join(os.tmpdir(), "kit-donnees-"));
   const [cmd, args, env] = SERVEURS[nom](port, donnees);
-  const proc = spawn(cmd, args, { env: Object.assign({}, process.env, env), stdio: "ignore" });
+  const proc = spawn(cmd, args, { env: Object.assign({}, process.env, env, { KIT_OLLAMA_URL: "http://localhost:11435" }), stdio: "ignore" });
   const resultats = [];
   const verifier = async (libelle, fn) => {
     try {
@@ -88,6 +101,7 @@ async function tester(nom, port) {
       assert.strictEqual(e.kit, true);
       assert.strictEqual(e.version, VERSION);
       assert.strictEqual(e.ia_externe, false);
+      assert.strictEqual(e.ollama_url, "http://localhost:11435", "adresse de l’IA intégrée transmise");
     });
     await verifier("en-tête Host étranger refusé (protection DNS rebinding)", async () => {
       const r = await requete(port, "GET", "/api/etat", { entetes: { Host: "attaquant.example:" + port } });
@@ -135,6 +149,23 @@ async function tester(nom, port) {
       assert.strictEqual((await requete(port, "GET", "/api/diagnostic")).statut, 404);
       fs.writeFileSync(path.join(donnees, "diagnostic.json"), '{"ram_go":16}');
       assert.strictEqual(JSON.parse((await requete(port, "GET", "/api/diagnostic")).corps).ram_go, 16);
+    });
+    await verifier("requêtes partielles (vidéo) : 206 par morceaux de 4 Mo, 416 si plage invalide", async () => {
+      const video = "/docs/video/video-sensibilisation.mp4";
+      const taille = fs.statSync(path.join(RACINE, "docs/video/video-sensibilisation.mp4")).size;
+      const debut = await requeteBrute(port, video, "bytes=0-");
+      assert.strictEqual(debut.statut, 206);
+      assert.strictEqual(debut.corps.length, 4 * 1024 * 1024);
+      assert.strictEqual(debut.entetes["content-range"], "bytes 0-4194303/" + taille);
+      const milieu = await requeteBrute(port, video, "bytes=100-199");
+      assert.strictEqual(milieu.statut, 206);
+      assert.ok(milieu.corps.equals(fs.readFileSync(path.join(RACINE, "docs/video/video-sensibilisation.mp4")).subarray(100, 200)));
+      const fin = await requeteBrute(port, video, "bytes=-10");
+      assert.strictEqual(fin.corps.length, 10);
+      assert.strictEqual((await requeteBrute(port, video, "bytes=" + (taille + 5) + "-")).statut, 416);
+      const tete = await requete(port, "HEAD", video);
+      assert.strictEqual(tete.statut, 200);
+      assert.strictEqual(Number(tete.entetes["content-length"]), taille);
     });
     await verifier("ressources de l’application et guides servis", async () => {
       for (const f of ["/app.js", "/js/kit.js", "/styles-kit.css", "/docs/GUIDE_INSTALLATION.md", "/registre/observations.js", "/exemples/observations-fictives.csv"]) {

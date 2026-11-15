@@ -974,28 +974,15 @@ if (typeof document !== "undefined") {
         451
       );
     }
-    const directs = typeof Anonymisation !== "undefined" ? Anonymisation.contientIdentifiantsDirects(texte) : [];
-    if (directs.length) {
-      const types = [...new Set(directs.map((d) => Anonymisation.TYPES[d.type].libelle.toLowerCase()))].join(", ");
-      throw erreurAvecStatut(
-        "envoi refusé : le texte contient des identifiants directs (" + types + "). Anonymisez-le d’abord (onglet « Anonymiser / Pseudonymiser ») ou utilisez un moteur local",
-        451
-      );
-    }
-    const ok =
-      window.Kit && window.Kit.confirmer
-        ? await window.Kit.confirmer({
-            titre: "Envoi à une IA externe",
-            texte: "Ce texte va être envoyé à « " + NOMS_FOURNISSEURS[fournisseurActif()] + " », hors de votre poste. Aucun identifiant direct n’a été détecté automatiquement, mais ce contrôle ne remplace pas votre vérification.",
-            caseACocher: "Je certifie que ce texte ne contient aucune donnée personnelle (nom, adresse, coordonnées, élément permettant d’identifier une personne).",
-            bouton: "Envoyer"
-          })
-        : window.confirm("Ce texte va être envoyé à une IA externe. Certifiez-vous qu’il ne contient aucune donnée personnelle ?");
-    if (!ok) {
-      const err = new Error("envoi annulé");
-      err.name = "AbortError";
-      throw err;
-    }
+    // Texte saisi ou collé librement : jamais envoyé à une IA externe, quel que soit son contenu.
+    // Seules les contributions passées par l’anonymisation IRRÉVERSIBLE du kit et validées par
+    // relecture humaine peuvent l’être (règle fixée par l’association, au-delà du simple contrôle automatique).
+    throw erreurAvecStatut(
+      "envoi refusé : une IA externe ne peut analyser que des contributions anonymisées de façon irréversible et validées. " +
+        "Importez ce texte dans l’onglet « Anonymiser / Pseudonymiser » (mode anonymisation irréversible), validez-le, puis analysez-le " +
+        "depuis « Mon dossier » ; ou choisissez un moteur local (Ollama), qui accepte tous les textes",
+      451
+    );
   }
 
   async function appelServeur(chemin, corps, signal) {
@@ -1081,7 +1068,7 @@ if (typeof document !== "undefined") {
 
   function choisirModeleParDefaut(noms, actuel) {
     if (noms.includes(actuel)) return actuel;
-    return noms.find((n) => /^ministral|^mistral/i.test(n)) || noms.find((n) => /qwen|llama|gemma/i.test(n)) || noms[0] || "";
+    return noms.find((n) => /^ministral-3:(8b|latest)$/i.test(n)) || noms.find((n) => /^ministral|^mistral/i.test(n)) || noms.find((n) => /qwen|llama|gemma/i.test(n)) || noms[0] || "";
   }
 
   async function chargerModelesOllama(silencieux) {
@@ -1183,6 +1170,7 @@ if (typeof document !== "undefined") {
   });
   $("ollama-modele").addEventListener("change", () => {
     etat.ollama.modele = $("ollama-modele").value;
+    etat.ollama.choixManuel = true; // le modèle recommandé par le diagnostic ne le remplacera plus
     stock.ecrire(CLE_OLLAMA, etat.ollama);
     mettreAJourBadgeIA();
   });
@@ -1203,6 +1191,7 @@ if (typeof document !== "undefined") {
   });
   $("ollama-url").addEventListener("change", () => {
     etat.ollama.url = sansBarreFinale($("ollama-url").value) || OLLAMA_URL_DEFAUT;
+    etat.ollama.urlManuelle = true;
     stock.ecrire(CLE_OLLAMA, etat.ollama);
   });
   $("owui-url").addEventListener("change", () => {
@@ -2137,22 +2126,24 @@ if (typeof document !== "undefined") {
   rafraichirApresAnalyse();
 
   (async () => {
-    const verifications = [chargerModelesOllama(true)];
     if (location.protocol === "http:" || location.protocol === "https:") {
-      verifications.push(
-        fetch("api/etat", { cache: "no-store" })
-          .then((r) => (r.ok ? r.json() : Promise.reject(new Error("http " + r.status))))
-          .then((e) => {
-            etat.serveur = Boolean(e && e.ia_disponible);
-            etat.serveurModele = (e && e.modele) || "";
-            etat.kit = e && e.kit ? e : null;
-          })
-          .catch(() => {
-            etat.serveur = false;
-          })
-      );
+      await fetch("api/etat", { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error("http " + r.status))))
+        .then((e) => {
+          etat.serveur = Boolean(e && e.ia_disponible);
+          etat.serveurModele = (e && e.modele) || "";
+          etat.kit = e && e.kit ? e : null;
+          // Ollama intégré au kit : son adresse est fournie par le serveur du kit, sauf réglage manuel.
+          if (etat.kit && e.ollama_url && urlEstLocale(e.ollama_url) && !etat.ollama.urlManuelle) {
+            etat.ollama.url = sansBarreFinale(e.ollama_url);
+            $("ollama-url").value = etat.ollama.url;
+          }
+        })
+        .catch(() => {
+          etat.serveur = false;
+        });
     }
-    await Promise.all(verifications);
+    await chargerModelesOllama(true);
     mettreAJourBadgeIA();
     document.dispatchEvent(new CustomEvent("analyse:etat", { detail: { kit: etat.kit, ollama: etat.ollamaDetecte } }));
   })();
@@ -2189,6 +2180,18 @@ if (typeof document !== "undefined") {
     /** Moteur local prêt pour l’anonymisation (Ollama sur cette machine uniquement). */
     ollamaPret: () => Boolean(etat.ollamaDetecte && etat.ollama.modele && urlEstLocale(etat.ollama.url)),
     ollamaUrlLocale: () => urlEstLocale(etat.ollama.url),
+    /** Applique le modèle recommandé par le diagnostic s’il est installé et si l’utilisateur n’a rien choisi. */
+    appliquerRecommandation(modele) {
+      if (!modele || etat.ollama.choixManuel) return false;
+      const options = [...$("ollama-modele").options].map((o) => o.value);
+      const cible = options.includes(modele) ? modele : modele === "ministral-3:8b" && options.includes("ministral-3:latest") ? "ministral-3:latest" : "";
+      if (!cible || cible === etat.ollama.modele) return false;
+      etat.ollama.modele = cible;
+      $("ollama-modele").value = cible;
+      stock.ecrire(CLE_OLLAMA, etat.ollama);
+      mettreAJourBadgeIA();
+      return true;
+    },
     /** Appel au modèle LOCAL (Ollama) — refusé si l’adresse n’est pas locale. */
     appelLocal(messages, options) {
       if (!urlEstLocale(etat.ollama.url)) {

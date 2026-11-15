@@ -22,7 +22,7 @@
   const GRILLE = [
     { palier: "minimal", libelle: "Configuration minimale (8 Go de RAM, sans GPU dédié)", modele: "ministral-3:3b", taille: "3,0 Go", quantification: "Q4_K_M", disque: "6 Go libres", duree: "estimation : 30 s à 2 min par observation (processeur seul)" },
     { palier: "intermediaire", libelle: "Configuration intermédiaire (16 Go de RAM, GPU grand public 6 à 8 Go)", modele: "ministral-3:8b", taille: "6,0 Go", quantification: "Q4_K_M", disque: "10 Go libres", duree: "mesuré : 10 à 20 s par observation (2 passes) sur GPU RTX 3070 8 Go" },
-    { palier: "confortable", libelle: "Configuration confortable (32 Go de RAM ou plus, GPU 12 Go de VRAM ou plus)", modele: "ministral-3:14b", taille: "9,1 Go", quantification: "Q4_K_M", disque: "15 Go libres", duree: "estimation : 10 à 30 s par observation" }
+    { palier: "confortable", libelle: "Configuration confortable (32 Go de RAM ou plus, GPU 12 Go de VRAM ou plus)", modele: "ministral-3:8b", taille: "6,0 Go", quantification: "Q4_K_M", disque: "10 Go libres", duree: "estimation : 10 à 20 s par observation (qwen3.5:9b possible en alternative)" }
   ];
   function recommander(d) {
     if (!d) return null;
@@ -1162,7 +1162,12 @@
       ["Carte graphique", d.apple_silicon ? "puce Apple — mémoire unifiée" : d.gpu || "aucune détectée"],
       ["Mémoire vidéo", d.apple_silicon ? "partagée avec la mémoire vive" : d.vram_go ? d.vram_go + " Go" + (d.vram_source ? " (" + d.vram_source + ")" : "") : "inconnue ou aucune"],
       ["Espace disque libre", d.disque_libre_go ? d.disque_libre_go + " Go" : "inconnu"],
-      ["Ollama", d.ollama_installe ? "installé" + (d.ollama_version ? " (version " + d.ollama_version + ")" : "") + (d.ollama_actif ? ", en fonctionnement" : ", arrêté") : "non installé"],
+      [
+        "Ollama",
+        (d.ollama_integre ? "intégré au kit (aucune installation)" : d.ollama_installe ? "installé sur le poste" : "non installé") +
+          (d.ollama_version ? ", version " + d.ollama_version : "") +
+          (d.ollama_actif ? ", en fonctionnement" : d.ollama_installe || d.ollama_integre ? ", arrêté" : "")
+      ],
       ["Modèles installés", (d.modeles || []).join(", ") || "aucun"],
       ["Diagnostic réalisé le", d.date]
     ];
@@ -1213,7 +1218,22 @@
       } catch (e) {
         present = false;
       }
-      $("video-sensibilisation").hidden = !present;
+      const video = $("video-sensibilisation");
+      if (present) {
+        video.src = "docs/video/video-sensibilisation.mp4";
+        // Sous-titres : ajoutés seulement s’ils existent (fichier à produire).
+        try {
+          const st = await fetch("docs/video/video-sensibilisation.fr.vtt", { method: "HEAD", cache: "no-cache" });
+          if (st.ok) {
+            const piste = document.createElement("track");
+            Object.assign(piste, { kind: "subtitles", src: "docs/video/video-sensibilisation.fr.vtt", srclang: "fr", label: "Français", default: true });
+            video.appendChild(piste);
+          }
+        } catch (e) {
+          /* pas de sous-titres */
+        }
+      }
+      video.hidden = !present;
       $("video-absente").hidden = present;
     }
   }
@@ -1291,6 +1311,9 @@
   })();
 
   document.addEventListener("analyse:etat", () => {
+    // Premier lancement : modèle adapté à l’ordinateur (diagnostic), sauf choix manuel du CE.
+    const rec = recommander(diagnostic);
+    if (rec && IA() && IA().appliquerRecommandation(rec.modele)) journal("Modèle choisi selon le diagnostic : " + rec.modele);
     majEtat();
     majIndicateurLocal();
   });

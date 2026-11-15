@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
   <meta name="referrer" content="no-referrer">
-  <title>Analyse des observations — Poste de travail du commissaire enquêteur</title>
+  <title>Analyse des observations — Campus IAlès</title>
   <style>
 :root {
   --fond: #f3f5f9;
@@ -738,6 +738,100 @@ tbody th {
  * Kit v3 : onglets, accueil, anonymisation, export, guides, dialogues
  * (complète styles.css ; mêmes jetons de couleur, mode sombre inclus)
  * ===================================================================== */
+
+/* ---------- Bandeau Campus IAlès (photo d’Alès + logo) ---------- */
+.entete {
+  /* Voile sombre aux couleurs du logo (bleu nuit #0E2747) pour la lisibilité du texte sur la photo. */
+  background:
+    linear-gradient(180deg, rgba(9, 26, 52, 0.15) 0%, rgba(9, 26, 52, 0.35) 30%, rgba(9, 26, 52, 0.88) 62%, #0b1f3d 100%),
+    url("assets/ales-gardon.jpg") 20% 62% / cover no-repeat,
+    #0b1f3d;
+  padding-top: 0;
+}
+
+.bandeau-iales {
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 44px 0 26px;
+  position: relative;
+}
+
+.bandeau-iales-interieur {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.logo-iales {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 10px 16px;
+  height: 78px;
+  width: auto;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+.bandeau-iales-titre {
+  margin: 0;
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+
+.bandeau-iales-sous-titre {
+  margin: 4px 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #c9f2dc;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.credit-photo {
+  margin: 10px 0 0;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.72);
+  text-align: right;
+}
+
+.credit-photo abbr {
+  text-decoration: none;
+}
+
+.entete .entete-interieur {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 16px;
+  margin-top: 6px;
+}
+
+.entete h1 {
+  font-size: 1.45rem;
+}
+
+@media (max-width: 640px) {
+  .bandeau-iales {
+    padding-top: 16px;
+  }
+
+  .logo-iales {
+    height: 58px;
+  }
+
+  .bandeau-iales-titre {
+    font-size: 1.4rem;
+  }
+
+  .bandeau-iales-sous-titre {
+    font-size: 0.95rem;
+  }
+
+  .credit-photo {
+    text-align: left;
+  }
+}
+
 .bandeau-vitrine {
   background: #fff1d6;
   color: #5c3b00;
@@ -1184,6 +1278,16 @@ dialog .etapes {
   </div>
 
   <header class="entete">
+    <div class="bandeau-iales" role="banner">
+      <div class="bandeau-iales-interieur">
+        <img class="logo-iales" src="assets/logo-iales.png" alt="Logo IAlès — Campus IA, Université populaire" width="220" height="70">
+        <div class="bandeau-iales-texte">
+          <p class="bandeau-iales-titre">Campus IAlès en Occitanie</p>
+          <p class="bandeau-iales-sous-titre">« IAlès » – Université populaire de l’intelligence artificielle</p>
+        </div>
+      </div>
+      <p class="credit-photo">Photo : Alès, le Gardon et son vieux pont — Krzysztof Golik, <abbr title="Creative Commons Attribution – Partage dans les mêmes conditions 4.0">CC BY-SA 4.0</abbr>, Wikimedia Commons</p>
+    </div>
     <div class="entete-interieur">
       <div class="entete-texte">
         <p class="sur-titre">Poste de travail local du commissaire enquêteur · <span id="version-kit">version —</span></p>
@@ -1743,17 +1847,15 @@ dialog .etapes {
       <section class="carte" aria-labelledby="titre-video">
         <h2 id="titre-video">Vidéo de sensibilisation</h2>
         <div id="zone-video">
-          <video id="video-sensibilisation" controls preload="metadata" width="960" hidden>
-            <source src="docs/video/video-sensibilisation.mp4" type="video/mp4">
-            <track kind="subtitles" src="docs/video/video-sensibilisation.fr.vtt" srclang="fr" label="Français" default>
-          </video>
+          <!-- Source affectée à l’ouverture de l’onglet (évite de charger 99 Mo au démarrage). -->
+          <video id="video-sensibilisation" controls preload="metadata" width="960" hidden></video>
           <p id="video-absente" class="encadre-alerte" hidden>
             La vidéo n’est pas incluse dans cette version du kit (fichier attendu : <code>docs/video/video-sensibilisation.mp4</code>).
             Sa transcription complète est disponible ci-dessous.
           </p>
         </div>
         <details>
-          <summary>Transcription texte de la vidéo</summary>
+          <summary>Plan détaillé de la vidéo (sous-titres en préparation)</summary>
           <article id="transcription-video" class="contenu-guide"></article>
         </details>
       </section>
@@ -1788,7 +1890,7 @@ dialog .etapes {
   <script>
 "use strict";
 /* Version du kit : doit correspondre au fichier VERSION et à CHANGELOG.md (vérifié à la construction). */
-var VERSION_KIT = { numero: "3.0.0", date: "2026-11-15" };
+var VERSION_KIT = { numero: "3.1.0", date: "2026-11-15" };
 if (typeof module !== "undefined" && module.exports) { module.exports = VERSION_KIT; }
 
 </script>
@@ -6022,28 +6124,15 @@ if (typeof document !== "undefined") {
         451
       );
     }
-    const directs = typeof Anonymisation !== "undefined" ? Anonymisation.contientIdentifiantsDirects(texte) : [];
-    if (directs.length) {
-      const types = [...new Set(directs.map((d) => Anonymisation.TYPES[d.type].libelle.toLowerCase()))].join(", ");
-      throw erreurAvecStatut(
-        "envoi refusé : le texte contient des identifiants directs (" + types + "). Anonymisez-le d’abord (onglet « Anonymiser / Pseudonymiser ») ou utilisez un moteur local",
-        451
-      );
-    }
-    const ok =
-      window.Kit && window.Kit.confirmer
-        ? await window.Kit.confirmer({
-            titre: "Envoi à une IA externe",
-            texte: "Ce texte va être envoyé à « " + NOMS_FOURNISSEURS[fournisseurActif()] + " », hors de votre poste. Aucun identifiant direct n’a été détecté automatiquement, mais ce contrôle ne remplace pas votre vérification.",
-            caseACocher: "Je certifie que ce texte ne contient aucune donnée personnelle (nom, adresse, coordonnées, élément permettant d’identifier une personne).",
-            bouton: "Envoyer"
-          })
-        : window.confirm("Ce texte va être envoyé à une IA externe. Certifiez-vous qu’il ne contient aucune donnée personnelle ?");
-    if (!ok) {
-      const err = new Error("envoi annulé");
-      err.name = "AbortError";
-      throw err;
-    }
+    // Texte saisi ou collé librement : jamais envoyé à une IA externe, quel que soit son contenu.
+    // Seules les contributions passées par l’anonymisation IRRÉVERSIBLE du kit et validées par
+    // relecture humaine peuvent l’être (règle fixée par l’association, au-delà du simple contrôle automatique).
+    throw erreurAvecStatut(
+      "envoi refusé : une IA externe ne peut analyser que des contributions anonymisées de façon irréversible et validées. " +
+        "Importez ce texte dans l’onglet « Anonymiser / Pseudonymiser » (mode anonymisation irréversible), validez-le, puis analysez-le " +
+        "depuis « Mon dossier » ; ou choisissez un moteur local (Ollama), qui accepte tous les textes",
+      451
+    );
   }
 
   async function appelServeur(chemin, corps, signal) {
@@ -6129,7 +6218,7 @@ if (typeof document !== "undefined") {
 
   function choisirModeleParDefaut(noms, actuel) {
     if (noms.includes(actuel)) return actuel;
-    return noms.find((n) => /^ministral|^mistral/i.test(n)) || noms.find((n) => /qwen|llama|gemma/i.test(n)) || noms[0] || "";
+    return noms.find((n) => /^ministral-3:(8b|latest)$/i.test(n)) || noms.find((n) => /^ministral|^mistral/i.test(n)) || noms.find((n) => /qwen|llama|gemma/i.test(n)) || noms[0] || "";
   }
 
   async function chargerModelesOllama(silencieux) {
@@ -6231,6 +6320,7 @@ if (typeof document !== "undefined") {
   });
   $("ollama-modele").addEventListener("change", () => {
     etat.ollama.modele = $("ollama-modele").value;
+    etat.ollama.choixManuel = true; // le modèle recommandé par le diagnostic ne le remplacera plus
     stock.ecrire(CLE_OLLAMA, etat.ollama);
     mettreAJourBadgeIA();
   });
@@ -6251,6 +6341,7 @@ if (typeof document !== "undefined") {
   });
   $("ollama-url").addEventListener("change", () => {
     etat.ollama.url = sansBarreFinale($("ollama-url").value) || OLLAMA_URL_DEFAUT;
+    etat.ollama.urlManuelle = true;
     stock.ecrire(CLE_OLLAMA, etat.ollama);
   });
   $("owui-url").addEventListener("change", () => {
@@ -7185,22 +7276,24 @@ if (typeof document !== "undefined") {
   rafraichirApresAnalyse();
 
   (async () => {
-    const verifications = [chargerModelesOllama(true)];
     if (location.protocol === "http:" || location.protocol === "https:") {
-      verifications.push(
-        fetch("api/etat", { cache: "no-store" })
-          .then((r) => (r.ok ? r.json() : Promise.reject(new Error("http " + r.status))))
-          .then((e) => {
-            etat.serveur = Boolean(e && e.ia_disponible);
-            etat.serveurModele = (e && e.modele) || "";
-            etat.kit = e && e.kit ? e : null;
-          })
-          .catch(() => {
-            etat.serveur = false;
-          })
-      );
+      await fetch("api/etat", { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error("http " + r.status))))
+        .then((e) => {
+          etat.serveur = Boolean(e && e.ia_disponible);
+          etat.serveurModele = (e && e.modele) || "";
+          etat.kit = e && e.kit ? e : null;
+          // Ollama intégré au kit : son adresse est fournie par le serveur du kit, sauf réglage manuel.
+          if (etat.kit && e.ollama_url && urlEstLocale(e.ollama_url) && !etat.ollama.urlManuelle) {
+            etat.ollama.url = sansBarreFinale(e.ollama_url);
+            $("ollama-url").value = etat.ollama.url;
+          }
+        })
+        .catch(() => {
+          etat.serveur = false;
+        });
     }
-    await Promise.all(verifications);
+    await chargerModelesOllama(true);
     mettreAJourBadgeIA();
     document.dispatchEvent(new CustomEvent("analyse:etat", { detail: { kit: etat.kit, ollama: etat.ollamaDetecte } }));
   })();
@@ -7237,6 +7330,18 @@ if (typeof document !== "undefined") {
     /** Moteur local prêt pour l’anonymisation (Ollama sur cette machine uniquement). */
     ollamaPret: () => Boolean(etat.ollamaDetecte && etat.ollama.modele && urlEstLocale(etat.ollama.url)),
     ollamaUrlLocale: () => urlEstLocale(etat.ollama.url),
+    /** Applique le modèle recommandé par le diagnostic s’il est installé et si l’utilisateur n’a rien choisi. */
+    appliquerRecommandation(modele) {
+      if (!modele || etat.ollama.choixManuel) return false;
+      const options = [...$("ollama-modele").options].map((o) => o.value);
+      const cible = options.includes(modele) ? modele : modele === "ministral-3:8b" && options.includes("ministral-3:latest") ? "ministral-3:latest" : "";
+      if (!cible || cible === etat.ollama.modele) return false;
+      etat.ollama.modele = cible;
+      $("ollama-modele").value = cible;
+      stock.ecrire(CLE_OLLAMA, etat.ollama);
+      mettreAJourBadgeIA();
+      return true;
+    },
     /** Appel au modèle LOCAL (Ollama) — refusé si l’adresse n’est pas locale. */
     appelLocal(messages, options) {
       if (!urlEstLocale(etat.ollama.url)) {
@@ -7274,7 +7379,7 @@ if (typeof document !== "undefined") {
   const GRILLE = [
     { palier: "minimal", libelle: "Configuration minimale (8 Go de RAM, sans GPU dédié)", modele: "ministral-3:3b", taille: "3,0 Go", quantification: "Q4_K_M", disque: "6 Go libres", duree: "estimation : 30 s à 2 min par observation (processeur seul)" },
     { palier: "intermediaire", libelle: "Configuration intermédiaire (16 Go de RAM, GPU grand public 6 à 8 Go)", modele: "ministral-3:8b", taille: "6,0 Go", quantification: "Q4_K_M", disque: "10 Go libres", duree: "mesuré : 10 à 20 s par observation (2 passes) sur GPU RTX 3070 8 Go" },
-    { palier: "confortable", libelle: "Configuration confortable (32 Go de RAM ou plus, GPU 12 Go de VRAM ou plus)", modele: "ministral-3:14b", taille: "9,1 Go", quantification: "Q4_K_M", disque: "15 Go libres", duree: "estimation : 10 à 30 s par observation" }
+    { palier: "confortable", libelle: "Configuration confortable (32 Go de RAM ou plus, GPU 12 Go de VRAM ou plus)", modele: "ministral-3:8b", taille: "6,0 Go", quantification: "Q4_K_M", disque: "10 Go libres", duree: "estimation : 10 à 20 s par observation (qwen3.5:9b possible en alternative)" }
   ];
   function recommander(d) {
     if (!d) return null;
@@ -8414,7 +8519,12 @@ if (typeof document !== "undefined") {
       ["Carte graphique", d.apple_silicon ? "puce Apple — mémoire unifiée" : d.gpu || "aucune détectée"],
       ["Mémoire vidéo", d.apple_silicon ? "partagée avec la mémoire vive" : d.vram_go ? d.vram_go + " Go" + (d.vram_source ? " (" + d.vram_source + ")" : "") : "inconnue ou aucune"],
       ["Espace disque libre", d.disque_libre_go ? d.disque_libre_go + " Go" : "inconnu"],
-      ["Ollama", d.ollama_installe ? "installé" + (d.ollama_version ? " (version " + d.ollama_version + ")" : "") + (d.ollama_actif ? ", en fonctionnement" : ", arrêté") : "non installé"],
+      [
+        "Ollama",
+        (d.ollama_integre ? "intégré au kit (aucune installation)" : d.ollama_installe ? "installé sur le poste" : "non installé") +
+          (d.ollama_version ? ", version " + d.ollama_version : "") +
+          (d.ollama_actif ? ", en fonctionnement" : d.ollama_installe || d.ollama_integre ? ", arrêté" : "")
+      ],
       ["Modèles installés", (d.modeles || []).join(", ") || "aucun"],
       ["Diagnostic réalisé le", d.date]
     ];
@@ -8465,7 +8575,22 @@ if (typeof document !== "undefined") {
       } catch (e) {
         present = false;
       }
-      $("video-sensibilisation").hidden = !present;
+      const video = $("video-sensibilisation");
+      if (present) {
+        video.src = "docs/video/video-sensibilisation.mp4";
+        // Sous-titres : ajoutés seulement s’ils existent (fichier à produire).
+        try {
+          const st = await fetch("docs/video/video-sensibilisation.fr.vtt", { method: "HEAD", cache: "no-cache" });
+          if (st.ok) {
+            const piste = document.createElement("track");
+            Object.assign(piste, { kind: "subtitles", src: "docs/video/video-sensibilisation.fr.vtt", srclang: "fr", label: "Français", default: true });
+            video.appendChild(piste);
+          }
+        } catch (e) {
+          /* pas de sous-titres */
+        }
+      }
+      video.hidden = !present;
       $("video-absente").hidden = present;
     }
   }
@@ -8543,6 +8668,9 @@ if (typeof document !== "undefined") {
   })();
 
   document.addEventListener("analyse:etat", () => {
+    // Premier lancement : modèle adapté à l’ordinateur (diagnostic), sauf choix manuel du CE.
+    const rec = recommander(diagnostic);
+    if (rec && IA() && IA().appliquerRecommandation(rec.modele)) journal("Modèle choisi selon le diagnostic : " + rec.modele);
     majEtat();
     majIndicateurLocal();
   });

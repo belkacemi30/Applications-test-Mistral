@@ -1,161 +1,128 @@
 # Guide d’installation du kit « Analyse des observations »
 
+> Campus IAlès — Université populaire de l’intelligence artificielle.
 > Pour qui ? Le commissaire enquêteur, sans compétence technique particulière.
-> Version du kit : 3.0.0 — informations techniques vérifiées le **15/11/2026**.
+> Version du kit : 3.1.0 — informations techniques vérifiées le **15/11/2026**.
 
-## 1. Ce que contient le kit
+## 1. Ce qu’il faut savoir
 
-Le kit est une **archive ZIP** (par exemple `kit-analyse-observations-v3.0.0.zip`) qui contient :
+**Il n’y a rien à installer.** Le kit complet contient déjà tout ce qui est nécessaire :
 
-- `demarrer.bat` (Windows), `demarrer.command` (macOS), `demarrer.sh` (Linux) : les scripts de démarrage ;
-- `application/` : le logiciel, les guides et le registre de démonstration ;
-- `donnees/` : **vos** données (créé au premier lancement) ;
-- `LISEZMOI.txt`, `CHANGELOG.md`, `VERSION`.
+- l’application (dans votre navigateur, mais **rien n’est en ligne**) ;
+- l’intelligence artificielle locale **Ollama** et ses **modèles** (dossier `outils-integres`) ;
+- les programmes de secours **Node.js** et **Python**.
 
-L’application s’ouvre dans votre navigateur, mais **rien n’est en ligne** : tout se passe sur votre ordinateur. **Aucun logiciel n’est à installer pour l’application elle-même**, en dehors d’un navigateur récent (Firefox, Chrome ou Edge à jour).
+Rien n’est modifié sur votre ordinateur : aucun programme n’est installé, aucun réglage n’est changé, **aucun droit d’administrateur** n’est nécessaire. Le kit fonctionne **sans Internet**.
 
-Pour l’intelligence artificielle locale (anonymisation et analyse), il faut en plus **Ollama** et un **modèle** : c’est l’objet des sections 4 et 5.
+Il vous faut seulement :
+- Windows 10 ou 11 (64 bits) et un navigateur à jour (Edge, Chrome ou Firefox) ;
+- environ **25 Go d’espace libre** si vous copiez le kit sur l’ordinateur (ou une clé USB / un disque d’au moins **32 Go**).
 
-## 2. Installer le kit
+## 2. Contenu du kit
 
-1. **Vérifier l’archive** (recommandé) : comparez sa somme de contrôle avec celle publiée avec le kit (fichier `.sha256`).
-   - Windows : ouvrez « Windows PowerShell » et tapez `Get-FileHash .\kit-analyse-observations-v3.0.0.zip -Algorithm SHA256`
-   - macOS : `shasum -a 256 kit-analyse-observations-v3.0.0.zip`
-   - Linux : `sha256sum kit-analyse-observations-v3.0.0.zip`
-   Les deux suites de caractères doivent être identiques. Sinon, ne l’utilisez pas : l’archive est incomplète ou modifiée.
-2. **Windows uniquement** : clic droit sur l’archive → *Propriétés* → cochez **« Débloquer »** si la case existe → *OK*.
-3. **Décompressez** l’archive à un emplacement que vous retrouverez, par exemple `Documents\Kit-enquetes\`. Évitez les dossiers synchronisés avec un service en ligne (OneDrive, Dropbox…) : le dossier `donnees/` contiendra des données personnelles.
-4. **Premier lancement** : double-cliquez sur le script de démarrage de votre système.
-   - Windows : `demarrer.bat`. Si Windows affiche « Windows a protégé votre ordinateur », cliquez sur *Informations complémentaires* → *Exécuter quand même*.
-   - macOS : la première fois, **clic droit** sur `demarrer.command` → *Ouvrir* → *Ouvrir* (macOS protège les scripts téléchargés).
-   - Linux : double-cliquez sur `demarrer.sh` et choisissez *Exécuter*, ou lancez `./demarrer.sh` dans un terminal.
-5. Une fenêtre noire s’ouvre (le serveur local du kit), le diagnostic de votre ordinateur s’affiche, puis **le navigateur s’ouvre tout seul** sur `http://localhost:3030`.
-6. **Laissez la fenêtre noire ouverte** pendant que vous travaillez. Pour arrêter le kit, fermez-la.
+| Élément | Rôle |
+|---|---|
+| `demarrer.bat` | **Double-cliquez ici pour démarrer.** |
+| `arreter.bat` | Arrête complètement le kit et libère la mémoire. |
+| `verifier-integrite.bat` | Vérifie que le kit est complet et non modifié. |
+| `application/` | Le logiciel, les guides, le registre de démonstration, la vidéo. |
+| `outils-integres/` | L’IA locale (Ollama), les modèles, Node.js et Python. Ne pas modifier. |
+| `donnees/` | **Vos** données (dossier de travail, journal, analyses…). Conservé lors des mises à jour. |
+| `LISEZMOI.txt`, `CHANGELOG.md`, `VERSION`, `SOMMES-SHA256.txt` | Informations et contrôle d’intégrité. |
 
-> Pourquoi un script de démarrage ? Si vous ouvrez directement le fichier `index.html`, le navigateur applique des restrictions de sécurité (protocole `file://`) qui **bloquent l’accès à l’IA locale** et l’enregistrement de vos données. **Double-cliquez sur le script de démarrage, puis laissez le navigateur s’ouvrir.**
+## 3. Mettre le kit en place
 
-Le kit n’a besoin d’**aucun droit d’administrateur**. Sous Windows, il utilise PowerShell, déjà présent sur Windows 10 et 11. Sous macOS et Linux, il utilise Node.js s’il est installé, sinon Python 3. Sur macOS récent, si Python 3 manque, la commande `python3` propose de l’installer (une seule fois, avec Internet).
+1. Copiez le dossier `kit-campus-iales-v3.1.0` reçu (clé USB ou disque externe) vers un emplacement de votre ordinateur, par exemple `Documents\Kit Campus IAles\`. Il est aussi possible de l’utiliser directement depuis la clé, mais plus lentement.
+   - Évitez les dossiers synchronisés avec un service en ligne (OneDrive, Dropbox…) : le dossier `donnees/` contiendra des données personnelles.
+2. **Vérifiez la copie** (recommandé, 5 à 10 minutes) : double-cliquez sur `verifier-integrite.bat`. Le message « Kit intègre » doit s’afficher.
+3. **Démarrez** : double-cliquez sur `demarrer.bat`.
+   - Si Windows affiche « Windows a protégé votre ordinateur » : *Informations complémentaires* → *Exécuter quand même*.
+   - Si le pare-feu Windows pose une question pour « ollama » ou « node » : vous pouvez **refuser** ; le kit ne communique qu’avec votre propre ordinateur.
+4. Une fenêtre noire s’ouvre : l’IA locale démarre (10 à 20 secondes), le diagnostic de votre ordinateur s’affiche, puis **le navigateur s’ouvre tout seul** sur l’application (`http://localhost:3030`).
+5. **Laissez la fenêtre noire ouverte** pendant votre travail. Pour arrêter : fermez-la, puis double-cliquez sur `arreter.bat` (libère la mémoire utilisée par l’IA).
 
-## 3. Matériel nécessaire et choix du modèle
+> N’ouvrez pas directement le fichier `index.html` : le navigateur bloquerait l’accès à l’IA locale et l’enregistrement de vos données. **Double-cliquez sur `demarrer.bat`, puis laissez le navigateur s’ouvrir.**
 
-Le script de démarrage lance un **diagnostic** : système, mémoire vive (RAM), carte graphique (GPU) et sa mémoire (VRAM), espace disque, présence d’Ollama. Le résultat apparaît dans l’onglet **Installation**, avec le modèle conseillé.
+**Démarrage de secours.** Si votre poste interdit les scripts PowerShell (stratégie de votre service informatique), `demarrer.bat` bascule automatiquement sur un démarrage de secours avec Node.js ou Python inclus dans le kit. Le diagnostic de l’ordinateur n’est alors pas disponible ; tout le reste fonctionne.
 
-Grille indicative (modèles vérifiés sur ollama.com le 15/11/2026, détails dans `GRILLE_MODELES.md`) :
+## 4. Le modèle d’IA adapté à votre ordinateur
 
-| Palier | Configuration | Modèle conseillé | Taille (quantification) | Disque libre | Durée par observation |
-|---|---|---|---|---|---|
-| Minimal | 8 Go de RAM, sans carte graphique dédiée | `ministral-3:3b` (petit modèle quantifié) | 3,0 Go (Q4_K_M) | 6 Go | estimation : 30 s à 2 min |
-| Intermédiaire | 16 Go de RAM, carte graphique grand public 6 à 8 Go | `ministral-3:8b` (modèle moyen quantifié Q4) | 6,0 Go (Q4_K_M) | 10 Go | **mesuré** : 10 à 20 s (RTX 3070 8 Go) |
-| Confortable | 32 Go de RAM ou plus, carte graphique 12 Go ou plus | `ministral-3:14b` (modèle supérieur) | 9,1 Go (Q4_K_M) | 15 Go | estimation : 10 à 30 s |
+Au démarrage, le diagnostic détecte la mémoire vive, la carte graphique et sa mémoire, puis l’application **choisit automatiquement** le modèle adapté parmi ceux inclus dans le kit (vous pouvez en changer dans *Paramètres IA*). Résultat visible dans l’onglet **Installation**.
 
-- Les durées concernent l’anonymisation (détection + contrôle qualité). L’analyse d’une observation longue peut prendre jusqu’à une minute.
-- Sur Mac avec puce Apple (M1 à M4), la mémoire est partagée avec la carte graphique : on retient la mémoire vive totale.
-- Une carte graphique de 8 Go fait fonctionner `ministral-3:14b`, mais plus lentement (le modèle ne tient pas entièrement en mémoire vidéo).
-- Ces modèles sont publiés par Mistral AI (français) et sont bons en français. Des alternatives figurent dans `GRILLE_MODELES.md`.
+| Palier | Configuration | Modèle choisi | Taille | Durée par observation |
+|---|---|---|---|---|
+| Minimal | 8 Go de RAM, sans carte graphique dédiée | `ministral-3:3b` | 3,0 Go | estimation : 30 s à 2 min |
+| Intermédiaire | 16 Go de RAM, carte graphique grand public 6 à 8 Go | `ministral-3:8b` | 6,0 Go | **mesuré** : 10 à 20 s (RTX 3070 8 Go) |
+| Confortable | 32 Go de RAM ou plus, carte graphique 12 Go ou plus | `ministral-3:8b` ou `qwen3.5:9b` | 6,0 à 6,6 Go | estimation : 10 à 20 s |
 
-## 4. Installer Ollama (Internet nécessaire une seule fois)
+Modèles inclus : `ministral-3:3b`, `ministral-3:8b` (éditeur Mistral AI, très bons en français), `qwen3.5:9b` et `qwen2.5:7b-instruct` (éditeur Alibaba Qwen, alternatives). Détails et sources : [GRILLE_MODELES.md](GRILLE_MODELES.md).
 
-Ollama est le logiciel gratuit qui fait fonctionner le modèle d’IA sur votre ordinateur. Site officiel : [ollama.com/download](https://ollama.com/download).
+- L’IA intégrée exploite automatiquement les cartes graphiques **NVIDIA**. Avec une autre carte graphique, elle fonctionne sur le processeur (plus lentement).
+- Le premier traitement après le démarrage est plus long : le modèle se charge en mémoire.
 
-### Windows 10 / 11
-1. Sur [ollama.com/download/windows](https://ollama.com/download/windows), téléchargez l’installateur et lancez-le (pas besoin de droits administrateur : il s’installe dans votre profil).
-2. Ollama démarre automatiquement : une icône (un lama) apparaît près de l’horloge.
+## 5. Vérifier que tout fonctionne
 
-### macOS
-1. Sur [ollama.com/download/mac](https://ollama.com/download/mac), téléchargez l’application, ouvrez le fichier et glissez **Ollama** dans *Applications*.
-2. Lancez Ollama une première fois depuis *Applications*.
+1. Onglet **Accueil** : « Ollama (IA locale) » indique **Détecté**, et l’en-tête **« 100 % local / hors ligne »**.
+2. Onglet **Installation** → bouton **Tester Ollama** : un message confirme la version et le nombre de modèles.
+3. Onglet **Anonymiser / Pseudonymiser** → **Charger le jeu d’exemple fictif** → **Lancer le traitement** : six observations fictives traitées en une à deux minutes.
 
-### Linux
-1. Dans un terminal : `curl -fsSL https://ollama.com/install.sh | sh` (commande officielle, voir [ollama.com/download/linux](https://ollama.com/download/linux)). Elle demande le mot de passe administrateur.
-2. Ollama est installé comme service et démarre automatiquement.
+## 6. IA externe (facultatif, désactivée par défaut)
 
-## 5. Télécharger le modèle (Internet nécessaire une seule fois)
+Le kit peut, si vous l’autorisez, utiliser une IA en ligne (API Mistral, API compatible OpenAI, API Anthropic, ou votre abonnement Le Chat / ChatGPT / Claude par copier-coller) pour **analyser** uniquement des contributions **anonymisées de façon irréversible et validées**. Tout autre texte (original, pseudonymisé, ou saisi à la main) est refusé. Voir *Paramètres IA* et le guide d’usage. Tant que l’IA externe n’est pas autorisée, le navigateur bloque techniquement toute connexion vers Internet.
 
-Ouvrez un terminal (Windows : menu Démarrer → « Terminal » ou « Windows PowerShell » ; macOS : *Terminal* ; Linux : terminal) et tapez la commande correspondant au modèle conseillé par le diagnostic, par exemple :
+## 7. Dépannage
 
-```
-ollama pull ministral-3:8b
-```
+**L’IA locale ne démarre pas / « Ollama non détecté »**
+- Fermez la fenêtre noire, double-cliquez sur `arreter.bat`, puis relancez `demarrer.bat`.
+- Vérifiez que le dossier `outils-integres\ollama` existe et contient `ollama.exe` (sinon le kit a été mal copié : lancez `verifier-integrite.bat`).
+- Un antivirus peut bloquer `ollama.exe` lors du premier lancement : autorisez-le ou demandez à votre service informatique.
 
-Le téléchargement (3 à 9 Go) prend de quelques minutes à une heure selon votre connexion. Vérifiez ensuite :
+**Le traitement est trop lent**
+- Choisissez un modèle plus petit (*Paramètres IA* → *Modèle local* → `ministral-3:3b`).
+- Fermez les logiciels gourmands ; travaillez depuis une copie du kit sur l’ordinateur plutôt que depuis la clé USB.
 
-```
-ollama list
-```
+**Mémoire insuffisante (ordinateur qui rame, message d’erreur de l’IA)**
+- Modèle plus petit ; fermez les autres applications ; `arreter.bat` puis redémarrage.
 
-Le modèle doit apparaître dans la liste. **À partir de là, tout fonctionne sans Internet.**
+**Port déjà utilisé**
+- « port 3030 déjà utilisé » : le kit est sans doute déjà ouvert ; allez sur `http://localhost:3030`.
+- L’IA intégrée utilise le port 11435 ; un Ollama déjà installé sur le poste (port 11434) n’est pas gêné et n’est pas utilisé.
 
-## 6. Vérifier que tout fonctionne
+**L’application ne s’ouvre pas dans le navigateur**
+- Ouvrez vous-même votre navigateur à l’adresse `http://localhost:3030`.
+- La page affiche « Vitrine » : vous êtes sur le site de démonstration en ligne, pas sur le kit ; utilisez `demarrer.bat`.
 
-1. Relancez le kit (script de démarrage).
-2. Onglet **Accueil** : « Ollama (IA locale) » doit indiquer **Détecté**, et l’en-tête **« 100 % local / hors ligne »**.
-3. Onglet **Installation** → bouton **Tester Ollama** : un message confirme la version d’Ollama et le nombre de modèles.
-4. Test de santé manuel (facultatif) : dans le navigateur, ouvrez `http://localhost:11434/api/version` ; une réponse du type `{"version":"…"}` doit s’afficher.
-5. Onglet **Anonymiser / Pseudonymiser** → **Charger le jeu d’exemple fictif** → **Lancer le traitement** : les six observations fictives sont traitées en une à deux minutes.
+**Message sur les scripts désactivés**
+- Le démarrage de secours prend le relais automatiquement. Si rien ne démarre, contactez votre service informatique : le kit n’essaie pas de contourner ses stratégies de sécurité.
 
-## 7. Interface web Open WebUI (facultative)
+## 8. Mettre à jour le kit
 
-Le kit n’a **pas besoin** d’Open WebUI : il dialogue directement avec Ollama. Open WebUI est utile si vous souhaitez aussi converser avec le modèle local dans une interface de type « chat ».
+1. Arrêtez le kit (fermez la fenêtre noire, puis `arreter.bat`).
+2. Remplacez le dossier `application/` et les fichiers à la racine (`demarrer.bat`, `arreter.bat`, `LISEZMOI.txt`, `CHANGELOG.md`, `VERSION`) par ceux de la nouvelle version (paquet « application »).
+3. **Ne touchez pas au dossier `donnees/`** (vos données) ni à `outils-integres/` (sauf si la nouvelle version fournit de nouveaux outils).
+4. Relancez : la nouvelle version s’affiche dans l’en-tête et dans l’onglet Accueil.
 
-- Documentation officielle : [docs.openwebui.com](https://docs.openwebui.com/getting-started/quick-start/).
-- Installation avec Python 3.11 ou 3.12 : `pip install open-webui`, puis `open-webui serve` ; adresse : `http://localhost:8080`.
-- Installation avec Docker : l’interface est généralement publiée sur `http://localhost:3000`.
-- Dans le kit : *Paramètres IA* → « Open WebUI », indiquez l’adresse et une clé API (Open WebUI → *Paramètres* → *Compte* → *Clés API*).
-- Attention : Open WebUI peut aussi être relié à des services en ligne. Pour des données personnelles, n’utilisez que des modèles **Ollama locaux**. L’anonymisation du kit, elle, utilise toujours Ollama directement.
+## 9. Désinstallation propre
 
-C’est pour éviter le port 8080 d’Open WebUI que le kit utilise le port **3030**.
+1. Dans l’onglet *Anonymiser / Pseudonymiser* : **Purger le dossier de travail** et **Détruire le tableau de correspondance**.
+2. Fermez la fenêtre noire, double-cliquez sur `arreter.bat`.
+3. Supprimez le dossier du kit (y compris `donnees/` et `outils-integres/`, qui contient les modèles) et videz la corbeille. Rien d’autre n’a été installé sur l’ordinateur.
+4. **Navigateur** : effacez les données du site `localhost:3030` (préférences, clés d’API éventuellement mémorisées) — Edge/Chrome : *Paramètres → Confidentialité → Données de sites* ; Firefox : *Paramètres → Vie privée → Cookies et données de sites → Gérer les données* ; supprimez les fichiers exportés de votre dossier *Téléchargements*.
 
-## 8. IA externe (facultatif, désactivée par défaut)
-
-Le kit peut, si vous l’autorisez, utiliser une IA en ligne pour **analyser** des observations **déjà anonymisées et validées** : API Mistral, API compatible OpenAI, API Anthropic, ou un abonnement (Le Chat, ChatGPT, Claude…) par copier-coller. Voir *Paramètres IA* et le guide d’usage. **Les observations nominatives ou pseudonymisées ne sont jamais envoyées.** Tant que l’IA externe n’est pas autorisée, le navigateur bloque techniquement toute connexion vers Internet.
-
-## 9. Dépannage
-
-**Ollama ne démarre pas**
-- Windows : lancez *Ollama* depuis le menu Démarrer ; vérifiez l’icône près de l’horloge. macOS : ouvrez *Applications → Ollama*. Linux : `systemctl status ollama`, puis `sudo systemctl start ollama`.
-- Relancez ensuite le script de démarrage du kit.
-
-**Le modèle est trop lent**
-- Choisissez le modèle du palier inférieur (*Paramètres IA* → *Modèle local*), par exemple `ministral-3:3b`.
-- Fermez les logiciels gourmands (navigateur avec de nombreux onglets, visioconférence).
-- Réduisez la taille des lots (10 observations) : cela ne change pas la vitesse, mais permet d’interrompre plus souvent.
-
-**Mémoire insuffisante (message « out of memory » ou ordinateur qui rame)**
-- Utilisez un modèle plus petit ; fermez les autres applications ; redémarrez l’ordinateur.
-- Vérifiez qu’un seul modèle est chargé : `ollama ps` ; déchargez les autres avec `ollama stop <modèle>`.
-
-**Port 11434 occupé**
-- Une autre instance d’Ollama tourne déjà : c’est normal, le kit l’utilise. Si un autre logiciel occupe ce port, fermez-le ou redémarrez l’ordinateur.
-
-**Le navigateur n’accède pas à Open WebUI**
-- Vérifiez l’adresse (`http://localhost:8080` pour pip, `http://localhost:3000` pour Docker) et que la fenêtre d’Open WebUI (ou Docker) est bien ouverte.
-
-**L’application locale ne se lance pas**
-- Message « port 3030 déjà utilisé » : le kit est sans doute déjà ouvert ; allez sur `http://localhost:3030`.
-- Windows, message sur les scripts désactivés : votre poste applique une stratégie de sécurité qui interdit les scripts PowerShell. Contactez votre service informatique (le kit n’essaie pas de contourner cette stratégie). Alternative : si Node.js est installé, `node application\kit\serveur.js` depuis le dossier du kit.
-- macOS « impossible d’ouvrir, développeur non identifié » : clic droit → *Ouvrir*. Si besoin, dans le Terminal : `xattr -dr com.apple.quarantine <dossier du kit>`.
-- Linux « permission refusée » : `chmod +x demarrer.sh application/kit/*.sh`.
-- La page s’ouvre mais « Vitrine » s’affiche : vous êtes sur le site de démonstration en ligne, pas sur le kit. Utilisez le script de démarrage.
-
-## 10. Mettre à jour le kit
-
-1. Arrêtez le kit (fermez la fenêtre noire).
-2. Vérifiez la somme de contrôle de la nouvelle archive (section 2).
-3. Remplacez **uniquement** le dossier `application/` par celui de la nouvelle archive, ainsi que les scripts `demarrer.*`, `LISEZMOI.txt`, `CHANGELOG.md` et `VERSION`.
-4. **Ne touchez pas au dossier `donnees/`** : il contient votre dossier de travail, vos journaux, vos analyses et l’éventuel tableau de correspondance chiffré.
-5. Relancez : la nouvelle version s’affiche dans l’en-tête et dans l’onglet Accueil.
-
-## 11. Désinstallation propre
-
-1. **Le kit** : avant de supprimer, utilisez dans l’onglet *Anonymiser / Pseudonymiser* les boutons **Purger le dossier de travail** et **Détruire le tableau de correspondance**, puis supprimez le dossier du kit (y compris `donnees/`) et videz la corbeille.
-2. **Les modèles** : `ollama list`, puis `ollama rm <modèle>` pour chacun.
-3. **Ollama** : Windows → *Paramètres → Applications* → Ollama → *Désinstaller* ; macOS → supprimer *Applications/Ollama* et le dossier `~/.ollama` ; Linux → arrêter le service puis supprimer le binaire et `/usr/share/ollama` (voir la documentation d’Ollama).
-4. **Open WebUI** (si installé) : `pip uninstall open-webui`, ou supprimer le conteneur et le volume Docker ; son historique de conversations est stocké dans son propre dossier de données.
-5. **Navigateur** : effacez les données du site `localhost:3030` (préférences, clés d’API éventuellement mémorisées) : Firefox → *Paramètres → Vie privée → Cookies et données de sites → Gérer les données* ; Chrome/Edge → *Paramètres → Confidentialité → Données de sites* ; supprimez aussi l’historique et les fichiers exportés du dossier *Téléchargements*.
-
-## 12. Rappels de protection des données
+## 10. Rappels de protection des données
 
 - Avant tout partage des fichiers de l’enquête, **supprimez ou masquez les données personnelles non nécessaires** ; anonymisez ce qui doit être diffusé.
 - **Ne chargez jamais d’observations nominatives dans un service en ligne** (IA, traduction, stockage, messagerie grand public).
 - Conservez l’original nominatif dans un espace sécurisé, et purgez le dossier `donnees/` à la clôture du dossier.
 - Pour en savoir plus : onglet **Guide d’usage** ([GUIDE_USAGE_ANONYMISATION.md](GUIDE_USAGE_ANONYMISATION.md)).
+
+## Annexe — Installer Ollama soi-même (paquet léger, macOS, Linux)
+
+Le kit complet n’existe que pour Windows. Avec le paquet léger (« application » seule), sous macOS ou sous Linux, installez Ollama et un modèle (Internet nécessaire une seule fois) :
+
+- **Windows** : [ollama.com/download/windows](https://ollama.com/download/windows) (installation dans votre profil, sans droits d’administrateur).
+- **macOS** : [ollama.com/download/mac](https://ollama.com/download/mac) ; glissez Ollama dans *Applications* et lancez-le. Premier lancement du kit : clic droit sur `demarrer.command` → *Ouvrir*.
+- **Linux** : `curl -fsSL https://ollama.com/install.sh | sh` (commande officielle, [ollama.com/download/linux](https://ollama.com/download/linux)).
+- Puis, dans un terminal : `ollama pull ministral-3:8b` (ou `ministral-3:3b` pour un petit ordinateur), et démarrez le kit avec `demarrer.bat`, `demarrer.command` ou `demarrer.sh`.
+- Sous macOS et Linux, le kit utilise Node.js s’il est installé, sinon Python 3 (sur macOS récent, la commande `python3` propose son installation).
+- **Open WebUI** (facultatif) : interface de conversation pour Ollama, [docs.openwebui.com](https://docs.openwebui.com/getting-started/quick-start/) (`pip install open-webui` puis `open-webui serve`, adresse `http://localhost:8080`, Python 3.11 ou 3.12). Le kit n’en a pas besoin ; s’il est utilisé, n’y relier que des modèles locaux.

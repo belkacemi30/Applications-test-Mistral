@@ -22,9 +22,13 @@ try:
     VERSION = (RACINE / "VERSION").read_text(encoding="utf-8").strip()
 except OSError:
     VERSION = "inconnue"
+OLLAMA_URL = os.environ.get("KIT_OLLAMA_URL", "")
+if not re.match(r"^http://(localhost|127\.0\.0\.1):\d{2,5}$", OLLAMA_URL):
+    OLLAMA_URL = ""
 NOM_DONNEE = re.compile(r"^[a-z0-9][a-z0-9_-]{0,63}\.(json|log|enc)$")
 HOTE_EXTERNE = re.compile(r"^https://[a-z0-9.-]+(:\d{1,5})?$")
 TAILLE_MAX = 50 * 1024 * 1024
+MORCEAU_MAX = 4 * 1024 * 1024  # taille maximale d'une réponse partielle (Range)
 TYPES = {
     ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8",
     ".json": "application/json; charset=utf-8", ".md": "text/markdown; charset=utf-8", ".txt": "text/plain; charset=utf-8",
@@ -137,7 +141,7 @@ class Gestionnaire(BaseHTTPRequestHandler):
     def api(self, chemin):
         if chemin == "/api/etat" and self.command == "GET":
             c = lire_config()
-            return self.json(200, {"kit": True, "version": VERSION, "serveur": "Python " + sys.version.split()[0], **c})
+            return self.json(200, {"kit": True, "version": VERSION, "serveur": "Python " + sys.version.split()[0], "ollama_url": OLLAMA_URL, **c})
         if chemin == "/api/config":
             if self.command == "GET":
                 return self.json(200, lire_config())
@@ -200,7 +204,45 @@ class Gestionnaire(BaseHTTPRequestHandler):
             return self.json(403, {"erreur": "accès interdit"})
         if not fichier.is_file():
             return self.json(404, {"erreur": "introuvable"})
-        return self.envoyer(200, fichier.read_bytes(), TYPES.get(fichier.suffix.lower(), "application/octet-stream"))
+        type_ = TYPES.get(fichier.suffix.lower(), "application/octet-stream")
+        taille = fichier.stat().st_size
+        plage = re.match(r"^bytes=(\d*)-(\d*)$", (self.headers.get("Range") or "").strip())
+        debut, fin, code, extra = 0, taille - 1, 200, {"Accept-Ranges": "bytes"}
+        if self.headers.get("Range") and plage and taille > 0:
+            debut = max(0, taille - int(plage.group(2) or 0)) if plage.group(1) == "" else int(plage.group(1))
+            fin = int(plage.group(2)) if plage.group(1) != "" and plage.group(2) != "" else taille - 1
+            fin = min(fin, taille - 1, debut + MORCEAU_MAX - 1)
+            if debut > fin or debut >= taille:
+                return self.envoyer(416, b"", type_, {"Content-Range": "bytes */%d" % taille})
+            code = 206
+            extra["Content-Range"] = "bytes %d-%d/%d" % (debut, fin, taille)
+        return self.envoyer_fichier(code, fichier, debut, fin, type_, extra)
+
+    def envoyer_fichier(self, code, fichier, debut, fin, type_, extra):
+        """Envoi progressif (par blocs de 1 Mo) d'une portion de fichier."""
+        longueur = max(0, fin - debut + 1)
+        self.send_response(code)
+        self.send_header("Content-Type", type_)
+        self.send_header("Content-Security-Policy", politique())
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("Referrer-Policy", "no-referrer")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Cache-Control", "no-cache")
+        for k, v in extra.items():
+            self.send_header(k, v)
+        self.send_header("Content-Length", str(longueur))
+        self.end_headers()
+        if self.command == "HEAD":
+            return
+        with open(fichier, "rb") as f:
+            f.seek(debut)
+            reste = longueur
+            while reste > 0:
+                bloc = f.read(min(1024 * 1024, reste))
+                if not bloc:
+                    break
+                self.wfile.write(bloc)
+                reste -= len(bloc)
 
 
 def main():

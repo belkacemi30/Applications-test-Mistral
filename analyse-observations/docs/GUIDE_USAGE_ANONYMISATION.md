@@ -1,6 +1,6 @@
 # Guide d’usage : pseudonymisation et anonymisation des observations
 
-> Pour le commissaire enquêteur. Version du kit : 3.0.0 — références vérifiées le 15/11/2026.
+> Campus IAlès — pour le commissaire enquêteur. Version du kit : 3.1.0 — références vérifiées le 15/11/2026.
 > Ce guide est un outil pédagogique ; il ne remplace ni les textes ni l’avis du délégué à la protection des données de l’autorité organisatrice.
 
 ## 1. Pourquoi c’est important
@@ -90,7 +90,7 @@ L’anonymisation est **définitive**. Si la version nominative n’a pas été 
 Un fichier **chiffré** (protégé par mot de passe) contient toujours toutes les données personnelles : quiconque a la clé y accède. Le chiffrement protège la **confidentialité** ; il ne rend **pas** les données anonymes. Inversement, un fichier anonymisé n’a pas besoin d’être chiffré pour être diffusé.
 
 ### Piège 8 — Envoyer des données pseudonymisées à une IA en ligne
-Les données pseudonymisées **restent personnelles** : les envoyer à un service d’IA en ligne (API ou abonnement) est un transfert de données personnelles vers un tiers. Le kit le **refuse** : seules les observations **anonymisées et validées** (ou le registre de démonstration) peuvent être confiées à une IA externe, et seulement si vous avez autorisé l’IA externe sur le poste.
+Les données pseudonymisées **restent personnelles** : les envoyer à un service d’IA en ligne (API ou abonnement) est un transfert de données personnelles vers un tiers. Le kit le **refuse** : seules les contributions **anonymisées de façon irréversible et validées** (ou le registre de démonstration) peuvent être confiées à une IA externe, et seulement si vous avez autorisé l’IA externe sur le poste.
 
 ## 6. Liste de contrôle avant diffusion d’un fichier anonymisé
 
@@ -107,15 +107,17 @@ Les données pseudonymisées **restent personnelles** : les envoyer à un servic
 
 ## 7. Utiliser une IA externe (API ou abonnement)
 
+Règle de l’association Campus IAlès : **une IA externe ne reçoit que des contributions anonymisées de façon irréversible et validées** (ou le registre de démonstration, déjà anonymisé). Les textes originaux, pseudonymisés ou saisis à la main sont **toujours refusés**, même sans identifiant apparent. L’IA locale intégrée au kit, elle, accepte tous les textes : elle ne quitte pas votre ordinateur.
+
 Désactivée par défaut. Pour l’utiliser :
-1. *Paramètres IA* → choisissez Mistral, une API compatible OpenAI, Anthropic, ou « Abonnement ».
-2. **Autorisez l’IA externe sur ce poste** (confirmation en deux étapes). Le kit élargit alors sa politique de sécurité **aux seuls domaines** de ces services.
-3. N’analysez que le registre de démonstration ou les observations **anonymisées et validées** de votre dossier (onglet *Analyse*, « Observations à analyser » → « Mon dossier »). Le kit refuse les autres.
-4. Pour un texte saisi à la main, le kit vérifie l’absence d’identifiants directs et vous demande de **certifier** qu’il ne contient aucune donnée personnelle.
-5. **Abonnement** (Le Chat, ChatGPT, Claude… sans API) : le kit prépare le texte à coller, vous collez la réponse ; aucune connexion directe n’est établie par le kit.
+1. Anonymisez irréversiblement vos contributions (onglet *Anonymiser / Pseudonymiser*, mode « anonymisation irréversible »), relisez-les et **validez-les**.
+2. *Paramètres IA* → choisissez l’API Mistral, une API compatible OpenAI, l’API Anthropic, ou « Abonnement » (Le Chat, ChatGPT, Claude… sans API).
+3. **Autorisez l’IA externe sur ce poste** (confirmation en deux étapes). Le kit élargit alors sa politique de sécurité **aux seuls domaines** de ces services.
+4. Onglet *Analyse des observations* → « Observations à analyser » → **Mon dossier** : seules les contributions anonymisées et validées sont acceptées.
+5. **Abonnement** : le kit prépare le texte à coller dans votre service (8 contributions par envoi en lot), vous collez la réponse ; aucune connexion directe n’est établie par le kit.
 
 Avant usage, vérifiez les **conditions du fournisseur** : durée de conservation, réutilisation pour l’entraînement, localisation des serveurs, accord de traitement des données. Désactivez l’IA externe dès que vous n’en avez plus besoin.
 
 ## 8. Vidéo de sensibilisation
 
-La vidéo (environ 5 minutes) reprend les points essentiels de ce guide. Elle est affichée dans l’onglet *Guide d’usage* avec des sous-titres ; sa **transcription** est disponible sous le lecteur et dans `docs/video/transcription.md`.
+La vidéo de l’atelier pratique CCE-LR « Anonymiser & pseudonymiser avec l’IA locale (Ollama) » (3 min 50) est affichée dans l’onglet *Guide d’usage*. Le plan détaillé de ses séquences est disponible sous le lecteur et dans `docs/video/transcription.md` ; les sous-titres du commentaire sont en préparation.

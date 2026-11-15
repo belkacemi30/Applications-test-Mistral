@@ -1,31 +1,33 @@
-# Transcription — « Protéger les données des observations du public » (environ 5 minutes)
+# Vidéo de sensibilisation — plan et contenu (3 min 50)
 
-> Script de la vidéo de sensibilisation du kit. Il sert de transcription accessible et de base de tournage.
-> Les sous-titres correspondants sont dans `video-sensibilisation.fr.vtt`.
+> **Atelier pratique « Anonymiser & pseudonymiser avec l’IA locale (Ollama) »** — formation CCE-LR,
+> Compagnie des Commissaires Enquêteurs du Languedoc-Roussillon, par Kamel Belkacemi (commissaire enquêteur,
+> référent national CNCE sur l’IA).
+>
+> Ce document décrit le contenu visible de chaque séquence. **La transcription intégrale du commentaire
+> oral et les sous-titres restent à produire** (voir `LISEZMOI` ci-dessous).
 
-## 1. Introduction (0:00)
-Vous êtes commissaire enquêteur. Les observations que vous recevez contiennent des noms, des adresses, des numéros de téléphone, parfois des informations sur la santé. Ce sont des données personnelles : le RGPD s’applique. Cette vidéo vous montre comment les protéger avec votre kit local.
+## Séquences
 
-## 2. Tout se passe sur votre ordinateur (0:30)
-Le kit fonctionne dans votre navigateur, mais rien n’est en ligne. L’intelligence artificielle tourne sur votre propre ordinateur, grâce à Ollama. Le bandeau « 100 % local, hors ligne » vous le confirme : le navigateur bloque toute connexion vers Internet.
+| Début | Séquence | Contenu |
+|---|---|---|
+| 0:00 | Présentation | Atelier pratique « hameau témoin » ; méthodologie et outils : traitement des contributions d’enquête à l’aide d’une IA **locale** (Ollama), étanchéité totale des données, sans fuite cloud. |
+| 0:30 | Exercice 1 — Inventorier | Inventorier chaque indice sensible (catégories A à K et article 9 RGPD) **sans recopier** : identifiant direct, adresse, contact, référence de dossier, relation familiale ou de voisinage, profession rare, parcelle, date ou âge, formation… |
+| 1:00 | Règle de choix — arbre de décision | Quel prompt utiliser ? **Pseudonymiser** pour l’analyse interne (identifiants stables, table séparée et chiffrée, donnée toujours personnelle) ; **anonymiser** pour la diffusion ou le rapport (balises neutres, aucune table, aucun lien entre contributions, hors champ RGPD si irréversible). Règle cardinale : ne jamais publier un corpus simplement pseudonymisé. |
+| 1:30 | Exercice 2 — Pseudonymiser | Le même élément garde le même code dans tout le lot (convention d’identifiants, cohérence, homonymes) ; table de correspondance conservée localement et chiffrée. **Piège mortel** : croire qu’un texte pseudonymisé est anonyme. |
+| 2:00 | Exercice 3 — Anonymiser irréversiblement | Six phases (inventaire, anonymisation, complétude, ré-identification, contrôle contradictoire, sens citoyen) ; marqueurs non traçants (`[CONTRIBUTEUR]`, `[ADRESSE]`, `[PARCELLE]`, `[PERSONNE]`) ; garde-fous : couper tout lien entre contributions, généraliser (« un riverain », « une parcelle proche »). |
+| 2:30 | Exercices 4 et 5 — Contrôle contradictoire | Jouer l’attaquant : cinq profils (habitant de la commune, agent du cadastre, recherche Internet, lecteur comparant les lots, analyse du style et des métadonnées) testent le texte. Règle : tant qu’un profil remonte à l’auteur, ce n’est pas anonyme. |
+| 3:00 | Intégration et évaluation | Espace de travail local : choisir, coller, exécuter (100 % hors ligne), contrôler, statuer, tracer ; grille d’atelier ; statut final « prêt pour relecture humaine ». |
+| 3:30 | Conclusion | « Pseudonymiser pour travailler, anonymiser pour diffuser. » Remerciements à la Compagnie des Commissaires Enquêteurs du Languedoc-Roussillon et au groupe de travail IA. |
 
-## 3. Pseudonymiser ou anonymiser ? (1:00)
-Pseudonymiser, c’est remplacer les noms par des pseudonymes, comme « PSEUDO-01 ». C’est utile pour travailler en interne. Mais attention : les données restent personnelles. Anonymiser, c’est supprimer les noms et généraliser tout ce qui permet de reconnaître quelqu’un. C’est définitif. Pour diffuser, archiver ou partager : anonymisez.
+## Lien avec le kit
 
-## 4. Le piège du recoupement (1:45)
-« L’adjoint au maire, éleveur au lieu-dit des Crozes. » Il n’y a plus de nom… et pourtant tout le village sait de qui il s’agit. Une profession, un lieu, une date, un âge : combinés, ils suffisent à identifier une personne. C’est pourquoi l’anonymisation généralise aussi ces informations.
+- Exercices 1 à 3 → onglet **Anonymiser / Pseudonymiser** (détection, remplacement, contrôle qualité).
+- Exercices 4 et 5 → **relecture humaine** et **contrôle par sondage** du kit, piège n° 1 du guide (recoupement).
+- « Pseudonymiser pour travailler, anonymiser pour diffuser » → guide d’usage, section 3.
 
-## 5. L’IA peut se tromper (2:30)
-Le modèle repère les noms et les détails sensibles, puis relit son propre travail. Mais il peut oublier un surnom, une signature, un nom mal orthographié. Le kit vous signale les cas douteux, en surbrillance. Relisez-les. Puis tirez cinq observations au hasard et relisez-les entièrement. La relecture humaine est obligatoire.
+## LISEZMOI — sous-titres à produire
 
-## 6. Avant de lancer l’anonymisation (3:15)
-Sauvegardez d’abord le fichier original dans un espace sécurisé. Une fois anonymisé, aucun retour en arrière n’est possible. Et ne confondez pas anonymiser et chiffrer : un fichier protégé par un mot de passe contient toujours toutes les données.
-
-## 7. Le tableau de correspondance (3:45)
-En pseudonymisation, vous pouvez conserver un tableau qui relie chaque pseudonyme à une personne. Il est chiffré par le kit. Ne le gardez que si c’est nécessaire, ne l’envoyez jamais, et détruisez-le à la clôture du dossier.
-
-## 8. Les IA en ligne (4:10)
-N’envoyez jamais d’observations nominatives ou pseudonymisées à un service en ligne. Le kit ne le permet que pour des observations anonymisées et validées, et seulement si vous l’avez autorisé.
-
-## 9. À la clôture du dossier (4:35)
-Exportez en CSV, le format préconisé. Puis purgez le dossier de travail, détruisez le tableau de correspondance, videz vos téléchargements et la corbeille. Protéger les données du public, c’est aussi protéger la confiance dans l’enquête publique.
+Pour l’accessibilité, déposer dans ce dossier :
+- `video-sensibilisation.fr.vtt` : sous-titres WebVTT du commentaire (ils s’afficheront automatiquement dans le lecteur) ;
+- la transcription intégrale du commentaire, à la place du tableau ci-dessus.
