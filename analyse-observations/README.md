@@ -7,10 +7,25 @@ Application web en français pour préparer l’analyse des observations d’une
 
 - `index.html`, `styles.css`, `app.js` — interface (saisie, démonstration, registre, thèmes, analyse IA)
 - `donnees/observations.js` — registre **anonymisé de façon irréversible** (204 observations : 71 orales + 133 écrites)
-- `serveur/server.js` — serveur local optionnel : sert l’app et proxy l’API Mistral (clé côté serveur uniquement)
+- `serveur/server.js` — serveur local : sert l’app (nécessaire pour Ollama) et, si `MISTRAL_API_KEY` est définie, relaie l’API Mistral
+- `lancer-local.bat` — lancement en double-clic sous Windows (serveur + ouverture du navigateur)
 - `outils/extraction_observations.py` — extraction depuis la transcription du PDF (données **brutes**, à ne pas versionner)
 - `outils/anonymiser.py` — anonymisation irréversible (jetons aléatoires, noms masqués)
 - `docs/RAPPORT_ANONYMISATION.md` — rapport d’audit d’anonymisation
+
+## Utiliser un modèle local (Ollama / Open WebUI) — recommandé
+
+Aucune clé, aucun coût, **aucune donnée ne quitte le PC**.
+
+1. Lancer **Ollama** (icône dans la barre des tâches) avec au moins un modèle de texte, par ex. `ollama pull ministral-3` (conseillé, très bon en français ; `qwen3.5:9b` ou `qwen2.5:7b-instruct` conviennent aussi).
+2. Double-cliquer sur **`lancer-local.bat`** (nécessite Node.js) : l’application s’ouvre sur <http://localhost:3030>. Laisser la fenêtre noire ouverte.
+3. L’application détecte Ollama toute seule et choisit `ministral-3` ; on peut changer de modèle dans « ⚙ Paramètres IA ».
+
+Durées constatées (ministral-3, carte graphique grand public) : 15 à 70 s par observation selon sa longueur, soit environ 1 h à 1 h 30 pour les 204 observations (interruptible et reprenable) ; synthèse globale : quelques minutes. En cas de boucle du modèle sur un texte long, un second essai est fait automatiquement avec d’autres réglages.
+
+**Open WebUI** : choisir « Open WebUI » dans les paramètres, indiquer son adresse (souvent `http://localhost:3000` avec Docker, `http://localhost:8080` en installation pip) et une clé API (Open WebUI → Paramètres → Compte → Clés API).
+
+**Pourquoi passer par `lancer-local.bat` ?** Par sécurité, Ollama n’accepte que les pages servies depuis le PC (`localhost`). Depuis GitHub Pages ou un fichier ouvert par double-clic, il refuse les appels. Pour l’autoriser malgré tout depuis GitHub Pages, définir la variable d’environnement Windows `OLLAMA_ORIGINS=https://belkacemi30.github.io` puis redémarrer Ollama.
 
 ## Nouveautés (version 2)
 
@@ -34,10 +49,10 @@ Fonctionnalités disponibles : exemple fictif + tableau préparé (« Démonstra
 
 ```bash
 MISTRAL_API_KEY=<votre clé> node serveur/server.js
-# puis ouvrir http://localhost:3000
+# puis ouvrir http://localhost:3030  (port 3030 : le 3000 est souvent pris par Open WebUI)
 ```
 
-- Le serveur sert l’app sur `127.0.0.1:3000` et expose `POST /api/analyse` et `POST /api/synthese` (même prompt que le mode navigateur, défini dans `app.js`).
+- Le serveur sert l’app sur `127.0.0.1:3030` et expose `POST /api/analyse` et `POST /api/synthese` (même prompt que le mode navigateur, défini dans `app.js`).
 - La clé `MISTRAL_API_KEY` n’est lue que côté serveur (variable d’environnement ou fichier `serveur/.env`, ignoré par git) et **n’est jamais envoyée au navigateur**.
 - Modèle : `mistral-small-latest` (modifiable via `MISTRAL_MODELE`).
 - Le prompt demande un JSON strict avec les mêmes rubriques que le tableau de démonstration : référence, thèmes, synthèse neutre, demandes explicites, questions au maître d’ouvrage, points à vérifier. Le bandeau « à vérifier par le commissaire enquêteur » s’affiche avec chaque résultat IA.

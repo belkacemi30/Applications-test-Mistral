@@ -3,10 +3,11 @@
 /* =========================================================================
  * Analyse des observations — Enquête publique « Pas de Mirepoix »
  *
- * Deux façons d’obtenir l’analyse IA (Mistral) :
- *  1. serveur local (node serveur/server.js) : la clé reste côté serveur ;
- *  2. directement depuis le navigateur (GitHub Pages, fichier local) avec la
- *     clé API Mistral de l’utilisateur, conservée uniquement dans son navigateur.
+ * Moteurs d’IA possibles (choix dans « Paramètres IA ») :
+ *  - Ollama (modèle local sur le PC : rien ne quitte l’ordinateur) ;
+ *  - Open WebUI (API compatible OpenAI, vers les mêmes modèles locaux) ;
+ *  - Mistral en ligne, avec la clé de l’utilisateur (conservée dans son navigateur) ;
+ *  - serveur local (node serveur/server.js) détenant une clé Mistral côté serveur.
  * La partie « logique » (sans DOM) est exportée pour le serveur et les tests.
  * ========================================================================= */
 
@@ -15,6 +16,8 @@ const TITRE_ENQUETE = "Projet agrivoltaïque du Pas de Mirepoix — Saint-Julien
 const MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions";
 const MISTRAL_MODELES_URL = "https://api.mistral.ai/v1/models";
 const MODELE_DEFAUT = "mistral-small-latest";
+const OLLAMA_URL_DEFAUT = "http://localhost:11434";
+const OPENWEBUI_URL_DEFAUT = "http://localhost:3000";
 const LIMITE_TEXTE = 20000;
 
 const TEXTE_EXEMPLE = [
@@ -111,7 +114,7 @@ function nettoyerTableau(v) {
     return [];
   }
   return v
-    .map((x) => (typeof x === "string" ? x : x && typeof x === "object" ? Object.values(x).join(" — ") : ""))
+    .map((x) => (typeof x === "string" ? texteLibre(x) : x && typeof x === "object" ? Object.values(x).map(texteLibre).join(" — ") : ""))
     .map((x) => x.trim())
     .filter((x) => x !== "");
 }
@@ -130,6 +133,14 @@ function normaliserPosition(p) {
   return "non exprimée";
 }
 
+/** Texte libre : accepte aussi un tableau ou un objet (certains modèles locaux en produisent). */
+function texteLibre(v) {
+  if (typeof v === "string") return v.replace(/\*\*([^*]+)\*\*/g, "$1").replace(/__([^_]+)__/g, "$1").trim();
+  if (Array.isArray(v)) return v.map(texteLibre).filter(Boolean).join(" ");
+  if (v && typeof v === "object") return Object.values(v).map(texteLibre).filter(Boolean).join(" ");
+  return "";
+}
+
 /** Valide et normalise un objet d’analyse (réponse du modèle ou du serveur). */
 function normaliserAnalyse(parse, reference) {
   const p = parse && typeof parse === "object" ? parse : {};
@@ -137,7 +148,7 @@ function normaliserAnalyse(parse, reference) {
     reference: reference || (typeof p.reference === "string" ? p.reference.trim() : ""),
     position: normaliserPosition(p.position),
     themes: nettoyerTableau(p.themes),
-    synthese: typeof p.synthese === "string" ? p.synthese.trim() : "",
+    synthese: texteLibre(p.synthese),
     demandes: nettoyerTableau(p.demandes),
     questions: nettoyerTableau(p.questions),
     points: nettoyerTableau(p.points)
@@ -221,13 +232,13 @@ function normaliserSynthese(p) {
         .map((t) => ({
           theme: String(t.theme || t.nom || "").trim(),
           nombre: Number.isFinite(Number(t.nombre)) ? Number(t.nombre) : null,
-          resume: String(t.resume || t.résumé || "").trim(),
+          resume: texteLibre(t.resume || t.résumé || ""),
           references: nettoyerTableau(t.references || t.références)
         }))
         .filter((t) => t.theme)
     : [];
   return {
-    bilan: typeof s.bilan === "string" ? s.bilan.trim() : "",
+    bilan: texteLibre(s.bilan),
     themes,
     questions_prioritaires: nettoyerTableau(s.questions_prioritaires),
     points_vigilance: nettoyerTableau(s.points_vigilance)
@@ -318,6 +329,8 @@ if (typeof module !== "undefined" && module.exports) {
     THEMES,
     POSITIONS,
     MODELE_DEFAUT,
+    OLLAMA_URL_DEFAUT,
+    OPENWEBUI_URL_DEFAUT,
     LIMITE_TEXTE,
     statutDemonstration,
     compterThemes,
@@ -379,11 +392,27 @@ if (typeof document !== "undefined") {
   const CLE_API = "ao.cleMistral";
   const CLE_MODELE = "ao.modele";
   const CLE_ANALYSES = "ao.analyses";
+  const CLE_FOURNISSEUR = "ao.fournisseur";
+  const CLE_OLLAMA = "ao.ollama";
+  const CLE_OWUI = "ao.openwebui";
+  const CLE_OWUI_CLE = "ao.cleOpenWebUI";
+
+  const NOMS_FOURNISSEURS = {
+    serveur: "Serveur local",
+    ollama: "Ollama",
+    openwebui: "Open WebUI",
+    mistral: "Mistral"
+  };
 
   /* ---------- État ---------- */
   const etat = {
-    serveur: false, // serveur local avec clé disponible
+    serveur: false, // serveur local avec clé Mistral disponible
     serveurModele: "",
+    fournisseur: stock.lire(CLE_FOURNISSEUR, ""), // "" = choix automatique
+    ollamaDetecte: false,
+    ollama: Object.assign({ url: OLLAMA_URL_DEFAUT, modele: "" }, stock.lire(CLE_OLLAMA, {})),
+    owui: Object.assign({ url: OPENWEBUI_URL_DEFAUT, modele: "" }, stock.lire(CLE_OWUI, {})),
+    owuiCle: stock.lire(CLE_OWUI_CLE, ""),
     cle: stock.lire(CLE_API, ""),
     modele: stock.lire(CLE_MODELE, MODELE_DEFAUT),
     analyses: stock.lire(CLE_ANALYSES, {}), // { [reference]: analyse }
@@ -477,36 +506,114 @@ if (typeof document !== "undefined") {
     return new Date().toISOString().slice(0, 10);
   }
 
-  /* ---------- Disponibilité de l’IA ---------- */
+  const attendre = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  function sansBarreFinale(url) {
+    return String(url || "").trim().replace(/\/+$/, "");
+  }
+
+  function pageServieEnLocal() {
+    return /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) && /^https?:$/.test(location.protocol);
+  }
+
+  /* ---------- Fournisseur d’IA ---------- */
+  function fournisseurActif() {
+    const f = etat.fournisseur;
+    if (f === "serveur" && !etat.serveur) {
+      return etat.ollamaDetecte ? "ollama" : "mistral";
+    }
+    if (f) {
+      return f;
+    }
+    if (etat.serveur) return "serveur";
+    if (etat.ollamaDetecte) return "ollama";
+    return "mistral";
+  }
+
+  function modeleActif() {
+    switch (fournisseurActif()) {
+      case "serveur":
+        return etat.serveurModele || MODELE_DEFAUT;
+      case "ollama":
+        return etat.ollama.modele;
+      case "openwebui":
+        return etat.owui.modele;
+      default:
+        return etat.modele;
+    }
+  }
+
+  function estLocal() {
+    const f = fournisseurActif();
+    return f === "ollama" || f === "openwebui";
+  }
+
   function iaDisponible() {
-    return etat.serveur || Boolean(etat.cle);
+    switch (fournisseurActif()) {
+      case "serveur":
+        return etat.serveur;
+      case "ollama":
+        return Boolean(etat.ollama.modele);
+      case "openwebui":
+        return Boolean(etat.owuiCle && etat.owui.modele);
+      default:
+        return Boolean(etat.cle);
+    }
   }
 
   function mettreAJourBadgeIA() {
     const badge = $("badge-ia");
-    if (etat.serveur) {
-      badge.textContent = "IA : serveur local (" + (etat.serveurModele || MODELE_DEFAUT) + ")";
-      badge.className = "badge badge-ok";
-    } else if (etat.cle) {
-      badge.textContent = "IA : prête (" + etat.modele + ")";
+    const f = fournisseurActif();
+    if (iaDisponible()) {
+      badge.textContent = "IA : " + NOMS_FOURNISSEURS[f] + (estLocal() ? " (local)" : "") + " · " + modeleActif();
       badge.className = "badge badge-ok";
     } else {
-      badge.textContent = "IA : clé à configurer";
+      badge.textContent = "IA : " + NOMS_FOURNISSEURS[f] + " à configurer";
       badge.className = "badge badge-attention";
     }
-    $("etat-serveur").textContent = etat.serveur
-      ? "✓ Un serveur local avec clé Mistral est détecté : il est utilisé pour les analyses (modèle " + (etat.serveurModele || MODELE_DEFAUT) + "). Les réglages ci-dessous ne sont alors pas nécessaires."
-      : "Aucun serveur local détecté (hébergement statique ou fichier ouvert directement) : renseignez votre clé API Mistral pour activer les analyses.";
+    mettreAJourPanneauFournisseur();
+  }
+
+  function mettreAJourPanneauFournisseur() {
+    const f = fournisseurActif();
+    $("option-serveur").hidden = !etat.serveur;
+    $("option-serveur").disabled = !etat.serveur;
+    $("fournisseur").value = f;
+    for (const nom of ["ollama", "openwebui", "mistral"]) {
+      $("bloc-" + nom).hidden = nom !== f;
+    }
+    $("btn-oublier-cle").hidden = !(f === "mistral" || f === "openwebui");
+    $("memoriser-cle").closest("label").hidden = !(f === "mistral" || f === "openwebui");
+    $("btn-enregistrer-cle").textContent = f === "serveur" ? "Tester le serveur" : "Enregistrer et tester";
+    const info = $("etat-serveur");
+    let texte = "";
+    if (f === "serveur") {
+      texte = "✓ Le serveur local de l’application dispose d’une clé Mistral : il est utilisé pour les analyses (modèle " + (etat.serveurModele || MODELE_DEFAUT) + ").";
+    } else if (f === "ollama") {
+      texte = etat.ollamaDetecte
+        ? "✓ Ollama est détecté sur ce PC. Les observations sont analysées localement : rien ne quitte votre ordinateur, sans coût ni clé."
+        : "Ollama n’est pas joignable à " + etat.ollama.url + ". Lancez Ollama, puis cliquez sur « Enregistrer et tester ».";
+      if (!pageServieEnLocal()) {
+        texte +=
+          " Important : cette page n’est pas servie depuis votre PC (GitHub Pages ou fichier ouvert par double-clic) ; Ollama refuse alors les appels. Lancez plutôt l’application avec « lancer-local.bat », ou autorisez cette adresse dans Ollama (variable OLLAMA_ORIGINS, voir le README).";
+      }
+    } else if (f === "openwebui") {
+      texte =
+        "Open WebUI sert d’intermédiaire vers vos modèles locaux. Créez une clé API dans Open WebUI (Paramètres → Compte → Clés API), collez-la ici puis cliquez sur « Enregistrer et tester ».";
+    } else {
+      texte = "API Mistral en ligne : renseignez votre clé API (console.mistral.ai → API Keys). Le texte des observations est envoyé à Mistral.";
+    }
+    info.textContent = texte;
   }
 
   function ouvrirParametres(raison) {
     panneau.hidden = false;
     btnParametres.setAttribute("aria-expanded", "true");
+    mettreAJourPanneauFournisseur();
     if (raison) {
       afficherRetourParametres(raison, "attention");
     }
     panneau.scrollIntoView({ behavior: "smooth", block: "start" });
-    setTimeout(() => $("cle-api").focus(), 300);
   }
 
   function fermerParametres() {
@@ -526,12 +633,23 @@ if (typeof document !== "undefined") {
     if (iaDisponible()) {
       return true;
     }
-    ouvrirParametres("Pour lancer une analyse IA, collez d’abord votre clé API Mistral puis cliquez sur « Enregistrer et tester ».");
+    const f = fournisseurActif();
+    ouvrirParametres(
+      f === "ollama"
+        ? "Choisissez un modèle Ollama (cliquez sur « Enregistrer et tester » pour charger la liste)."
+        : f === "openwebui"
+          ? "Renseignez l’adresse et la clé API d’Open WebUI, puis choisissez un modèle."
+          : "Pour lancer une analyse IA, choisissez un moteur d’IA (Ollama en local, ou Mistral avec votre clé) puis cliquez sur « Enregistrer et tester »."
+    );
     return false;
   }
 
-  /* ---------- Appels Mistral ---------- */
-  const attendre = (ms) => new Promise((r) => setTimeout(r, ms));
+  /* ---------- Appels aux modèles ---------- */
+  function erreurAvecStatut(message, statut) {
+    const err = new Error(message);
+    err.statut = statut;
+    return err;
+  }
 
   async function appelMistralDirect(messages, options) {
     const opts = options || {};
@@ -570,13 +688,113 @@ if (typeof document !== "undefined") {
       const data = await reponse.json().catch(() => null);
       if (!reponse.ok) {
         const detail = data && (data.message || (data.error && data.error.message) || data.detail);
-        const err = new Error(messageErreurHTTP(reponse.status, typeof detail === "string" ? detail.slice(0, 160) : ""));
-        err.statut = reponse.status;
-        throw err;
+        throw erreurAvecStatut(messageErreurHTTP(reponse.status, typeof detail === "string" ? detail.slice(0, 160) : ""), reponse.status);
       }
       const contenu = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
       return extraireJSON(contenu);
     }
+  }
+
+  function messageOllamaInjoignable() {
+    return (
+      "Ollama injoignable à " +
+      etat.ollama.url +
+      (pageServieEnLocal()
+        ? " : vérifiez qu’Ollama est lancé (icône dans la barre des tâches)"
+        : " : cette page n’est pas servie depuis votre PC, Ollama refuse l’appel. Lancez l’application avec « lancer-local.bat » (ou définissez OLLAMA_ORIGINS, voir le README)")
+    );
+  }
+
+  async function appelOllama(messages, options) {
+    const opts = options || {};
+    // Contexte adapté à la taille du prompt (~3,5 caractères par jeton).
+    const taille = messages.reduce((n, m) => n + m.content.length, 0);
+    const numCtx = Math.min(32768, Math.max(8192, Math.ceil(((taille / 3.5 + (opts.maxTokens || 1500)) * 1.2) / 1024) * 1024));
+    // 1er essai : réglages sobres ; 2e essai (boucle de répétition ou JSON illisible) : plus de variété.
+    const essais = [
+      { temperature: 0.2, repeat_penalty: 1.1 },
+      { temperature: 0.45, repeat_penalty: 1.2 }
+    ];
+    let derniereErreur = null;
+    for (const reglage of essais) {
+      let reponse;
+      try {
+        reponse = await fetch(sansBarreFinale(etat.ollama.url) + "/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: etat.ollama.modele,
+            messages,
+            stream: false,
+            format: "json",
+            think: false,
+            keep_alive: "15m",
+            options: Object.assign({ num_ctx: numCtx, num_predict: opts.maxTokens || 1500, repeat_last_n: 256 }, reglage)
+          }),
+          signal: opts.signal
+        });
+      } catch (e) {
+        if (e && e.name === "AbortError") {
+          throw e;
+        }
+        throw new Error(messageOllamaInjoignable());
+      }
+      const data = await reponse.json().catch(() => null);
+      if (!reponse.ok) {
+        const detail = data && data.error ? String(data.error).slice(0, 200) : "HTTP " + reponse.status;
+        derniereErreur = erreurAvecStatut(
+          reponse.status === 404 ? "modèle « " + etat.ollama.modele + " » introuvable dans Ollama (" + detail + ")" : "erreur Ollama : " + detail,
+          reponse.status
+        );
+        if (/repeat|repetition/i.test(detail)) {
+          continue; // le modèle a bouclé : nouvel essai avec d’autres réglages
+        }
+        throw derniereErreur;
+      }
+      try {
+        return extraireJSON(data && data.message && data.message.content);
+      } catch (e) {
+        derniereErreur = e;
+      }
+    }
+    throw derniereErreur;
+  }
+
+  async function appelOpenWebUI(messages, options) {
+    const opts = options || {};
+    let reponse;
+    try {
+      reponse = await fetch(sansBarreFinale(etat.owui.url) + "/api/chat/completions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: "Bearer " + etat.owuiCle },
+        body: JSON.stringify({
+          model: etat.owui.modele,
+          messages,
+          stream: false,
+          temperature: 0.2,
+          max_tokens: opts.maxTokens || 1500,
+          response_format: { type: "json_object" }
+        }),
+        signal: opts.signal
+      });
+    } catch (e) {
+      if (e && e.name === "AbortError") {
+        throw e;
+      }
+      throw new Error("Open WebUI injoignable à " + etat.owui.url + " : vérifiez qu’il est lancé et que l’adresse est correcte");
+    }
+    const data = await reponse.json().catch(() => null);
+    if (!reponse.ok) {
+      const detail = data && (data.detail || data.error || data.message);
+      throw erreurAvecStatut(
+        reponse.status === 401 || reponse.status === 403
+          ? "clé API Open WebUI refusée"
+          : "erreur Open WebUI : " + (typeof detail === "string" ? detail.slice(0, 200) : "HTTP " + reponse.status),
+        reponse.status
+      );
+    }
+    const contenu = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+    return extraireJSON(contenu);
   }
 
   async function appelServeur(chemin, corps, signal) {
@@ -596,26 +814,106 @@ if (typeof document !== "undefined") {
     }
     const data = await reponse.json().catch(() => ({}));
     if (!reponse.ok) {
-      const err = new Error(data.erreur || "HTTP " + reponse.status);
-      err.statut = reponse.status;
-      throw err;
+      throw erreurAvecStatut(data.erreur || "HTTP " + reponse.status, reponse.status);
     }
     return data;
+  }
+
+  /** Envoie des messages au moteur choisi et renvoie l’objet JSON produit. */
+  function appelIA(messages, options) {
+    switch (fournisseurActif()) {
+      case "ollama":
+        return appelOllama(messages, options);
+      case "openwebui":
+        return appelOpenWebUI(messages, options);
+      default:
+        return appelMistralDirect(messages, options);
+    }
   }
 
   async function analyserTexte(reference, texte, options) {
     const opts = options || {};
     let brut;
-    if (etat.serveur) {
+    if (fournisseurActif() === "serveur") {
       brut = await appelServeur("api/analyse", { reference, texte }, opts.signal);
     } else {
-      brut = await appelMistralDirect(construireMessagesAnalyse(reference, texte), opts);
+      brut = await appelIA(construireMessagesAnalyse(reference, texte), opts);
     }
     const a = normaliserAnalyse(brut, reference);
-    a.modele = etat.serveur ? etat.serveurModele || MODELE_DEFAUT : etat.modele;
+    a.modele = (estLocal() ? NOMS_FOURNISSEURS[fournisseurActif()] + " · " : "") + modeleActif();
     a.date = horodatage();
     a.empreinte = empreinte(texte);
     return a;
+  }
+
+  /* ---------- Listes de modèles locaux ---------- */
+  function estModeleTexte(m) {
+    const nom = String(m.name || m.id || "").toLowerCase();
+    const familles = (m.details && (m.details.families || [m.details.family])) || [];
+    return !/embed|bge|nomic|minilm|rerank/.test(nom) && !familles.some((f) => /bert/i.test(String(f)));
+  }
+
+  function remplirSelectModeles(select, noms, choisi) {
+    select.innerHTML = "";
+    for (const nom of noms) {
+      const o = document.createElement("option");
+      o.value = nom;
+      o.textContent = nom;
+      select.appendChild(o);
+    }
+    if (noms.length === 0) {
+      const o = document.createElement("option");
+      o.value = "";
+      o.textContent = "Aucun modèle trouvé";
+      select.appendChild(o);
+    }
+    select.value = noms.includes(choisi) ? choisi : noms[0] || "";
+    return select.value;
+  }
+
+  function choisirModeleParDefaut(noms, actuel) {
+    if (noms.includes(actuel)) return actuel;
+    return noms.find((n) => /^ministral|^mistral/i.test(n)) || noms.find((n) => /qwen|llama|gemma/i.test(n)) || noms[0] || "";
+  }
+
+  async function chargerModelesOllama(silencieux) {
+    const url = sansBarreFinale(etat.ollama.url);
+    const controleur = new AbortController();
+    const minuterie = setTimeout(() => controleur.abort(), silencieux ? 2500 : 8000);
+    try {
+      const r = await fetch(url + "/api/tags", { signal: controleur.signal });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const data = await r.json();
+      const noms = (data.models || []).filter(estModeleTexte).map((m) => m.name).sort();
+      etat.ollamaDetecte = true;
+      etat.ollama.modele = remplirSelectModeles($("ollama-modele"), noms, choisirModeleParDefaut(noms, etat.ollama.modele));
+      stock.ecrire(CLE_OLLAMA, etat.ollama);
+      return noms;
+    } catch (e) {
+      etat.ollamaDetecte = false;
+      if (!silencieux) throw new Error(messageOllamaInjoignable());
+      return null;
+    } finally {
+      clearTimeout(minuterie);
+    }
+  }
+
+  async function chargerModelesOpenWebUI() {
+    const url = sansBarreFinale(etat.owui.url);
+    let r;
+    try {
+      r = await fetch(url + "/api/models", { headers: { Authorization: "Bearer " + etat.owuiCle } });
+    } catch (e) {
+      throw new Error("Open WebUI injoignable à " + url);
+    }
+    if (r.status === 401 || r.status === 403) throw new Error("clé API Open WebUI refusée");
+    if (!r.ok) throw new Error("Open WebUI a répondu HTTP " + r.status);
+    const data = await r.json().catch(() => ({}));
+    const liste = Array.isArray(data.data) ? data.data : Array.isArray(data) ? data : [];
+    const noms = liste.filter(estModeleTexte).map((m) => m.id || m.name).filter(Boolean).sort();
+    etat.owui.modele = remplirSelectModeles($("owui-modele"), noms, choisirModeleParDefaut(noms, etat.owui.modele));
+    stock.ecrire(CLE_OWUI, etat.owui);
+    return noms;
   }
 
   /* ---------- Paramètres ---------- */
@@ -625,8 +923,13 @@ if (typeof document !== "undefined") {
     etat.modele = MODELE_DEFAUT;
   }
   $("cle-api").value = etat.cle;
+  $("ollama-url").value = etat.ollama.url;
+  $("owui-url").value = etat.owui.url;
+  $("owui-cle").value = etat.owuiCle;
+  if (etat.ollama.modele) remplirSelectModeles($("ollama-modele"), [etat.ollama.modele], etat.ollama.modele);
+  if (etat.owui.modele) remplirSelectModeles($("owui-modele"), [etat.owui.modele], etat.owui.modele);
   try {
-    $("memoriser-cle").checked = window.localStorage.getItem(CLE_API) !== null;
+    $("memoriser-cle").checked = window.localStorage.getItem(CLE_API) !== null || window.localStorage.getItem(CLE_OWUI_CLE) !== null;
   } catch (e) {
     $("memoriser-cle").checked = false;
   }
@@ -634,12 +937,28 @@ if (typeof document !== "undefined") {
   btnParametres.addEventListener("click", () => (panneau.hidden ? ouvrirParametres() : fermerParametres()));
   $("btn-fermer-parametres").addEventListener("click", fermerParametres);
 
-  $("btn-voir-cle").addEventListener("click", (ev) => {
-    const champ = $("cle-api");
-    const visible = champ.type === "text";
-    champ.type = visible ? "password" : "text";
-    ev.currentTarget.textContent = visible ? "Afficher" : "Masquer";
-    ev.currentTarget.setAttribute("aria-pressed", String(!visible));
+  for (const [bouton, champ] of [
+    ["btn-voir-cle", "cle-api"],
+    ["btn-voir-owui-cle", "owui-cle"]
+  ]) {
+    $(bouton).addEventListener("click", (ev) => {
+      const c = $(champ);
+      const visible = c.type === "text";
+      c.type = visible ? "password" : "text";
+      ev.currentTarget.textContent = visible ? "Afficher" : "Masquer";
+      ev.currentTarget.setAttribute("aria-pressed", String(!visible));
+    });
+  }
+
+  $("fournisseur").addEventListener("change", async () => {
+    etat.fournisseur = $("fournisseur").value;
+    stock.ecrire(CLE_FOURNISSEUR, etat.fournisseur);
+    $("retour-parametres").hidden = true;
+    mettreAJourBadgeIA();
+    if (etat.fournisseur === "ollama") {
+      await chargerModelesOllama(true);
+      mettreAJourBadgeIA();
+    }
   });
 
   $("modele").addEventListener("change", () => {
@@ -647,49 +966,121 @@ if (typeof document !== "undefined") {
     stock.ecrire(CLE_MODELE, etat.modele);
     mettreAJourBadgeIA();
   });
+  $("ollama-modele").addEventListener("change", () => {
+    etat.ollama.modele = $("ollama-modele").value;
+    stock.ecrire(CLE_OLLAMA, etat.ollama);
+    mettreAJourBadgeIA();
+  });
+  $("owui-modele").addEventListener("change", () => {
+    etat.owui.modele = $("owui-modele").value;
+    stock.ecrire(CLE_OWUI, etat.owui);
+    mettreAJourBadgeIA();
+  });
+  $("ollama-url").addEventListener("change", () => {
+    etat.ollama.url = sansBarreFinale($("ollama-url").value) || OLLAMA_URL_DEFAUT;
+    stock.ecrire(CLE_OLLAMA, etat.ollama);
+  });
+  $("owui-url").addEventListener("change", () => {
+    etat.owui.url = sansBarreFinale($("owui-url").value) || OPENWEBUI_URL_DEFAUT;
+    stock.ecrire(CLE_OWUI, etat.owui);
+  });
+
+  async function testerMistral() {
+    const cle = $("cle-api").value.trim();
+    if (!cle) {
+      throw new Error("collez une clé API Mistral (console.mistral.ai → API Keys)");
+    }
+    const r = await fetch(MISTRAL_MODELES_URL, { headers: { Authorization: "Bearer " + cle } });
+    if (!r.ok) {
+      throw new Error(messageErreurHTTP(r.status));
+    }
+    const liste = await r.json().catch(() => ({}));
+    const ids = Array.isArray(liste.data) ? liste.data.map((m) => m.id) : [];
+    etat.cle = cle;
+    stock.supprimer(CLE_API);
+    stock.ecrire(CLE_API, cle, !$("memoriser-cle").checked);
+    etat.modele = $("modele").value;
+    stock.ecrire(CLE_MODELE, etat.modele);
+    const modeleOk = ids.length === 0 || ids.includes(etat.modele);
+    return [
+      "✓ Clé valide. " +
+        (modeleOk ? "Modèle « " + etat.modele + " » disponible. " : "Attention : le modèle « " + etat.modele + " » n’apparaît pas dans votre liste, choisissez-en un autre. ") +
+        ($("memoriser-cle").checked ? "Clé mémorisée sur cet appareil." : "Clé conservée jusqu’à la fermeture de l’onglet."),
+      modeleOk ? "ok" : "attention"
+    ];
+  }
+
+  async function testerOllama() {
+    etat.ollama.url = sansBarreFinale($("ollama-url").value) || OLLAMA_URL_DEFAUT;
+    $("ollama-url").value = etat.ollama.url;
+    const noms = await chargerModelesOllama(false);
+    if (!noms.length) {
+      return ["Ollama répond, mais aucun modèle de texte n’est installé. Exemple : « ollama pull ministral-3 ».", "attention"];
+    }
+    return [
+      "✓ Ollama joignable : " + noms.length + " modèle" + (noms.length > 1 ? "s" : "") + " de texte disponible" + (noms.length > 1 ? "s" : "") + ". Modèle choisi : « " + etat.ollama.modele + " ». Rien ne quitte votre PC.",
+      "ok"
+    ];
+  }
+
+  async function testerOpenWebUI() {
+    etat.owui.url = sansBarreFinale($("owui-url").value) || OPENWEBUI_URL_DEFAUT;
+    $("owui-url").value = etat.owui.url;
+    stock.ecrire(CLE_OWUI, etat.owui);
+    const cle = $("owui-cle").value.trim();
+    if (!cle) {
+      throw new Error("collez la clé API d’Open WebUI (Paramètres → Compte → Clés API)");
+    }
+    etat.owuiCle = cle;
+    stock.supprimer(CLE_OWUI_CLE);
+    stock.ecrire(CLE_OWUI_CLE, cle, !$("memoriser-cle").checked);
+    const noms = await chargerModelesOpenWebUI();
+    if (!noms.length) {
+      return ["Open WebUI répond, mais aucun modèle n’est disponible pour cette clé.", "attention"];
+    }
+    return ["✓ Open WebUI joignable : " + noms.length + " modèle(s). Modèle choisi : « " + etat.owui.modele + " ».", "ok"];
+  }
 
   $("btn-enregistrer-cle").addEventListener("click", async (ev) => {
     const bouton = ev.currentTarget;
-    const cle = $("cle-api").value.trim();
-    if (!cle) {
-      afficherRetourParametres("Collez une clé API Mistral (console.mistral.ai → API Keys).", "attention");
-      return;
-    }
+    const libelle = bouton.textContent;
     bouton.disabled = true;
+    bouton.classList.add("chargement");
     bouton.textContent = "Test en cours…";
     try {
-      const r = await fetch(MISTRAL_MODELES_URL, { headers: { Authorization: "Bearer " + cle } });
-      if (!r.ok) {
-        throw new Error(messageErreurHTTP(r.status));
-      }
-      const liste = await r.json().catch(() => ({}));
-      const ids = Array.isArray(liste.data) ? liste.data.map((m) => m.id) : [];
-      etat.cle = cle;
-      stock.supprimer(CLE_API);
-      stock.ecrire(CLE_API, cle, !$("memoriser-cle").checked);
-      etat.modele = $("modele").value;
-      stock.ecrire(CLE_MODELE, etat.modele);
-      const modeleOk = ids.length === 0 || ids.includes(etat.modele);
-      afficherRetourParametres(
-        "✓ Clé valide. " +
-          (modeleOk ? "Modèle « " + etat.modele + " » disponible. " : "Attention : le modèle « " + etat.modele + " » n’apparaît pas dans votre liste, choisissez-en un autre. ") +
-          ($("memoriser-cle").checked ? "Clé mémorisée sur cet appareil." : "Clé conservée jusqu’à la fermeture de l’onglet."),
-        modeleOk ? "ok" : "attention"
-      );
-      mettreAJourBadgeIA();
+      const f = fournisseurActif();
+      etat.fournisseur = f;
+      stock.ecrire(CLE_FOURNISSEUR, f);
+      const [texte, type] =
+        f === "ollama"
+          ? await testerOllama()
+          : f === "openwebui"
+            ? await testerOpenWebUI()
+            : f === "serveur"
+              ? ["✓ Serveur local opérationnel (modèle " + (etat.serveurModele || MODELE_DEFAUT) + ").", "ok"]
+              : await testerMistral();
+      afficherRetourParametres(texte, type);
       masquerMessage();
     } catch (e) {
       afficherRetourParametres("✗ Échec du test : " + (e.message || e) + ".", "erreur");
     } finally {
       bouton.disabled = false;
-      bouton.textContent = "Enregistrer et tester";
+      bouton.classList.remove("chargement");
+      bouton.textContent = libelle;
+      mettreAJourBadgeIA();
     }
   });
 
   $("btn-oublier-cle").addEventListener("click", () => {
-    stock.supprimer(CLE_API);
-    etat.cle = "";
-    $("cle-api").value = "";
+    if (fournisseurActif() === "openwebui") {
+      stock.supprimer(CLE_OWUI_CLE);
+      etat.owuiCle = "";
+      $("owui-cle").value = "";
+    } else {
+      stock.supprimer(CLE_API);
+      etat.cle = "";
+      $("cle-api").value = "";
+    }
     afficherRetourParametres("Clé supprimée de ce navigateur.", "info");
     mettreAJourBadgeIA();
   });
@@ -841,7 +1232,7 @@ if (typeof document !== "undefined") {
       afficherAnalyseIA(a, true);
     } catch (e) {
       sectionResultats.hidden = true;
-      const cleEnCause = !etat.serveur && (e.statut === 401 || e.statut === 403);
+      const cleEnCause = fournisseurActif() !== "serveur";
       afficherMessage(
         "Analyse IA impossible : " + (e.message || e) + ".",
         cleEnCause ? { libelle: "Ouvrir les paramètres IA", faire: () => ouvrirParametres() } : null
@@ -1011,7 +1402,7 @@ if (typeof document !== "undefined") {
         afficherAnalyseIA(a, true);
         $("btn-relancer").hidden = true;
       } catch (err) {
-        const cleEnCause = !etat.serveur && (err.statut === 401 || err.statut === 403);
+        const cleEnCause = fournisseurActif() !== "serveur";
         afficherMessage("Analyse IA impossible pour " + e.id + " : " + (err.message || err) + ".", cleEnCause ? { libelle: "Ouvrir les paramètres IA", faire: () => ouvrirParametres() } : null);
       } finally {
         bouton.disabled = false;
@@ -1122,11 +1513,11 @@ if (typeof document !== "undefined") {
       } catch (err) {
         if (err && err.name === "AbortError") break;
         erreurs.push(e.id + " : " + (err.message || err));
-        if (err.statut === 401 || err.statut === 403) {
+        if (err.statut === 401 || err.statut === 403 || /injoignable/.test(err.message || "")) {
           break; // inutile de continuer avec une clé refusée
         }
       }
-      await attendre(etat.serveur ? 200 : 1100); // respecte la limite d’environ 1 requête/seconde
+      await attendre(fournisseurActif() === "mistral" ? 1100 : 100); // API Mistral : environ 1 requête/seconde
     }
     remplissage.style.width = "100%";
     const interrompu = etat.lotStop;
@@ -1297,10 +1688,11 @@ if (typeof document !== "undefined") {
     masquerMessage();
     try {
       let brut;
-      if (etat.serveur) {
+      if (fournisseurActif() === "serveur") {
         brut = await appelServeur("api/synthese", { analyses: liste });
       } else {
-        brut = await appelMistralDirect(construireMessagesSynthese(liste), { maxTokens: 3000 });
+        if (estLocal()) bouton.textContent = "Synthèse en cours (modèle local : plusieurs minutes)…";
+        brut = await appelIA(construireMessagesSynthese(liste), { maxTokens: 3000 });
       }
       derniereSynthese = normaliserSynthese(brut);
       rendreSynthese(derniereSynthese);
@@ -1323,16 +1715,22 @@ if (typeof document !== "undefined") {
   mettreAJourBadgeIA();
   rafraichirApresAnalyse();
 
-  if (location.protocol === "http:" || location.protocol === "https:") {
-    fetch("api/etat", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error("http " + r.status))))
-      .then((e) => {
-        etat.serveur = Boolean(e && e.ia_disponible);
-        etat.serveurModele = (e && e.modele) || "";
-      })
-      .catch(() => {
-        etat.serveur = false;
-      })
-      .finally(mettreAJourBadgeIA);
-  }
+  (async () => {
+    const verifications = [chargerModelesOllama(true)];
+    if (location.protocol === "http:" || location.protocol === "https:") {
+      verifications.push(
+        fetch("api/etat", { cache: "no-store" })
+          .then((r) => (r.ok ? r.json() : Promise.reject(new Error("http " + r.status))))
+          .then((e) => {
+            etat.serveur = Boolean(e && e.ia_disponible);
+            etat.serveurModele = (e && e.modele) || "";
+          })
+          .catch(() => {
+            etat.serveur = false;
+          })
+      );
+    }
+    await Promise.all(verifications);
+    mettreAJourBadgeIA();
+  })();
 }

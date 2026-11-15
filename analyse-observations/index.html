@@ -27,10 +27,56 @@
     <!-- Paramètres IA -->
     <section class="carte" id="parametres-ia" hidden aria-labelledby="titre-parametres">
       <div class="carte-entete">
-        <h2 id="titre-parametres">Paramètres de l’analyse IA (Mistral)</h2>
+        <h2 id="titre-parametres">Paramètres de l’analyse IA</h2>
         <button type="button" class="doux petit" id="btn-fermer-parametres">Fermer</button>
       </div>
+
+      <div class="champ">
+        <label for="fournisseur">Moteur d’IA</label>
+        <select id="fournisseur">
+          <option value="ollama">Ollama — modèle local sur ce PC (gratuit, rien ne sort de l’ordinateur)</option>
+          <option value="openwebui">Open WebUI — modèles locaux via l’API d’Open WebUI</option>
+          <option value="mistral">Mistral — API en ligne (clé personnelle)</option>
+          <option value="serveur" id="option-serveur" hidden disabled>Serveur local de l’application (clé Mistral côté serveur)</option>
+        </select>
+      </div>
       <p class="note-normale" id="etat-serveur"></p>
+
+      <div id="bloc-ollama" hidden>
+        <div class="grille-2">
+          <div class="champ">
+            <label for="ollama-url">Adresse d’Ollama</label>
+            <input type="url" id="ollama-url" autocomplete="off" spellcheck="false" placeholder="http://localhost:11434">
+          </div>
+          <div class="champ">
+            <label for="ollama-modele">Modèle local</label>
+            <select id="ollama-modele"><option value="">— cliquez sur « Enregistrer et tester » —</option></select>
+          </div>
+        </div>
+        <p class="aide">Conseillé : <code>ministral-3</code> (Mistral, très bon en français). Un modèle local met 15 à 40 s par observation selon votre carte graphique.</p>
+      </div>
+
+      <div id="bloc-openwebui" hidden>
+        <div class="grille-2">
+          <div class="champ">
+            <label for="owui-url">Adresse d’Open WebUI</label>
+            <input type="url" id="owui-url" autocomplete="off" spellcheck="false" placeholder="http://localhost:3000">
+          </div>
+          <div class="champ">
+            <label for="owui-cle">Clé API Open WebUI</label>
+            <div class="champ-groupe">
+              <input type="password" id="owui-cle" autocomplete="off" spellcheck="false" placeholder="sk-… (Paramètres → Compte → Clés API)">
+              <button type="button" class="doux petit" id="btn-voir-owui-cle" aria-pressed="false">Afficher</button>
+            </div>
+          </div>
+          <div class="champ">
+            <label for="owui-modele">Modèle</label>
+            <select id="owui-modele"><option value="">— cliquez sur « Enregistrer et tester » —</option></select>
+          </div>
+        </div>
+      </div>
+
+      <div id="bloc-mistral" hidden>
       <div class="grille-2">
         <div class="champ">
           <label for="cle-api">Clé API Mistral</label>
@@ -48,6 +94,7 @@
           </select>
         </div>
       </div>
+      </div>
       <label class="case">
         <input type="checkbox" id="memoriser-cle">
         Mémoriser la clé sur cet appareil (sinon elle est oubliée à la fermeture de l’onglet)
@@ -58,9 +105,9 @@
       </div>
       <p id="retour-parametres" class="retour" hidden role="status"></p>
       <p class="aide">
-        La clé reste dans votre navigateur et n’est envoyée qu’à <code>api.mistral.ai</code>, uniquement lors d’une analyse.
-        Seul le texte de l’observation (déjà anonymisé pour le registre) est transmis. Si le serveur local
-        (<code>node serveur/server.js</code>) est lancé avec <code>MISTRAL_API_KEY</code>, il est utilisé en priorité et aucune clé n’est nécessaire ici.
+        Les réglages et clés restent dans votre navigateur. Avec Ollama ou Open WebUI, les textes ne quittent pas votre PC ;
+        avec Mistral en ligne, seul le texte de l’observation (déjà anonymisé pour le registre) est envoyé à <code>api.mistral.ai</code>.
+        Pour utiliser un modèle local, lancez l’application avec <code>lancer-local.bat</code> (double-clic).
       </p>
     </section>
 

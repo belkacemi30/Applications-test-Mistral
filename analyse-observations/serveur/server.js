@@ -9,7 +9,8 @@
  *   jamais envoyée au navigateur) ;
  * - GET /api/etat indique si l’analyse IA est disponible.
  *
- * Lancement :  MISTRAL_API_KEY=... node serveur/server.js   puis http://localhost:3000
+ * Lancement :  node serveur/server.js   (ou double-clic sur lancer-local.bat) puis http://localhost:3030
+ * Sans MISTRAL_API_KEY, la page utilise directement Ollama / Open WebUI depuis le navigateur.
  * Variables optionnelles : PORT, MISTRAL_MODELE, MISTRAL_API_URL (tests).
  */
 
@@ -18,7 +19,7 @@ const fs = require("fs");
 const path = require("path");
 const logique = require("../app.js");
 
-const PORT = Number(process.env.PORT || 3000);
+const PORT = Number(process.env.PORT || 3030); // 3000 est souvent pris par Open WebUI
 const RACINE = path.join(__dirname, "..");
 const MISTRAL_API_URL = process.env.MISTRAL_API_URL || "https://api.mistral.ai/v1/chat/completions";
 const MODELE = process.env.MISTRAL_MODELE || logique.MODELE_DEFAUT;
@@ -208,5 +209,6 @@ const serveur = http.createServer((req, res) => {
 
 serveur.listen(PORT, "127.0.0.1", () => {
   console.log("Application : http://localhost:" + PORT + "/");
-  console.log("Analyse IA : " + (process.env.MISTRAL_API_KEY ? "disponible (modèle " + MODELE + ")" : "NON configurée (définir MISTRAL_API_KEY)"));
+  console.log("Mistral (cloud) côté serveur : " + (process.env.MISTRAL_API_KEY ? "disponible (modèle " + MODELE + ")" : "non configuré — la page utilisera Ollama / Open WebUI en local"));
+  console.log("Laissez cette fenêtre ouverte pendant l’utilisation (Ctrl+C pour arrêter).");
 });
