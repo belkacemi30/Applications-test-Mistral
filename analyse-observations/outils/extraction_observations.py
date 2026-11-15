@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Extrait les observations d'une transcription OCR d'export de registre (PDF)
-vers un fichier JavaScript local : donnees/observations.js.
+vers un fichier JavaScript local : registre/observations.js.
 
 Usage :
     python3 outils/extraction_observations.py <transcript.md> [sortie.js]
@@ -208,7 +208,7 @@ def main():
     if len(sys.argv) < 2:
         sys.exit("usage: extraction_observations.py <transcript.md> [sortie.js]")
     source = Path(sys.argv[1])
-    sortie = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(__file__).resolve().parent.parent / "donnees" / "observations.js"
+    sortie = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(__file__).resolve().parent.parent / "registre" / "observations.js"
 
     lignes = nettoyer(source.read_text(encoding="utf-8").splitlines())
 

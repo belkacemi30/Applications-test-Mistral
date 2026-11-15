@@ -1,0 +1,62 @@
+WEBVTT
+Kind: subtitles
+Language: fr
+
+00:00:00.000 --> 00:00:06.000
+Vous êtes commissaire enquêteur. Les observations que vous recevez
+contiennent des noms, des adresses, des numéros de téléphone…
+
+00:00:06.000 --> 00:00:13.000
+… parfois des informations sur la santé. Ce sont des données
+personnelles : le RGPD s’applique.
+
+00:00:13.000 --> 00:00:30.000
+Cette vidéo vous montre comment les protéger avec votre kit local.
+
+00:00:30.000 --> 00:00:40.000
+Le kit fonctionne dans votre navigateur, mais rien n’est en ligne.
+L’IA tourne sur votre propre ordinateur, grâce à Ollama.
+
+00:00:40.000 --> 00:01:00.000
+Le bandeau « 100 % local, hors ligne » le confirme :
+le navigateur bloque toute connexion vers Internet.
+
+00:01:00.000 --> 00:01:15.000
+Pseudonymiser, c’est remplacer les noms par des pseudonymes.
+Utile en interne, mais les données restent personnelles.
+
+00:01:15.000 --> 00:01:45.000
+Anonymiser, c’est supprimer les noms et généraliser ce qui permet
+de reconnaître quelqu’un. C’est définitif. Pour diffuser : anonymisez.
+
+00:01:45.000 --> 00:02:05.000
+« L’adjoint au maire, éleveur au lieu-dit des Crozes. »
+Plus de nom… et pourtant tout le village sait de qui il s’agit.
+
+00:02:05.000 --> 00:02:30.000
+Profession, lieu, date, âge : combinés, ils identifient une personne.
+L’anonymisation généralise aussi ces informations.
+
+00:02:30.000 --> 00:02:55.000
+Le modèle repère les noms et relit son travail, mais il peut oublier
+un surnom, une signature, un nom mal orthographié.
+
+00:02:55.000 --> 00:03:15.000
+Relisez les cas signalés, puis cinq observations tirées au hasard.
+La relecture humaine est obligatoire.
+
+00:03:15.000 --> 00:03:45.000
+Sauvegardez l’original avant d’anonymiser : aucun retour en arrière.
+Et chiffrer n’est pas anonymiser.
+
+00:03:45.000 --> 00:04:10.000
+Le tableau de correspondance est chiffré par le kit. Ne le gardez
+que si nécessaire, ne l’envoyez jamais, détruisez-le à la clôture.
+
+00:04:10.000 --> 00:04:35.000
+Jamais d’observations nominatives ou pseudonymisées dans un service
+en ligne. Le kit ne l’autorise que pour des données anonymisées et validées.
+
+00:04:35.000 --> 00:05:00.000
+À la clôture : export CSV, purge du dossier de travail,
+destruction du tableau, téléchargements et corbeille vidés.

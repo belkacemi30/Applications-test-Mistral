@@ -1,0 +1,32 @@
+KIT « ANALYSE DES OBSERVATIONS » — POSTE DE TRAVAIL LOCAL DU COMMISSAIRE ENQUÊTEUR
+Version : voir le fichier VERSION ; historique : CHANGELOG.md
+
+DÉMARRER
+  Windows : double-cliquez sur  demarrer.bat
+  macOS   : double-cliquez sur  demarrer.command  (la première fois : clic droit > Ouvrir)
+  Linux   : double-cliquez sur  demarrer.sh  (ou lancez ./demarrer.sh dans un terminal)
+  Puis laissez le navigateur s'ouvrir sur http://localhost:3030 et gardez la fenêtre noire ouverte.
+
+  Ne pas ouvrir index.html directement : le navigateur bloquerait l'accès à l'IA locale.
+
+CONTENU
+  application/   le logiciel (remplacé à chaque mise à jour)
+  donnees/       VOS données (dossier de travail, journaux, tableau de correspondance chiffré,
+                 diagnostic) — créé au premier lancement, conservé lors des mises à jour
+  demarrer.*     scripts de démarrage
+
+PREMIÈRE INSTALLATION
+  Suivez le guide : application/docs/GUIDE_INSTALLATION.html (aussi dans l'onglet « Installation »).
+  Internet n'est nécessaire qu'une fois, pour installer Ollama et télécharger le modèle d'IA.
+  Ensuite, tout fonctionne hors ligne.
+
+MISE À JOUR
+  Remplacez le dossier « application » par celui de la nouvelle archive ; ne touchez pas à « donnees ».
+
+DÉSINSTALLATION
+  Supprimez le dossier du kit (y compris « donnees ») ; voir la section « Désinstallation propre » du guide
+  pour supprimer aussi les modèles Ollama et purger le navigateur.
+
+DONNÉES PERSONNELLES
+  Les observations du public contiennent des données personnelles (RGPD). Ne les chargez jamais dans
+  un service en ligne ; anonymisez-les avant toute diffusion. Purgez le dossier « donnees » à la clôture.

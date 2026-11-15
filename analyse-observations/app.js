@@ -245,6 +245,31 @@ function normaliserSynthese(p) {
   };
 }
 
+/** Messages pour analyser plusieurs observations en une fois (mode « abonnement » par copier-coller). */
+function construireMessagesAnalyseLot(elements) {
+  const consigne = PROMPT_SYSTEME_ANALYSE.replace(
+    "Analyse l’observation fournie",
+    "Analyse CHACUNE des observations fournies"
+  ).replace(
+    "Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour, contenant exactement ces champs :",
+    'Réponds UNIQUEMENT avec un objet JSON valide de la forme {"analyses":[…]}, une entrée par observation, chacune contenant exactement ces champs :'
+  );
+  return [
+    { role: "system", content: consigne },
+    {
+      role: "user",
+      content: elements.map((e) => "### Référence : " + e.reference + "\n" + String(e.texte).slice(0, LIMITE_TEXTE)).join("\n\n")
+    }
+  ];
+}
+
+/** Texte unique à coller dans un service d’IA par abonnement (consignes + données). */
+function texteAbonnement(messages) {
+  const systeme = messages.filter((m) => m.role === "system").map((m) => m.content).join("\n\n");
+  const donnees = messages.filter((m) => m.role !== "system").map((m) => m.content).join("\n\n");
+  return "CONSIGNES\n" + systeme + "\n\nDONNÉES (déjà anonymisées)\n" + donnees + "\n\nRappel : réponds uniquement avec le JSON demandé, sans aucun texte autour.";
+}
+
 /** Extrait l’objet JSON d’une réponse de chat (tolère les blocs ```json). */
 function extraireJSON(contenu) {
   if (contenu && typeof contenu === "object") {
@@ -340,6 +365,8 @@ if (typeof module !== "undefined" && module.exports) {
     normaliserSynthese,
     construireMessagesAnalyse,
     construireMessagesSynthese,
+    construireMessagesAnalyseLot,
+    texteAbonnement,
     extraireJSON,
     messageErreurHTTP,
     analysesEnCSV,
@@ -396,12 +423,22 @@ if (typeof document !== "undefined") {
   const CLE_OLLAMA = "ao.ollama";
   const CLE_OWUI = "ao.openwebui";
   const CLE_OWUI_CLE = "ao.cleOpenWebUI";
+  const CLE_OPENAI = "ao.openai";
+  const CLE_OPENAI_CLE = "ao.cleOpenAI";
+  const CLE_ANTHROPIC = "ao.anthropic";
+  const CLE_ANTHROPIC_CLE = "ao.cleAnthropic";
+  const CLE_ANALYSES_DOSSIER = "ao.analyses.dossier";
+  /** Moteurs qui envoient des données hors du poste (Exigence G). */
+  const FOURNISSEURS_EXTERNES = ["mistral", "openai", "anthropic", "abonnement"];
 
   const NOMS_FOURNISSEURS = {
     serveur: "Serveur local",
     ollama: "Ollama",
     openwebui: "Open WebUI",
-    mistral: "Mistral"
+    mistral: "Mistral (API)",
+    openai: "API compatible OpenAI",
+    anthropic: "Anthropic (API Claude)",
+    abonnement: "Abonnement (copier-coller)"
   };
 
   /* ---------- État ---------- */
@@ -413,6 +450,11 @@ if (typeof document !== "undefined") {
     ollama: Object.assign({ url: OLLAMA_URL_DEFAUT, modele: "" }, stock.lire(CLE_OLLAMA, {})),
     owui: Object.assign({ url: OPENWEBUI_URL_DEFAUT, modele: "" }, stock.lire(CLE_OWUI, {})),
     owuiCle: stock.lire(CLE_OWUI_CLE, ""),
+    openai: Object.assign({ url: "https://api.openai.com/v1", modele: "" }, stock.lire(CLE_OPENAI, {})),
+    openaiCle: stock.lire(CLE_OPENAI_CLE, ""),
+    anthropic: Object.assign({ modele: "" }, stock.lire(CLE_ANTHROPIC, {})),
+    anthropicCle: stock.lire(CLE_ANTHROPIC_CLE, ""),
+    kit: null, // informations du serveur du kit (api/etat), null hors kit
     cle: stock.lire(CLE_API, ""),
     modele: stock.lire(CLE_MODELE, MODELE_DEFAUT),
     analyses: stock.lire(CLE_ANALYSES, {}), // { [reference]: analyse }
@@ -520,14 +562,13 @@ if (typeof document !== "undefined") {
   function fournisseurActif() {
     const f = etat.fournisseur;
     if (f === "serveur" && !etat.serveur) {
-      return etat.ollamaDetecte ? "ollama" : "mistral";
+      return "ollama";
     }
     if (f) {
       return f;
     }
     if (etat.serveur) return "serveur";
-    if (etat.ollamaDetecte) return "ollama";
-    return "mistral";
+    return "ollama"; // protection des données par défaut : moteur local
   }
 
   function modeleActif() {
@@ -538,6 +579,12 @@ if (typeof document !== "undefined") {
         return etat.ollama.modele;
       case "openwebui":
         return etat.owui.modele;
+      case "openai":
+        return etat.openai.modele;
+      case "anthropic":
+        return etat.anthropic.modele;
+      case "abonnement":
+        return "service par abonnement";
       default:
         return etat.modele;
     }
@@ -548,6 +595,10 @@ if (typeof document !== "undefined") {
     return f === "ollama" || f === "openwebui";
   }
 
+  function estExterne(f) {
+    return FOURNISSEURS_EXTERNES.includes(f || fournisseurActif());
+  }
+
   function iaDisponible() {
     switch (fournisseurActif()) {
       case "serveur":
@@ -556,6 +607,12 @@ if (typeof document !== "undefined") {
         return Boolean(etat.ollama.modele);
       case "openwebui":
         return Boolean(etat.owuiCle && etat.owui.modele);
+      case "openai":
+        return Boolean(etat.openaiCle && etat.openai.modele && etat.openai.url);
+      case "anthropic":
+        return Boolean(etat.anthropicCle && etat.anthropic.modele);
+      case "abonnement":
+        return true;
       default:
         return Boolean(etat.cle);
     }
@@ -565,8 +622,8 @@ if (typeof document !== "undefined") {
     const badge = $("badge-ia");
     const f = fournisseurActif();
     if (iaDisponible()) {
-      badge.textContent = "IA : " + NOMS_FOURNISSEURS[f] + (estLocal() ? " (local)" : "") + " · " + modeleActif();
-      badge.className = "badge badge-ok";
+      badge.textContent = "IA : " + NOMS_FOURNISSEURS[f] + (estLocal() ? " (local)" : estExterne(f) ? " (externe)" : "") + " · " + modeleActif();
+      badge.className = "badge " + (estExterne(f) ? "badge-attention" : "badge-ok");
     } else {
       badge.textContent = "IA : " + NOMS_FOURNISSEURS[f] + " à configurer";
       badge.className = "badge badge-attention";
@@ -579,11 +636,24 @@ if (typeof document !== "undefined") {
     $("option-serveur").hidden = !etat.serveur;
     $("option-serveur").disabled = !etat.serveur;
     $("fournisseur").value = f;
-    for (const nom of ["ollama", "openwebui", "mistral"]) {
+    for (const nom of ["ollama", "openwebui", "mistral", "openai", "anthropic", "abonnement"]) {
       $("bloc-" + nom).hidden = nom !== f;
     }
-    $("btn-oublier-cle").hidden = !(f === "mistral" || f === "openwebui");
-    $("memoriser-cle").closest("label").hidden = !(f === "mistral" || f === "openwebui");
+    const avecCle = ["mistral", "openwebui", "openai", "anthropic"].includes(f);
+    $("btn-oublier-cle").hidden = !avecCle;
+    $("memoriser-cle").closest("label").hidden = !avecCle;
+    $("btn-enregistrer-cle").hidden = f === "abonnement";
+    // Autorisation de l’IA externe (kit local uniquement)
+    const blocAuto = $("bloc-autorisation-externe");
+    blocAuto.hidden = !(estExterne(f) && etat.kit);
+    if (etat.kit) {
+      const autorise = Boolean(etat.kit.ia_externe);
+      $("etat-autorisation-externe").textContent = autorise
+        ? "✓ L’IA externe est autorisée sur ce poste (domaines : " + (etat.kit.hotes_externes || []).join(", ") + "). Seules des données anonymisées et validées peuvent lui être envoyées."
+        : "L’IA externe est désactivée sur ce poste (protection par défaut) : le navigateur bloque toute connexion vers Internet.";
+      $("btn-autoriser-externe").hidden = autorise;
+      $("btn-retirer-externe").hidden = !autorise;
+    }
     $("btn-enregistrer-cle").textContent = f === "serveur" ? "Tester le serveur" : "Enregistrer et tester";
     const info = $("etat-serveur");
     let texte = "";
@@ -600,8 +670,14 @@ if (typeof document !== "undefined") {
     } else if (f === "openwebui") {
       texte =
         "Open WebUI sert d’intermédiaire vers vos modèles locaux. Créez une clé API dans Open WebUI (Paramètres → Compte → Clés API), collez-la ici puis cliquez sur « Enregistrer et tester ».";
+    } else if (f === "openai") {
+      texte = "API en ligne au format OpenAI (OpenAI ou tout service compatible : indiquez son URL de base). IA EXTERNE : seules des observations anonymisées et validées peuvent être envoyées.";
+    } else if (f === "anthropic") {
+      texte = "API Anthropic (modèles Claude) en ligne. IA EXTERNE : seules des observations anonymisées et validées peuvent être envoyées.";
+    } else if (f === "abonnement") {
+      texte = "Abonnement à un service d’IA (Le Chat, ChatGPT, Claude…) sans API : le kit prépare le texte à coller dans le service, puis vous collez la réponse. Aucune connexion directe. IA EXTERNE : uniquement des données anonymisées et validées.";
     } else {
-      texte = "API Mistral en ligne : renseignez votre clé API (console.mistral.ai → API Keys). Le texte des observations est envoyé à Mistral.";
+      texte = "API Mistral en ligne : renseignez votre clé API (console.mistral.ai → API Keys). IA EXTERNE : seules des observations anonymisées et validées peuvent être envoyées.";
     }
     info.textContent = texte;
   }
@@ -797,6 +873,131 @@ if (typeof document !== "undefined") {
     return extraireJSON(contenu);
   }
 
+  async function appelOpenAICompatible(messages, options) {
+    const opts = options || {};
+    let reponse;
+    const url = sansBarreFinale(etat.openai.url) + "/chat/completions";
+    try {
+      reponse = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: "Bearer " + etat.openaiCle },
+        body: JSON.stringify({
+          model: etat.openai.modele,
+          messages,
+          temperature: 0.2,
+          max_tokens: opts.maxTokens || 1500,
+          response_format: { type: "json_object" }
+        }),
+        signal: opts.signal
+      });
+    } catch (e) {
+      if (e && e.name === "AbortError") throw e;
+      throw new Error("service injoignable à " + url + " (connexion Internet, adresse ou autorisation de l’IA externe ?)");
+    }
+    const data = await reponse.json().catch(() => null);
+    if (!reponse.ok) {
+      const detail = data && ((data.error && data.error.message) || data.message || data.detail);
+      throw erreurAvecStatut(messageErreurHTTP(reponse.status, typeof detail === "string" ? detail.slice(0, 160) : ""), reponse.status);
+    }
+    return extraireJSON(data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content);
+  }
+
+  async function appelAnthropic(messages, options) {
+    const opts = options || {};
+    let reponse;
+    try {
+      reponse = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": etat.anthropicCle,
+          "anthropic-version": "2023-06-01",
+          "anthropic-dangerous-direct-browser-access": "true"
+        },
+        body: JSON.stringify({
+          model: etat.anthropic.modele,
+          max_tokens: opts.maxTokens || 1500,
+          temperature: 0.2,
+          system: messages.filter((m) => m.role === "system").map((m) => m.content).join("\n\n"),
+          messages: messages.filter((m) => m.role !== "system").map((m) => ({ role: m.role, content: m.content }))
+        }),
+        signal: opts.signal
+      });
+    } catch (e) {
+      if (e && e.name === "AbortError") throw e;
+      throw new Error("API Anthropic injoignable (connexion Internet ou autorisation de l’IA externe ?)");
+    }
+    const data = await reponse.json().catch(() => null);
+    if (!reponse.ok) {
+      const detail = data && data.error && data.error.message;
+      throw erreurAvecStatut(messageErreurHTTP(reponse.status, typeof detail === "string" ? detail.slice(0, 160) : ""), reponse.status);
+    }
+    const texte = ((data && data.content) || []).filter((c) => c.type === "text").map((c) => c.text).join("\n");
+    return extraireJSON(texte);
+  }
+
+  /** Abonnement : copier-coller assisté via la boîte de dialogue du kit (aucune connexion). */
+  async function appelAbonnement(messages, options) {
+    const opts = options || {};
+    const texte = texteAbonnement(messages);
+    let reponse;
+    if (window.Kit && window.Kit.dialogueAbonnement) {
+      reponse = await window.Kit.dialogueAbonnement(texte, opts.titreAbonnement || "Analyse par abonnement");
+    } else {
+      await copier(texte);
+      reponse = window.prompt("Le texte à soumettre a été copié. Collez-le dans votre service d’IA, puis collez ici sa réponse (JSON) :") || "";
+    }
+    if (!reponse || !reponse.trim()) {
+      const err = new Error("analyse annulée");
+      err.name = "AbortError";
+      throw err;
+    }
+    return extraireJSON(reponse);
+  }
+
+  /** Garde-fous RGPD avant tout envoi à une IA externe (Exigence G). */
+  async function verifierEnvoiExterne(texte, origine, entree) {
+    if (!estExterne()) return;
+    if (etat.kit && !etat.kit.ia_externe) {
+      throw erreurAvecStatut(
+        "IA externe non autorisée sur ce poste. Choisissez un moteur local (Ollama) ou autorisez l’IA externe dans « Paramètres IA »",
+        451
+      );
+    }
+    if (origine === "registre") return; // registre de démonstration : déjà anonymisé irréversiblement
+    if (origine === "dossier") {
+      if (entree && entree.modeTraitement === "anonymisation" && entree.statutTraitement === "validee") return;
+      throw erreurAvecStatut(
+        "envoi refusé : seules les observations ANONYMISÉES de façon irréversible et VALIDÉES par relecture humaine peuvent être confiées à une IA externe" +
+          (entree && entree.modeTraitement === "pseudonymisation" ? " (les données pseudonymisées restent des données personnelles)" : "") +
+          ". Utilisez un moteur local (Ollama)",
+        451
+      );
+    }
+    const directs = typeof Anonymisation !== "undefined" ? Anonymisation.contientIdentifiantsDirects(texte) : [];
+    if (directs.length) {
+      const types = [...new Set(directs.map((d) => Anonymisation.TYPES[d.type].libelle.toLowerCase()))].join(", ");
+      throw erreurAvecStatut(
+        "envoi refusé : le texte contient des identifiants directs (" + types + "). Anonymisez-le d’abord (onglet « Anonymiser / Pseudonymiser ») ou utilisez un moteur local",
+        451
+      );
+    }
+    const ok =
+      window.Kit && window.Kit.confirmer
+        ? await window.Kit.confirmer({
+            titre: "Envoi à une IA externe",
+            texte: "Ce texte va être envoyé à « " + NOMS_FOURNISSEURS[fournisseurActif()] + " », hors de votre poste. Aucun identifiant direct n’a été détecté automatiquement, mais ce contrôle ne remplace pas votre vérification.",
+            caseACocher: "Je certifie que ce texte ne contient aucune donnée personnelle (nom, adresse, coordonnées, élément permettant d’identifier une personne).",
+            bouton: "Envoyer"
+          })
+        : window.confirm("Ce texte va être envoyé à une IA externe. Certifiez-vous qu’il ne contient aucune donnée personnelle ?");
+    if (!ok) {
+      const err = new Error("envoi annulé");
+      err.name = "AbortError";
+      throw err;
+    }
+  }
+
   async function appelServeur(chemin, corps, signal) {
     let reponse;
     try {
@@ -826,6 +1027,12 @@ if (typeof document !== "undefined") {
         return appelOllama(messages, options);
       case "openwebui":
         return appelOpenWebUI(messages, options);
+      case "openai":
+        return appelOpenAICompatible(messages, options);
+      case "anthropic":
+        return appelAnthropic(messages, options);
+      case "abonnement":
+        return appelAbonnement(messages, options);
       default:
         return appelMistralDirect(messages, options);
     }
@@ -833,6 +1040,7 @@ if (typeof document !== "undefined") {
 
   async function analyserTexte(reference, texte, options) {
     const opts = options || {};
+    await verifierEnvoiExterne(texte, opts.origine || "libre", opts.entree);
     let brut;
     if (fournisseurActif() === "serveur") {
       brut = await appelServeur("api/analyse", { reference, texte }, opts.signal);
@@ -840,7 +1048,7 @@ if (typeof document !== "undefined") {
       brut = await appelIA(construireMessagesAnalyse(reference, texte), opts);
     }
     const a = normaliserAnalyse(brut, reference);
-    a.modele = (estLocal() ? NOMS_FOURNISSEURS[fournisseurActif()] + " · " : "") + modeleActif();
+    a.modele = (estLocal() || estExterne() ? NOMS_FOURNISSEURS[fournisseurActif()] + " · " : "") + modeleActif();
     a.date = horodatage();
     a.empreinte = empreinte(texte);
     return a;
@@ -926,10 +1134,15 @@ if (typeof document !== "undefined") {
   $("ollama-url").value = etat.ollama.url;
   $("owui-url").value = etat.owui.url;
   $("owui-cle").value = etat.owuiCle;
+  $("openai-url").value = etat.openai.url;
+  $("openai-cle").value = etat.openaiCle;
+  $("anthropic-cle").value = etat.anthropicCle;
+  if (etat.openai.modele) remplirSelectModeles($("openai-modele"), [etat.openai.modele], etat.openai.modele);
+  if (etat.anthropic.modele) remplirSelectModeles($("anthropic-modele"), [etat.anthropic.modele], etat.anthropic.modele);
   if (etat.ollama.modele) remplirSelectModeles($("ollama-modele"), [etat.ollama.modele], etat.ollama.modele);
   if (etat.owui.modele) remplirSelectModeles($("owui-modele"), [etat.owui.modele], etat.owui.modele);
   try {
-    $("memoriser-cle").checked = window.localStorage.getItem(CLE_API) !== null || window.localStorage.getItem(CLE_OWUI_CLE) !== null;
+    $("memoriser-cle").checked = [CLE_API, CLE_OWUI_CLE, CLE_OPENAI_CLE, CLE_ANTHROPIC_CLE].some((k) => window.localStorage.getItem(k) !== null);
   } catch (e) {
     $("memoriser-cle").checked = false;
   }
@@ -939,7 +1152,9 @@ if (typeof document !== "undefined") {
 
   for (const [bouton, champ] of [
     ["btn-voir-cle", "cle-api"],
-    ["btn-voir-owui-cle", "owui-cle"]
+    ["btn-voir-owui-cle", "owui-cle"],
+    ["btn-voir-openai-cle", "openai-cle"],
+    ["btn-voir-anthropic-cle", "anthropic-cle"]
   ]) {
     $(bouton).addEventListener("click", (ev) => {
       const c = $(champ);
@@ -974,6 +1189,16 @@ if (typeof document !== "undefined") {
   $("owui-modele").addEventListener("change", () => {
     etat.owui.modele = $("owui-modele").value;
     stock.ecrire(CLE_OWUI, etat.owui);
+    mettreAJourBadgeIA();
+  });
+  $("openai-modele").addEventListener("change", () => {
+    etat.openai.modele = $("openai-modele").value;
+    stock.ecrire(CLE_OPENAI, etat.openai);
+    mettreAJourBadgeIA();
+  });
+  $("anthropic-modele").addEventListener("change", () => {
+    etat.anthropic.modele = $("anthropic-modele").value;
+    stock.ecrire(CLE_ANTHROPIC, etat.anthropic);
     mettreAJourBadgeIA();
   });
   $("ollama-url").addEventListener("change", () => {
@@ -1041,6 +1266,95 @@ if (typeof document !== "undefined") {
     return ["✓ Open WebUI joignable : " + noms.length + " modèle(s). Modèle choisi : « " + etat.owui.modele + " ».", "ok"];
   }
 
+  const EXCLUS_OPENAI = /embed|tts|whisper|dall|image|audio|moderation|realtime|transcribe|search|babbage|davinci/i;
+
+  async function testerOpenAI() {
+    etat.openai.url = sansBarreFinale($("openai-url").value) || "https://api.openai.com/v1";
+    $("openai-url").value = etat.openai.url;
+    const cle = $("openai-cle").value.trim();
+    if (!cle) throw new Error("collez la clé API du service");
+    let r;
+    try {
+      r = await fetch(etat.openai.url + "/models", { headers: { Authorization: "Bearer " + cle } });
+    } catch (e) {
+      throw new Error("service injoignable à " + etat.openai.url + (etat.kit && !etat.kit.ia_externe ? " — l’IA externe n’est pas autorisée sur ce poste" : ""));
+    }
+    if (!r.ok) throw new Error(messageErreurHTTP(r.status));
+    const data = await r.json().catch(() => ({}));
+    const noms = (Array.isArray(data.data) ? data.data : []).map((m) => m.id).filter((id) => id && !EXCLUS_OPENAI.test(id)).sort();
+    etat.openaiCle = cle;
+    stock.supprimer(CLE_OPENAI_CLE);
+    stock.ecrire(CLE_OPENAI_CLE, cle, !$("memoriser-cle").checked);
+    etat.openai.modele = remplirSelectModeles($("openai-modele"), noms, noms.includes(etat.openai.modele) ? etat.openai.modele : noms[0] || "");
+    stock.ecrire(CLE_OPENAI, etat.openai);
+    return ["✓ Clé acceptée : " + noms.length + " modèle(s) de texte. Choisissez le modèle dans la liste.", noms.length ? "ok" : "attention"];
+  }
+
+  async function testerAnthropic() {
+    const cle = $("anthropic-cle").value.trim();
+    if (!cle) throw new Error("collez la clé API Anthropic (console.anthropic.com)");
+    let r;
+    try {
+      r = await fetch("https://api.anthropic.com/v1/models?limit=100", {
+        headers: { "x-api-key": cle, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" }
+      });
+    } catch (e) {
+      throw new Error("API Anthropic injoignable" + (etat.kit && !etat.kit.ia_externe ? " — l’IA externe n’est pas autorisée sur ce poste" : ""));
+    }
+    if (!r.ok) throw new Error(messageErreurHTTP(r.status));
+    const data = await r.json().catch(() => ({}));
+    const noms = (Array.isArray(data.data) ? data.data : []).map((m) => m.id).filter(Boolean);
+    etat.anthropicCle = cle;
+    stock.supprimer(CLE_ANTHROPIC_CLE);
+    stock.ecrire(CLE_ANTHROPIC_CLE, cle, !$("memoriser-cle").checked);
+    etat.anthropic.modele = remplirSelectModeles($("anthropic-modele"), noms, noms.includes(etat.anthropic.modele) ? etat.anthropic.modele : noms[0] || "");
+    stock.ecrire(CLE_ANTHROPIC, etat.anthropic);
+    return ["✓ Clé acceptée : " + noms.length + " modèle(s) disponible(s).", noms.length ? "ok" : "attention"];
+  }
+
+  /** Autorise / retire l’IA externe sur le poste (serveur du kit : politique de sécurité élargie). */
+  async function changerAutorisationExterne(autoriser) {
+    if (!etat.kit) return;
+    if (autoriser) {
+      const ok =
+        window.Kit && window.Kit.confirmer2Etapes
+          ? await window.Kit.confirmer2Etapes({
+              titre: "Autoriser l’IA externe sur ce poste",
+              etape1:
+                "Vous allez permettre au navigateur de se connecter aux services d’IA en ligne (Mistral, OpenAI ou compatible, Anthropic). Le kit n’enverra que des observations anonymisées de façon irréversible et validées, ou le registre de démonstration. Vérifiez les conditions de traitement du fournisseur (conservation, entraînement, localisation des serveurs) avant usage.",
+              caseACocher: "J’ai compris que les textes envoyés quittent mon poste et sont soumis aux conditions du fournisseur.",
+              motConfirmation: "AUTORISER",
+              bouton: "Autoriser"
+            })
+          : window.confirm("Autoriser l’IA externe sur ce poste ?") && window.confirm("Confirmez une seconde fois.");
+      if (!ok) return;
+    }
+    const hotes = [];
+    if (autoriser) {
+      hotes.push("https://api.mistral.ai", "https://api.openai.com", "https://api.anthropic.com");
+      try {
+        const u = new URL(etat.openai.url);
+        if (u.protocol === "https:" && !hotes.includes(u.origin)) hotes.push(u.origin);
+      } catch (e) {
+        /* URL invalide : ignorée */
+      }
+    }
+    const r = await fetch("api/config", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", "X-Kit": "1" },
+      body: JSON.stringify({ ia_externe: autoriser, hotes_externes: hotes })
+    }).catch(() => null);
+    if (!r || !r.ok) {
+      afficherRetourParametres("✗ Impossible d’enregistrer l’autorisation (serveur du kit injoignable).", "erreur");
+      return;
+    }
+    if (window.Kit && window.Kit.journal) window.Kit.journal(autoriser ? "IA externe autorisée (" + hotes.join(", ") + ")" : "IA externe désactivée");
+    // La politique de sécurité est envoyée par le serveur avec la page : rechargement nécessaire.
+    location.reload();
+  }
+  $("btn-autoriser-externe").addEventListener("click", () => changerAutorisationExterne(true));
+  $("btn-retirer-externe").addEventListener("click", () => changerAutorisationExterne(false));
+
   $("btn-enregistrer-cle").addEventListener("click", async (ev) => {
     const bouton = ev.currentTarget;
     const libelle = bouton.textContent;
@@ -1056,6 +1370,10 @@ if (typeof document !== "undefined") {
           ? await testerOllama()
           : f === "openwebui"
             ? await testerOpenWebUI()
+            : f === "openai"
+              ? await testerOpenAI()
+              : f === "anthropic"
+                ? await testerAnthropic()
             : f === "serveur"
               ? ["✓ Serveur local opérationnel (modèle " + (etat.serveurModele || MODELE_DEFAUT) + ").", "ok"]
               : await testerMistral();
@@ -1072,10 +1390,19 @@ if (typeof document !== "undefined") {
   });
 
   $("btn-oublier-cle").addEventListener("click", () => {
-    if (fournisseurActif() === "openwebui") {
+    const f = fournisseurActif();
+    if (f === "openwebui") {
       stock.supprimer(CLE_OWUI_CLE);
       etat.owuiCle = "";
       $("owui-cle").value = "";
+    } else if (f === "openai") {
+      stock.supprimer(CLE_OPENAI_CLE);
+      etat.openaiCle = "";
+      $("openai-cle").value = "";
+    } else if (f === "anthropic") {
+      stock.supprimer(CLE_ANTHROPIC_CLE);
+      etat.anthropicCle = "";
+      $("anthropic-cle").value = "";
     } else {
       stock.supprimer(CLE_API);
       etat.cle = "";
@@ -1222,7 +1549,10 @@ if (typeof document !== "undefined") {
     bouton.textContent = "Analyse en cours…";
     masquerMessage();
     try {
+      const connue = reference && registreParId.has(reference) && registreParId.get(reference).texte === texte;
       const a = await analyserTexte(reference, texte, {
+        origine: connue ? sourceCourante : "libre",
+        entree: connue ? registreParId.get(reference) : null,
         surAttente: (ms) => (bouton.textContent = "Limite atteinte, nouvel essai dans " + Math.round(ms / 1000) + " s…")
       });
       etat.derniereSource = { reference, texte };
@@ -1231,6 +1561,7 @@ if (typeof document !== "undefined") {
       }
       afficherAnalyseIA(a, true);
     } catch (e) {
+      if (e && e.name === "AbortError") return;
       sectionResultats.hidden = true;
       const cleEnCause = fournisseurActif() !== "serveur";
       afficherMessage(
@@ -1268,17 +1599,26 @@ if (typeof document !== "undefined") {
   });
 
   /* ---------- Registre ---------- */
-  const entrees =
+  const ENTREES_REGISTRE =
     typeof OBSERVATIONS_REGISTRE !== "undefined" ? [...OBSERVATIONS_REGISTRE.observations, ...OBSERVATIONS_REGISTRE.contributions] : [];
-  const registreParId = new Map(entrees.map((e) => [e.id, e]));
+  // Source analysée : « registre » (démonstration anonymisée) ou « dossier » (observations importées et traitées
+  // dans l’onglet « Anonymiser / Pseudonymiser » — seule leur version traitée est utilisée, jamais l’original).
+  let sourceCourante = "registre";
+  let entrees = ENTREES_REGISTRE;
+  let registreParId = new Map(entrees.map((e) => [e.id, e]));
+  const analysesParSource = { registre: etat.analyses, dossier: stock.lire(CLE_ANALYSES_DOSSIER, {}) || {} };
+  function cleStockageAnalyses() {
+    return sourceCourante === "dossier" ? CLE_ANALYSES_DOSSIER : CLE_ANALYSES;
+  }
   const select = $("liste-observations");
   let entreesFiltrees = entrees.slice();
 
   function enregistrerAnalyse(a) {
     etat.analyses[a.reference] = a;
-    if (!stock.ecrire(CLE_ANALYSES, etat.analyses)) {
+    if (!stock.ecrire(cleStockageAnalyses(), etat.analyses)) {
       toast("Stockage local indisponible : exportez vos analyses pour les conserver");
     }
+    if (window.Kit && window.Kit.miroir) window.Kit.miroir("analyses-" + sourceCourante + ".json", etat.analyses);
     rafraichirApresAnalyse();
   }
 
@@ -1336,6 +1676,7 @@ if (typeof document !== "undefined") {
     $("detail-observation").hidden = false;
     $("detail-id").textContent = e.id;
     const metaParts = [e.type === "orale" ? "Observation orale" : "Contribution écrite", e.auteur || "Auteur non précisé"];
+    if (e.modeTraitement) metaParts.push(e.modeTraitement === "anonymisation" ? "anonymisée" + (e.statutTraitement === "validee" ? " et validée" : " (non validée)") : "pseudonymisée");
     if (e.date) metaParts.push(e.date);
     if (e.lieu) metaParts.push(e.lieu);
     $("detail-meta").textContent = "— " + metaParts.join(" — ");
@@ -1357,15 +1698,68 @@ if (typeof document !== "undefined") {
     }
     if (select.value) afficherDetail(select.value);
     rendreTableauLot();
-    $("btn-lot").textContent = n >= entrees.length ? "✓ Tout le registre est analysé" : n === 0 ? "✦ Analyser tout le registre" : "✦ Analyser les " + (entrees.length - n) + " observations restantes";
+    $("btn-lot").textContent = !entrees.length ? "✦ Aucune observation dans cette source" : n >= entrees.length ? "✓ Toutes les observations sont analysées" : n === 0 ? "✦ Analyser toutes les observations" : "✦ Analyser les " + (entrees.length - n) + " observations restantes";
   }
 
   function texteAAnalyser(e) {
     return (e.objet ? "Objet : " + e.objet + "\n\n" : "") + (e.contexte ? e.contexte + "\n\n" : "") + e.texte;
   }
 
-  if (entrees.length) {
+  function rendreThemes() {
+    const corpsThemes = $("corps-themes");
+    corpsThemes.innerHTML = "";
+    if (!entrees.length) return;
+    for (const l of compterThemes(entrees, THEMES)) {
+      const ligne = document.createElement("tr");
+      const celluleNom = document.createElement("th");
+      celluleNom.scope = "row";
+      celluleNom.textContent = l.nom;
+      const celluleObs = document.createElement("td");
+      const pct = Math.round((100 * l.observations) / entrees.length);
+      celluleObs.innerHTML = '<div class="jauge"><span></span></div>';
+      celluleObs.querySelector("span").style.width = pct + "%";
+      celluleObs.appendChild(document.createTextNode(l.observations + " / " + entrees.length + " (" + pct + " %)"));
+      const celluleMentions = document.createElement("td");
+      celluleMentions.textContent = String(l.mentions);
+      ligne.append(celluleNom, celluleObs, celluleMentions);
+      corpsThemes.appendChild(ligne);
+    }
+  }
+
+  /** Change la source analysée. liste : entrées au format du registre (id, type, auteur, date, objet, texte…). */
+  function changerSource(nom, liste) {
+    sourceCourante = nom === "dossier" ? "dossier" : "registre";
+    entrees = sourceCourante === "dossier" ? liste || [] : ENTREES_REGISTRE;
+    registreParId = new Map(entrees.map((e) => [e.id, e]));
+    etat.analyses = analysesParSource[sourceCourante];
+    $("source-analyse").value = sourceCourante;
     $("nb-observations-texte").textContent = String(entrees.length);
+    $("titre-registre").textContent = sourceCourante === "dossier" ? "Dossier importé (version traitée)" : "Registre réel anonymisé (démonstration)";
+    $("note-source").textContent =
+      sourceCourante === "dossier"
+        ? "Observations importées dans l’onglet « Anonymiser / Pseudonymiser » : seule la version traitée est analysée, jamais l’original. Avec une IA externe, seules les observations anonymisées et validées sont acceptées."
+        : "Export anonymisé de façon irréversible (voir docs/RAPPORT_ANONYMISATION.md) : 204 observations du registre, servies localement.";
+    $("synthese-globale").hidden = true;
+    rendreThemes();
+    appliquerFiltre();
+    rafraichirApresAnalyse();
+  }
+
+  {
+    $("nb-observations-texte").textContent = String(entrees.length);
+    $("source-analyse").addEventListener("change", () => {
+      if ($("source-analyse").value === "dossier") {
+        const liste = window.Kit && window.Kit.entreesDossierPourAnalyse ? window.Kit.entreesDossierPourAnalyse() : [];
+        if (!liste.length) {
+          $("source-analyse").value = sourceCourante;
+          afficherMessage("Aucun dossier traité : importez et traitez d’abord des observations dans l’onglet « Anonymiser / Pseudonymiser ».");
+          return;
+        }
+        changerSource("dossier", liste);
+      } else {
+        changerSource("registre");
+      }
+    });
     select.addEventListener("change", () => afficherDetail(select.value));
     $("filtre-registre").addEventListener("input", appliquerFiltre);
     $("filtre-type").addEventListener("change", appliquerFiltre);
@@ -1394,6 +1788,8 @@ if (typeof document !== "undefined") {
       masquerMessage();
       try {
         const a = await analyserTexte(e.id, texteAAnalyser(e), {
+          origine: sourceCourante,
+          entree: e,
           surAttente: (ms) => (bouton.textContent = "Limite atteinte, nouvel essai dans " + Math.round(ms / 1000) + " s…")
         });
         a.empreinte = empreinte(e.texte);
@@ -1402,6 +1798,7 @@ if (typeof document !== "undefined") {
         afficherAnalyseIA(a, true);
         $("btn-relancer").hidden = true;
       } catch (err) {
+        if (err && err.name === "AbortError") return;
         const cleEnCause = fournisseurActif() !== "serveur";
         afficherMessage("Analyse IA impossible pour " + e.id + " : " + (err.message || err) + ".", cleEnCause ? { libelle: "Ouvrir les paramètres IA", faire: () => ouvrirParametres() } : null);
       } finally {
@@ -1421,23 +1818,7 @@ if (typeof document !== "undefined") {
       }
     });
 
-    /* Thèmes (comptage local) */
-    const corpsThemes = $("corps-themes");
-    for (const l of compterThemes(entrees, THEMES)) {
-      const ligne = document.createElement("tr");
-      const celluleNom = document.createElement("th");
-      celluleNom.scope = "row";
-      celluleNom.textContent = l.nom;
-      const celluleObs = document.createElement("td");
-      const pct = Math.round((100 * l.observations) / entrees.length);
-      celluleObs.innerHTML = '<div class="jauge"><span></span></div>';
-      celluleObs.querySelector("span").style.width = pct + "%";
-      celluleObs.appendChild(document.createTextNode(l.observations + " / " + entrees.length + " (" + pct + " %)"));
-      const celluleMentions = document.createElement("td");
-      celluleMentions.textContent = String(l.mentions);
-      ligne.append(celluleNom, celluleObs, celluleMentions);
-      corpsThemes.appendChild(ligne);
-    }
+    rendreThemes();
   }
 
   /* ---------- Analyses en lot ---------- */
@@ -1497,13 +1878,48 @@ if (typeof document !== "undefined") {
     const texteProg = $("progression-texte");
     let ok = 0;
     const erreurs = [];
-    for (let i = 0; i < aFaire.length; i++) {
+    if (fournisseurActif() === "abonnement") {
+      // Abonnement : observations groupées par 8 dans un seul texte à coller.
+      for (let i = 0; i < aFaire.length && !etat.lotStop; i += 8) {
+        const groupe = aFaire.slice(i, i + 8);
+        remplissage.style.width = Math.round((100 * i) / aFaire.length) + "%";
+        texteProg.textContent = "Préparation du lot " + (i / 8 + 1) + " / " + Math.ceil(aFaire.length / 8) + " pour l’abonnement…";
+        try {
+          for (const e of groupe) await verifierEnvoiExterne(texteAAnalyser(e), sourceCourante, e);
+          const brut = await appelAbonnement(
+            construireMessagesAnalyseLot(groupe.map((e) => ({ reference: e.id, texte: texteAAnalyser(e) }))),
+            { titreAbonnement: "Lot " + (i / 8 + 1) + " / " + Math.ceil(aFaire.length / 8) + " — " + groupe.map((e) => e.id).join(", ") }
+          );
+          const liste = Array.isArray(brut.analyses) ? brut.analyses : Array.isArray(brut) ? brut : [];
+          for (const e of groupe) {
+            const trouve = liste.find((x) => x && String(x.reference || "").trim() === e.id);
+            if (!trouve) {
+              erreurs.push(e.id + " : absente de la réponse collée");
+              continue;
+            }
+            const a = normaliserAnalyse(trouve, e.id);
+            a.modele = NOMS_FOURNISSEURS.abonnement;
+            a.date = horodatage();
+            a.empreinte = empreinte(e.texte);
+            enregistrerAnalyse(a);
+            ok += 1;
+          }
+        } catch (err) {
+          if (err && err.name === "AbortError") break;
+          erreurs.push("lot " + (i / 8 + 1) + " : " + (err.message || err));
+          if (err.statut === 451) break;
+        }
+      }
+    }
+    for (let i = 0; i < aFaire.length && fournisseurActif() !== "abonnement"; i++) {
       if (etat.lotStop) break;
       const e = aFaire[i];
       remplissage.style.width = Math.round((100 * i) / aFaire.length) + "%";
       texteProg.textContent = "Analyse de " + e.id + " (" + (i + 1) + " / " + aFaire.length + ")…";
       try {
         const a = await analyserTexte(e.id, texteAAnalyser(e), {
+          origine: sourceCourante,
+          entree: e,
           signal: controleurLot.signal,
           surAttente: (ms) => (texteProg.textContent = "Limite de requêtes atteinte : reprise dans " + Math.round(ms / 1000) + " s…")
         });
@@ -1513,7 +1929,7 @@ if (typeof document !== "undefined") {
       } catch (err) {
         if (err && err.name === "AbortError") break;
         erreurs.push(e.id + " : " + (err.message || err));
-        if (err.statut === 401 || err.statut === 403 || /injoignable/.test(err.message || "")) {
+        if (err.statut === 401 || err.statut === 403 || err.statut === 451 || /injoignable/.test(err.message || "")) {
           break; // inutile de continuer avec une clé refusée
         }
       }
@@ -1591,7 +2007,7 @@ if (typeof document !== "undefined") {
         etat.analyses[a.reference] = a;
         n += 1;
       }
-      stock.ecrire(CLE_ANALYSES, etat.analyses);
+      stock.ecrire(cleStockageAnalyses(), etat.analyses);
       rafraichirApresAnalyse();
       appliquerFiltre();
       toast(n + " analyse" + (n > 1 ? "s" : "") + " importée" + (n > 1 ? "s" : ""));
@@ -1609,8 +2025,9 @@ if (typeof document !== "undefined") {
     if (!window.confirm("Supprimer les " + n + " analyses enregistrées dans ce navigateur ? Exportez-les d’abord si vous souhaitez les conserver.")) {
       return;
     }
-    etat.analyses = {};
-    stock.supprimer(CLE_ANALYSES);
+    for (const k of Object.keys(etat.analyses)) delete etat.analyses[k];
+    stock.supprimer(cleStockageAnalyses());
+    if (window.Kit && window.Kit.miroir) window.Kit.miroir("analyses-" + sourceCourante + ".json", {});
     $("synthese-globale").hidden = true;
     rafraichirApresAnalyse();
     appliquerFiltre();
@@ -1688,6 +2105,10 @@ if (typeof document !== "undefined") {
     masquerMessage();
     try {
       let brut;
+      if (estExterne()) {
+        // La synthèse ne contient que des analyses (déjà sans identifiant) ; mêmes règles d’origine.
+        for (const a of liste) await verifierEnvoiExterne(a.synthese || "", sourceCourante, registreParId.get(a.reference));
+      }
       if (fournisseurActif() === "serveur") {
         brut = await appelServeur("api/synthese", { analyses: liste });
       } else {
@@ -1724,6 +2145,7 @@ if (typeof document !== "undefined") {
           .then((e) => {
             etat.serveur = Boolean(e && e.ia_disponible);
             etat.serveurModele = (e && e.modele) || "";
+            etat.kit = e && e.kit ? e : null;
           })
           .catch(() => {
             etat.serveur = false;
@@ -1732,5 +2154,48 @@ if (typeof document !== "undefined") {
     }
     await Promise.all(verifications);
     mettreAJourBadgeIA();
+    document.dispatchEvent(new CustomEvent("analyse:etat", { detail: { kit: etat.kit, ollama: etat.ollamaDetecte } }));
   })();
+
+  function urlEstLocale(url) {
+    try {
+      return /^(localhost|127\.0\.0\.1|\[::1\])$/.test(new URL(url).hostname);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /* Interface utilisée par les autres onglets du kit (kit.js). */
+  window.AnalyseIA = {
+    etat,
+    fournisseurActif,
+    modeleActif,
+    estExterne,
+    iaDisponible,
+    ouvrirParametres,
+    mettreAJourBadgeIA,
+    chargerModelesOllama,
+    changerSource,
+    sourceCourante: () => sourceCourante,
+    entreesRegistre: () => ENTREES_REGISTRE,
+    analysesDe: (source) => analysesParSource[source] || {},
+    chargerAnalyses(source, objet) {
+      if (!objet || typeof objet !== "object") return;
+      const cible = analysesParSource[source];
+      for (const k of Object.keys(cible)) delete cible[k];
+      Object.assign(cible, objet);
+      if (source === sourceCourante) rafraichirApresAnalyse();
+    },
+    /** Moteur local prêt pour l’anonymisation (Ollama sur cette machine uniquement). */
+    ollamaPret: () => Boolean(etat.ollamaDetecte && etat.ollama.modele && urlEstLocale(etat.ollama.url)),
+    ollamaUrlLocale: () => urlEstLocale(etat.ollama.url),
+    /** Appel au modèle LOCAL (Ollama) — refusé si l’adresse n’est pas locale. */
+    appelLocal(messages, options) {
+      if (!urlEstLocale(etat.ollama.url)) {
+        return Promise.reject(new Error("l’adresse d’Ollama n’est pas locale : traitement refusé (données personnelles)"));
+      }
+      if (!etat.ollama.modele) return Promise.reject(new Error("aucun modèle Ollama choisi"));
+      return appelOllama(messages, options);
+    }
+  };
 }

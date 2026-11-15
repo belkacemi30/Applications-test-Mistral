@@ -4,43 +4,77 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>Analyse des observations — Enquête publique « Pas de Mirepoix »</title>
+  <meta name="referrer" content="no-referrer">
+  <title>Analyse des observations — Poste de travail du commissaire enquêteur</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-kit.css">
 </head>
 <body>
   <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+  <div id="bandeau-vitrine" class="bandeau-vitrine" hidden role="note">
+    Vitrine de démonstration en ligne. La <strong>version de référence</strong> est le kit local distribué aux commissaires enquêteurs,
+    exécuté hors ligne sur leur poste : ne chargez ici aucune observation contenant des données personnelles.
+  </div>
+
   <header class="entete">
     <div class="entete-interieur">
       <div class="entete-texte">
-        <p class="sur-titre">Enquête publique · registre du 12/11/2024 au 11/12/2024</p>
+        <p class="sur-titre">Poste de travail local du commissaire enquêteur · <span id="version-kit">version —</span></p>
         <h1>Analyse des observations</h1>
-        <p class="sous-titre">Projet agrivoltaïque du Pas de Mirepoix — Saint-Julien-de-Briola (Aude)</p>
+        <p class="sous-titre">Enquête publique — Projet agrivoltaïque du Pas de Mirepoix, Saint-Julien-de-Briola (Aude)</p>
       </div>
       <div class="entete-actions">
+        <span class="badge badge-neutre" id="badge-local" role="status">Vérification…</span>
         <span class="badge badge-neutre" id="badge-ia" role="status">IA : vérification…</span>
         <button type="button" id="btn-parametres" class="bouton-entete" aria-controls="parametres-ia" aria-expanded="false">⚙ Paramètres IA</button>
       </div>
     </div>
+    <nav class="onglets" aria-label="Choix de l’usage">
+      <div class="onglets-interieur" role="tablist" id="liste-onglets">
+        <button type="button" role="tab" id="onglet-accueil" aria-controls="panneau-accueil" aria-selected="true">Accueil</button>
+        <button type="button" role="tab" id="onglet-anonymiser" aria-controls="panneau-anonymiser" aria-selected="false" tabindex="-1">Anonymiser / Pseudonymiser</button>
+        <button type="button" role="tab" id="onglet-analyse" aria-controls="panneau-analyse" aria-selected="false" tabindex="-1">Analyse des observations</button>
+        <button type="button" role="tab" id="onglet-export" aria-controls="panneau-export" aria-selected="false" tabindex="-1">Export des contributions</button>
+        <button type="button" role="tab" id="onglet-installation" aria-controls="panneau-installation" aria-selected="false" tabindex="-1">Installation</button>
+        <button type="button" role="tab" id="onglet-guide" aria-controls="panneau-guide" aria-selected="false" tabindex="-1">Guide d’usage</button>
+      </div>
+    </nav>
   </header>
 
   <main id="contenu">
-    <!-- Paramètres IA -->
+    <!-- ===================== Paramètres IA (communs) ===================== -->
     <section class="carte" id="parametres-ia" hidden aria-labelledby="titre-parametres">
       <div class="carte-entete">
-        <h2 id="titre-parametres">Paramètres de l’analyse IA</h2>
+        <h2 id="titre-parametres">Paramètres de l’IA</h2>
         <button type="button" class="doux petit" id="btn-fermer-parametres">Fermer</button>
       </div>
-
       <div class="champ">
-        <label for="fournisseur">Moteur d’IA</label>
+        <label for="fournisseur">Moteur d’IA pour l’analyse des observations</label>
         <select id="fournisseur">
-          <option value="ollama">Ollama — modèle local sur ce PC (gratuit, rien ne sort de l’ordinateur)</option>
-          <option value="openwebui">Open WebUI — modèles locaux via l’API d’Open WebUI</option>
-          <option value="mistral">Mistral — API en ligne (clé personnelle)</option>
+          <optgroup label="Sur ce poste (recommandé — rien ne sort de l’ordinateur)">
+            <option value="ollama">Ollama — modèle local</option>
+            <option value="openwebui">Open WebUI — modèles locaux via son API</option>
+          </optgroup>
+          <optgroup label="IA externe (données anonymisées et validées uniquement)">
+            <option value="mistral">Mistral — API (clé personnelle)</option>
+            <option value="openai">API compatible OpenAI (OpenAI ou service au même format)</option>
+            <option value="anthropic">Anthropic — API Claude</option>
+            <option value="abonnement">Abonnement sans API (Le Chat, ChatGPT, Claude…) — copier-coller</option>
+          </optgroup>
           <option value="serveur" id="option-serveur" hidden disabled>Serveur local de l’application (clé Mistral côté serveur)</option>
         </select>
       </div>
       <p class="note-normale" id="etat-serveur"></p>
+      <p class="aide">L’anonymisation et la pseudonymisation utilisent <strong>toujours</strong> Ollama sur ce poste, quel que soit ce choix.</p>
+
+      <div id="bloc-autorisation-externe" class="encadre-alerte" hidden>
+        <p id="etat-autorisation-externe"></p>
+        <div class="boutons">
+          <button type="button" id="btn-autoriser-externe" class="danger">Autoriser l’IA externe sur ce poste…</button>
+          <button type="button" id="btn-retirer-externe" class="doux" hidden>Désactiver l’IA externe</button>
+        </div>
+      </div>
 
       <div id="bloc-ollama" hidden>
         <div class="grille-2">
@@ -53,7 +87,7 @@
             <select id="ollama-modele"><option value="">— cliquez sur « Enregistrer et tester » —</option></select>
           </div>
         </div>
-        <p class="aide">Conseillé : <code>ministral-3</code> (Mistral, très bon en français). Un modèle local met 15 à 40 s par observation selon votre carte graphique.</p>
+        <p class="aide">Le modèle conseillé dépend de votre ordinateur : voir l’onglet « Installation » (diagnostic).</p>
       </div>
 
       <div id="bloc-openwebui" hidden>
@@ -65,7 +99,7 @@
           <div class="champ">
             <label for="owui-cle">Clé API Open WebUI</label>
             <div class="champ-groupe">
-              <input type="password" id="owui-cle" autocomplete="off" spellcheck="false" placeholder="sk-… (Paramètres → Compte → Clés API)">
+              <input type="password" id="owui-cle" autocomplete="off" spellcheck="false" placeholder="Paramètres → Compte → Clés API">
               <button type="button" class="doux petit" id="btn-voir-owui-cle" aria-pressed="false">Afficher</button>
             </div>
           </div>
@@ -74,221 +108,524 @@
             <select id="owui-modele"><option value="">— cliquez sur « Enregistrer et tester » —</option></select>
           </div>
         </div>
+        <p class="aide">Attention : Open WebUI peut être relié à des services en ligne. Utilisez-y uniquement des modèles Ollama locaux.</p>
       </div>
 
       <div id="bloc-mistral" hidden>
-      <div class="grille-2">
-        <div class="champ">
-          <label for="cle-api">Clé API Mistral</label>
-          <div class="champ-groupe">
-            <input type="password" id="cle-api" autocomplete="off" spellcheck="false" placeholder="Collez votre clé (console.mistral.ai → API Keys)">
-            <button type="button" class="doux petit" id="btn-voir-cle" aria-pressed="false">Afficher</button>
+        <div class="grille-2">
+          <div class="champ">
+            <label for="cle-api">Clé API Mistral</label>
+            <div class="champ-groupe">
+              <input type="password" id="cle-api" autocomplete="off" spellcheck="false" placeholder="console.mistral.ai → API Keys">
+              <button type="button" class="doux petit" id="btn-voir-cle" aria-pressed="false">Afficher</button>
+            </div>
+          </div>
+          <div class="champ">
+            <label for="modele">Modèle</label>
+            <select id="modele">
+              <option value="mistral-small-latest">mistral-small-latest (rapide, économique)</option>
+              <option value="mistral-medium-latest">mistral-medium-latest (équilibré)</option>
+              <option value="mistral-large-latest">mistral-large-latest (le plus précis)</option>
+            </select>
           </div>
         </div>
-        <div class="champ">
-          <label for="modele">Modèle</label>
-          <select id="modele">
-            <option value="mistral-small-latest">mistral-small-latest (rapide, économique)</option>
-            <option value="mistral-medium-latest">mistral-medium-latest (équilibré)</option>
-            <option value="mistral-large-latest">mistral-large-latest (le plus précis)</option>
-          </select>
+      </div>
+
+      <div id="bloc-openai" hidden>
+        <div class="grille-2">
+          <div class="champ">
+            <label for="openai-url">URL de base de l’API</label>
+            <input type="url" id="openai-url" autocomplete="off" spellcheck="false" placeholder="https://api.openai.com/v1">
+          </div>
+          <div class="champ">
+            <label for="openai-cle">Clé API</label>
+            <div class="champ-groupe">
+              <input type="password" id="openai-cle" autocomplete="off" spellcheck="false">
+              <button type="button" class="doux petit" id="btn-voir-openai-cle" aria-pressed="false">Afficher</button>
+            </div>
+          </div>
+          <div class="champ">
+            <label for="openai-modele">Modèle</label>
+            <select id="openai-modele"><option value="">— cliquez sur « Enregistrer et tester » —</option></select>
+          </div>
         </div>
       </div>
+
+      <div id="bloc-anthropic" hidden>
+        <div class="grille-2">
+          <div class="champ">
+            <label for="anthropic-cle">Clé API Anthropic</label>
+            <div class="champ-groupe">
+              <input type="password" id="anthropic-cle" autocomplete="off" spellcheck="false" placeholder="console.anthropic.com">
+              <button type="button" class="doux petit" id="btn-voir-anthropic-cle" aria-pressed="false">Afficher</button>
+            </div>
+          </div>
+          <div class="champ">
+            <label for="anthropic-modele">Modèle</label>
+            <select id="anthropic-modele"><option value="">— cliquez sur « Enregistrer et tester » —</option></select>
+          </div>
+        </div>
       </div>
+
+      <div id="bloc-abonnement" hidden>
+        <p class="note-normale">
+          Aucun réglage : lors d’une analyse, une fenêtre affiche le texte à copier dans votre service (Le Chat, ChatGPT, Claude…),
+          puis vous collez la réponse. L’analyse en lot regroupe 8 observations par envoi.
+        </p>
+      </div>
+
       <label class="case">
         <input type="checkbox" id="memoriser-cle">
-        Mémoriser la clé sur cet appareil (sinon elle est oubliée à la fermeture de l’onglet)
+        Mémoriser la clé sur ce navigateur (sinon elle est oubliée à la fermeture de l’onglet). Les clés ne sont jamais écrites dans le dossier du kit.
       </label>
       <div class="boutons">
         <button type="button" id="btn-enregistrer-cle" class="principal">Enregistrer et tester</button>
         <button type="button" id="btn-oublier-cle" class="doux">Oublier la clé</button>
       </div>
       <p id="retour-parametres" class="retour" hidden role="status"></p>
-      <p class="aide">
-        Les réglages et clés restent dans votre navigateur. Avec Ollama ou Open WebUI, les textes ne quittent pas votre PC ;
-        avec Mistral en ligne, seul le texte de l’observation (déjà anonymisé pour le registre) est envoyé à <code>api.mistral.ai</code>.
-        Pour utiliser un modèle local, lancez l’application avec <code>lancer-local.bat</code> (double-clic).
-      </p>
     </section>
 
-    <!-- Saisie -->
-    <section class="carte" aria-labelledby="titre-saisie">
-      <h2 id="titre-saisie">Saisie de l’observation</h2>
-
-      <div class="champ">
-        <label for="reference">Référence de l’observation</label>
-        <input type="text" id="reference" name="reference" placeholder="Ex. : OBS-2025-0147" autocomplete="off">
-      </div>
-
-      <div class="champ">
-        <label for="texte">Texte de l’observation <span class="compteur" id="compteur-texte">0 / 20 000</span></label>
-        <textarea id="texte" name="texte" rows="10" maxlength="20000" placeholder="Saisissez ou collez ici le texte de l’observation…"></textarea>
-        <p id="avertissement-modification" class="avertissement" hidden>
-          Le texte a été modifié : le tableau préparé correspond à l’exemple fictif, pas à ce nouveau texte.
-          Utilisez « Analyser avec l’IA » pour obtenir une analyse de ce texte.
+    <!-- ============================ ACCUEIL ============================ -->
+    <section id="panneau-accueil" role="tabpanel" aria-labelledby="onglet-accueil" class="panneau">
+      <section class="carte" aria-labelledby="titre-accueil">
+        <h2 id="titre-accueil">Bienvenue sur votre poste de travail local</h2>
+        <p>
+          Ce kit traite les observations du public <strong>sur votre ordinateur</strong>, dans votre navigateur, sans connexion à Internet :
+          pseudonymisation ou anonymisation avec un modèle d’IA local (Ollama), analyse des observations, export des contributions.
         </p>
-      </div>
+        <div class="encadre-alerte" role="note">
+          <strong>Données personnelles.</strong> Les observations du public contiennent des données personnelles (noms, coordonnées,
+          parfois des informations de santé) : le RGPD s’applique. Ne chargez jamais d’observations nominatives dans un service en ligne,
+          et anonymisez avant toute diffusion.
+        </div>
+      </section>
 
-      <div class="boutons">
-        <button type="button" id="btn-ia" class="principal">✦ Analyser avec l’IA</button>
-        <button type="button" id="btn-exemple">Charger un exemple fictif</button>
-        <button type="button" id="btn-demo">Afficher la démonstration</button>
-        <button type="button" id="btn-effacer" class="doux">Effacer</button>
-      </div>
+      <section class="carte" aria-labelledby="titre-etat">
+        <div class="carte-entete">
+          <h2 id="titre-etat">État du poste</h2>
+          <button type="button" class="petit" id="btn-actualiser-etat">Actualiser</button>
+        </div>
+        <dl class="grille-etat">
+          <div><dt>Version du kit</dt><dd id="etat-version">—</dd></div>
+          <div><dt>Mode d’exécution</dt><dd id="etat-mode">—</dd></div>
+          <div><dt>Connexions sortantes</dt><dd id="etat-horsligne">—</dd></div>
+          <div><dt>Ollama (IA locale)</dt><dd id="etat-ollama">—</dd></div>
+          <div><dt>Modèle choisi / chargé</dt><dd id="etat-modele">—</dd></div>
+          <div><dt>IA externe</dt><dd id="etat-externe">—</dd></div>
+          <div class="large"><dt>Configuration de l’ordinateur</dt><dd id="etat-config">—</dd></div>
+        </dl>
+      </section>
+
+      <section class="carte" aria-labelledby="titre-usages">
+        <h2 id="titre-usages">Que souhaitez-vous faire ?</h2>
+        <div class="grille-usages">
+          <button type="button" class="carte-usage" data-aller="anonymiser"><strong>Anonymiser ou pseudonymiser</strong><span>Importer les observations et retirer les données personnelles, en local.</span></button>
+          <button type="button" class="carte-usage" data-aller="analyse"><strong>Analyser les observations</strong><span>Thèmes, synthèse neutre, questions au maître d’ouvrage.</span></button>
+          <button type="button" class="carte-usage" data-aller="export"><strong>Exporter les contributions</strong><span>CSV (préconisé), XLSX, JSON, TXT.</span></button>
+          <button type="button" class="carte-usage" data-aller="installation"><strong>Installer ou vérifier le kit</strong><span>Ollama, modèle adapté à votre ordinateur, dépannage.</span></button>
+          <button type="button" class="carte-usage" data-aller="guide"><strong>Se former</strong><span>Pseudonymisation, anonymisation, pièges à éviter, vidéo.</span></button>
+        </div>
+      </section>
     </section>
 
-    <section id="message" class="carte message" hidden role="alert"></section>
+    <!-- ===================== ANONYMISER / PSEUDONYMISER ===================== -->
+    <section id="panneau-anonymiser" role="tabpanel" aria-labelledby="onglet-anonymiser" class="panneau" hidden>
+      <section class="carte" aria-labelledby="titre-mode">
+        <div class="carte-entete">
+          <h2 id="titre-mode">1. Choisir le traitement</h2>
+          <span class="badge badge-neutre-clair" id="indicateur-local" role="status">Vérification du mode local…</span>
+        </div>
+        <fieldset class="choix-mode">
+          <legend class="visuellement-cache">Mode de traitement</legend>
+          <label class="carte-choix">
+            <input type="radio" name="mode-traitement" value="pseudonymisation" checked>
+            <span>
+              <strong>Pseudonymisation</strong> — noms, courriels, téléphones et adresses remplacés par des pseudonymes stables
+              (<code>[PSEUDO-01]</code>…). Pour l’analyse interne et l’aide à la rédaction du rapport.
+            </span>
+          </label>
+          <label class="carte-choix">
+            <input type="radio" name="mode-traitement" value="anonymisation">
+            <span>
+              <strong>Anonymisation irréversible</strong> — identifiants directs supprimés et quasi-identifiants (fonction, parcelle,
+              date précise, lieu, âge, santé…) généralisés, sans retour possible. Pour la diffusion, l’archivage, le partage.
+            </span>
+          </label>
+        </fieldset>
+        <p class="avertissement-rgpd" id="avertissement-mode" role="note"></p>
 
-    <!-- Résultat -->
-    <section id="resultats" class="carte" hidden aria-labelledby="titre-resultats">
-      <div class="carte-entete">
-        <h2 id="titre-resultats">Résultat</h2>
-        <span id="bandeau-resultats" class="badge"></span>
-      </div>
-      <p class="note" id="note-resultats"></p>
-      <div class="tableau-conteneur">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Rubrique</th>
-              <th scope="col">Contenu</th>
-            </tr>
-          </thead>
-          <tbody id="corps-tableau"></tbody>
-        </table>
-      </div>
-      <div class="boutons" id="actions-resultat">
-        <button type="button" id="btn-copier" class="petit">Copier le tableau</button>
-        <button type="button" id="btn-export-un" class="petit">Télécharger (CSV)</button>
-        <button type="button" id="btn-relancer" class="petit doux">Relancer l’analyse IA</button>
-      </div>
+        <div id="options-pseudo">
+          <label class="case">
+            <input type="checkbox" id="conserver-table">
+            Conserver un tableau de correspondance <strong>chiffré</strong> (permet de réidentifier si nécessaire — désactivé par défaut)
+          </label>
+          <div id="bloc-phrase" class="grille-2" hidden>
+            <div class="champ">
+              <label for="phrase-passe">Phrase de passe (12 caractères minimum)</label>
+              <input type="password" id="phrase-passe" autocomplete="new-password">
+            </div>
+            <div class="champ">
+              <label for="phrase-passe-2">Confirmer la phrase de passe</label>
+              <input type="password" id="phrase-passe-2" autocomplete="new-password">
+            </div>
+            <p class="aide large">La phrase de passe n’est enregistrée nulle part : si vous la perdez, le tableau est inutilisable.</p>
+          </div>
+        </div>
+        <div id="options-anon" hidden>
+          <label class="case">
+            <input type="checkbox" id="generaliser-date-depot" checked>
+            Généraliser aussi la date de dépôt des observations (mois et année)
+          </label>
+        </div>
+      </section>
+
+      <section class="carte" aria-labelledby="titre-import">
+        <h2 id="titre-import">2. Importer les observations</h2>
+        <p class="note-normale">Formats acceptés : CSV (colonnes référence ; date ; auteur ; objet ; texte), JSON, TXT (une observation par paragraphe). Le fichier reste sur votre poste.</p>
+        <div class="boutons">
+          <button type="button" id="btn-importer">Choisir un fichier…</button>
+          <input type="file" id="fichier-observations" accept=".csv,.json,.txt,text/csv,application/json,text/plain" hidden>
+          <button type="button" id="btn-exemple-fictif" class="doux">Charger le jeu d’exemple fictif</button>
+        </div>
+        <p id="resume-import" class="retour" hidden role="status"></p>
+        <div class="tableau-conteneur" id="apercu-import" hidden>
+          <table>
+            <thead><tr><th scope="col">Référence</th><th scope="col">Date</th><th scope="col">Objet</th><th scope="col">Début du texte</th></tr></thead>
+            <tbody id="corps-apercu"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="carte" aria-labelledby="titre-traitement">
+        <h2 id="titre-traitement">3. Traiter par lots</h2>
+        <div class="grille-2">
+          <div class="champ">
+            <label for="moteur-anon">Moteur local</label>
+            <input type="text" id="moteur-anon" readonly>
+          </div>
+          <div class="champ">
+            <label for="taille-lot">Taille des lots</label>
+            <select id="taille-lot">
+              <option value="10">10 observations</option>
+              <option value="15" selected>15 observations</option>
+              <option value="20">20 observations</option>
+            </select>
+          </div>
+        </div>
+        <div class="boutons">
+          <button type="button" id="btn-traiter" class="principal">Lancer le traitement</button>
+          <button type="button" id="btn-traiter-stop" class="danger" hidden>■ Interrompre</button>
+        </div>
+        <div id="progression-anon" class="progression" hidden>
+          <div class="progression-barre"><div id="remplissage-anon" class="remplissage"></div></div>
+          <p id="texte-progression-anon" role="status"></p>
+        </div>
+        <details class="journal">
+          <summary>Journal local du traitement</summary>
+          <pre id="journal-anon" aria-live="off"></pre>
+          <div class="boutons"><button type="button" class="petit doux" id="btn-purger-journal">Purger le journal</button></div>
+        </details>
+      </section>
+
+      <section class="carte" aria-labelledby="titre-rapport" id="section-rapport" hidden>
+        <h2 id="titre-rapport">4. Rapport et relecture humaine</h2>
+        <div id="rapport-anon" class="rapport"></div>
+        <div class="boutons">
+          <button type="button" class="petit" id="btn-rapport-json">Télécharger le rapport (JSON)</button>
+          <button type="button" class="petit" id="btn-rapport-txt">Télécharger le rapport (TXT)</button>
+          <button type="button" class="petit" id="btn-sondage">Contrôle par sondage (5 au hasard)</button>
+        </div>
+        <div class="grille-filtres">
+          <div class="champ">
+            <label for="filtre-relecture">Afficher</label>
+            <select id="filtre-relecture">
+              <option value="a_verifier">À vérifier (cas douteux)</option>
+              <option value="traitee">Traitées, non encore validées</option>
+              <option value="validee">Validées</option>
+              <option value="sondage">Échantillon du contrôle par sondage</option>
+              <option value="toutes">Toutes</option>
+            </select>
+          </div>
+        </div>
+        <div id="liste-relecture" class="liste-relecture"></div>
+        <div class="boutons">
+          <button type="button" id="btn-valider-tout">Valider toutes les observations traitées sans résidu…</button>
+        </div>
+      </section>
+
+      <section class="carte" aria-labelledby="titre-outils">
+        <h2 id="titre-outils">5. Outils et clôture</h2>
+        <div class="boutons">
+          <button type="button" id="btn-reidentifier">Réidentifier un texte pseudonymisé…</button>
+          <button type="button" id="btn-detruire-table" class="danger">Détruire le tableau de correspondance…</button>
+          <button type="button" id="btn-purger-dossier" class="danger">Purger le dossier de travail…</button>
+        </div>
+        <details class="liste-controle">
+          <summary>Liste de contrôle avant diffusion d’un fichier anonymisé</summary>
+          <ul>
+            <li><label><input type="checkbox"> Toutes les observations sont au statut « validée ».</label></li>
+            <li><label><input type="checkbox"> Les cas douteux ont été relus un par un.</label></li>
+            <li><label><input type="checkbox"> Un contrôle par sondage a été fait sur au moins 5 observations.</label></li>
+            <li><label><input type="checkbox"> Aucun recoupement possible : profession + commune + date, nom d’exploitation, parcelle…</label></li>
+            <li><label><input type="checkbox"> Le fichier exporté ne contient pas la colonne « auteur » nominative.</label></li>
+            <li><label><input type="checkbox"> L’original nominatif est conservé dans un espace sécurisé, hors du fichier diffusé.</label></li>
+            <li><label><input type="checkbox"> Une seconde personne a relu le fichier avant diffusion (si possible).</label></li>
+          </ul>
+        </details>
+      </section>
     </section>
 
-    <!-- Registre -->
-    <section class="carte" aria-labelledby="titre-registre">
-      <div class="carte-entete">
-        <h2 id="titre-registre">Registre réel anonymisé</h2>
-        <span class="badge badge-neutre-clair" id="badge-avancement">0 analysée</span>
-      </div>
-      <p class="note">Export anonymisé de façon irréversible (voir <code>docs/RAPPORT_ANONYMISATION.md</code>) : <span id="nb-observations-texte">204</span> observations du registre, servies localement.</p>
-
-      <div class="grille-filtres">
+    <!-- ===================== ANALYSE DES OBSERVATIONS ===================== -->
+    <section id="panneau-analyse" role="tabpanel" aria-labelledby="onglet-analyse" class="panneau" hidden>
+      <section class="carte" aria-labelledby="titre-saisie">
+        <h2 id="titre-saisie">Saisie d’une observation</h2>
         <div class="champ">
-          <label for="filtre-registre">Rechercher</label>
-          <input type="search" id="filtre-registre" placeholder="Mot-clé, identifiant (ex. O12, C4)…" autocomplete="off">
+          <label for="reference">Référence de l’observation</label>
+          <input type="text" id="reference" name="reference" placeholder="Ex. : OBS-2025-0147" autocomplete="off">
         </div>
         <div class="champ">
-          <label for="filtre-type">Type</label>
-          <select id="filtre-type">
-            <option value="">Toutes</option>
-            <option value="orale">Observations orales</option>
-            <option value="ecrite">Contributions écrites</option>
-            <option value="analysee">Déjà analysées par l’IA</option>
-            <option value="non-analysee">Pas encore analysées</option>
+          <label for="texte">Texte de l’observation <span class="compteur" id="compteur-texte">0 / 20 000</span></label>
+          <textarea id="texte" name="texte" rows="9" maxlength="20000" placeholder="Saisissez ou collez ici le texte de l’observation…"></textarea>
+          <p id="avertissement-modification" class="avertissement" hidden>
+            Le texte a été modifié : le tableau préparé correspond à l’exemple fictif, pas à ce nouveau texte.
+            Utilisez « Analyser avec l’IA » pour obtenir une analyse de ce texte.
+          </p>
+        </div>
+        <div class="boutons">
+          <button type="button" id="btn-ia" class="principal">✦ Analyser avec l’IA</button>
+          <button type="button" id="btn-exemple">Charger un exemple fictif</button>
+          <button type="button" id="btn-demo">Afficher la démonstration</button>
+          <button type="button" id="btn-effacer" class="doux">Effacer</button>
+        </div>
+      </section>
+
+      <section id="message" class="carte message" hidden role="alert"></section>
+
+      <section id="resultats" class="carte" hidden aria-labelledby="titre-resultats">
+        <div class="carte-entete">
+          <h2 id="titre-resultats">Résultat</h2>
+          <span id="bandeau-resultats" class="badge"></span>
+        </div>
+        <p class="note" id="note-resultats"></p>
+        <div class="tableau-conteneur">
+          <table>
+            <thead><tr><th scope="col">Rubrique</th><th scope="col">Contenu</th></tr></thead>
+            <tbody id="corps-tableau"></tbody>
+          </table>
+        </div>
+        <div class="boutons" id="actions-resultat">
+          <button type="button" id="btn-copier" class="petit">Copier le tableau</button>
+          <button type="button" id="btn-export-un" class="petit">Télécharger (CSV)</button>
+          <button type="button" id="btn-relancer" class="petit doux">Relancer l’analyse IA</button>
+        </div>
+      </section>
+
+      <section class="carte" aria-labelledby="titre-registre">
+        <div class="carte-entete">
+          <h2 id="titre-registre">Registre réel anonymisé (démonstration)</h2>
+          <span class="badge badge-neutre-clair" id="badge-avancement">0 analysée</span>
+        </div>
+        <div class="champ">
+          <label for="source-analyse">Observations à analyser</label>
+          <select id="source-analyse">
+            <option value="registre">Registre de démonstration (204 observations, déjà anonymisées)</option>
+            <option value="dossier">Mon dossier importé (version pseudonymisée ou anonymisée)</option>
           </select>
         </div>
-      </div>
-
-      <div class="champ">
-        <label for="liste-observations">Choisir une observation (<span id="nb-observations"></span>)</label>
-        <select id="liste-observations"></select>
-      </div>
-      <div id="detail-observation" hidden>
-        <p class="meta-observation"><strong id="detail-id"></strong> <span id="detail-meta"></span></p>
-        <p id="detail-objet" class="objet-observation"></p>
-        <div id="detail-texte" class="texte-observation"></div>
-        <div class="boutons">
-          <button type="button" id="btn-analyser-observation" class="principal">✦ Analyser cette observation avec l’IA</button>
-          <button type="button" id="btn-voir-analyse" hidden>Voir l’analyse enregistrée</button>
-          <button type="button" id="btn-charger-observation">Charger dans le formulaire</button>
+        <p class="note" id="note-source">Export anonymisé de façon irréversible (voir docs/RAPPORT_ANONYMISATION.md) : <span id="nb-observations-texte">204</span> observations du registre, servies localement.</p>
+        <div class="grille-filtres">
+          <div class="champ">
+            <label for="filtre-registre">Rechercher</label>
+            <input type="search" id="filtre-registre" placeholder="Mot-clé, identifiant (ex. O12, C4)…" autocomplete="off">
+          </div>
+          <div class="champ">
+            <label for="filtre-type">Type</label>
+            <select id="filtre-type">
+              <option value="">Toutes</option>
+              <option value="orale">Observations orales</option>
+              <option value="ecrite">Contributions écrites</option>
+              <option value="analysee">Déjà analysées par l’IA</option>
+              <option value="non-analysee">Pas encore analysées</option>
+            </select>
+          </div>
         </div>
-      </div>
-    </section>
+        <div class="champ">
+          <label for="liste-observations">Choisir une observation (<span id="nb-observations"></span>)</label>
+          <select id="liste-observations"></select>
+        </div>
+        <div id="detail-observation" hidden>
+          <p class="meta-observation"><strong id="detail-id"></strong> <span id="detail-meta"></span></p>
+          <p id="detail-objet" class="objet-observation"></p>
+          <div id="detail-texte" class="texte-observation"></div>
+          <div class="boutons">
+            <button type="button" id="btn-analyser-observation" class="principal">✦ Analyser cette observation avec l’IA</button>
+            <button type="button" id="btn-voir-analyse" hidden>Voir l’analyse enregistrée</button>
+            <button type="button" id="btn-charger-observation">Charger dans le formulaire</button>
+          </div>
+        </div>
+      </section>
 
-    <!-- Analyse en lot -->
-    <section class="carte" aria-labelledby="titre-lot">
-      <div class="carte-entete">
-        <h2 id="titre-lot">Gestion des analyses IA</h2>
-      </div>
-      <p class="note-normale">
-        Analysez tout le registre (ou la sélection filtrée) en une fois. Les analyses sont enregistrées dans ce navigateur :
-        une observation déjà analysée n’est pas renvoyée à l’IA, et vous pouvez interrompre puis reprendre à tout moment.
-      </p>
-      <div class="boutons">
-        <button type="button" id="btn-lot" class="principal">✦ Analyser les observations restantes</button>
-        <button type="button" id="btn-lot-stop" class="danger" hidden>■ Interrompre</button>
-        <button type="button" id="btn-synthese">✦ Synthèse globale par l’IA</button>
-        <button type="button" id="btn-export-csv">Exporter (CSV)</button>
-        <button type="button" id="btn-export-json">Exporter (JSON)</button>
-        <button type="button" id="btn-import-json" class="doux">Importer (JSON)</button>
-        <input type="file" id="fichier-import" accept="application/json,.json" hidden>
-        <button type="button" id="btn-vider" class="doux">Supprimer les analyses enregistrées</button>
-      </div>
-      <label class="case">
-        <input type="checkbox" id="lot-filtre">
-        Limiter l’analyse en lot aux observations affichées par le filtre du registre
-      </label>
+      <section class="carte" aria-labelledby="titre-lot">
+        <h2 id="titre-lot">Analyses IA en lot</h2>
+        <p class="note-normale">Les analyses sont enregistrées sur ce poste : une observation déjà analysée n’est pas renvoyée à l’IA ; vous pouvez interrompre puis reprendre.</p>
+        <div class="boutons">
+          <button type="button" id="btn-lot" class="principal">✦ Analyser les observations restantes</button>
+          <button type="button" id="btn-lot-stop" class="danger" hidden>■ Interrompre</button>
+          <button type="button" id="btn-synthese">✦ Synthèse globale par l’IA</button>
+          <button type="button" id="btn-export-csv">Exporter (CSV)</button>
+          <button type="button" id="btn-export-json">Exporter (JSON)</button>
+          <button type="button" id="btn-import-json" class="doux">Importer (JSON)</button>
+          <input type="file" id="fichier-import" accept="application/json,.json" hidden>
+          <button type="button" id="btn-vider" class="doux">Supprimer les analyses enregistrées</button>
+        </div>
+        <label class="case">
+          <input type="checkbox" id="lot-filtre">
+          Limiter l’analyse en lot aux observations affichées par le filtre
+        </label>
+        <div id="progression" class="progression" hidden>
+          <div class="progression-barre"><div id="progression-remplissage" class="remplissage"></div></div>
+          <p id="progression-texte" role="status"></p>
+        </div>
+        <div id="synthese-globale" class="synthese" hidden>
+          <div class="carte-entete">
+            <h3>Synthèse globale</h3>
+            <span class="badge badge-ia">IA — à vérifier par le commissaire enquêteur</span>
+          </div>
+          <div id="synthese-contenu"></div>
+          <div class="boutons"><button type="button" id="btn-copier-synthese" class="petit">Copier la synthèse</button></div>
+        </div>
+        <div class="tableau-conteneur" id="conteneur-lot" hidden>
+          <table class="tableau-lot">
+            <thead><tr><th scope="col">Réf.</th><th scope="col">Thèmes</th><th scope="col">Synthèse neutre</th><th scope="col"><span class="visuellement-cache">Action</span></th></tr></thead>
+            <tbody id="corps-lot"></tbody>
+          </table>
+        </div>
+      </section>
 
-      <div id="progression" class="progression" hidden>
-        <div class="progression-barre"><div id="progression-remplissage"></div></div>
-        <p id="progression-texte" role="status"></p>
-      </div>
-
-      <div id="synthese-globale" class="synthese" hidden>
+      <section class="carte" aria-labelledby="titre-themes">
         <div class="carte-entete">
-          <h3>Synthèse globale</h3>
-          <span class="badge badge-ia">IA — à vérifier par le commissaire enquêteur</span>
+          <h2 id="titre-themes">Aperçu des thèmes</h2>
+          <span class="badge badge-demo">Comptage local de mots-clés — sans IA</span>
         </div>
-        <div id="synthese-contenu"></div>
-        <div class="boutons">
-          <button type="button" id="btn-copier-synthese" class="petit">Copier la synthèse</button>
+        <p class="note">Simple comptage de mots-clés dans votre navigateur. Pour une analyse sémantique, utilisez « Synthèse globale par l’IA ».</p>
+        <div class="tableau-conteneur">
+          <table>
+            <thead><tr><th scope="col">Thème</th><th scope="col">Observations concernées</th><th scope="col">Mentions</th></tr></thead>
+            <tbody id="corps-themes"></tbody>
+          </table>
         </div>
-      </div>
-
-      <div class="tableau-conteneur" id="conteneur-lot" hidden>
-        <table class="tableau-lot">
-          <thead>
-            <tr>
-              <th scope="col">Réf.</th>
-              <th scope="col">Thèmes</th>
-              <th scope="col">Synthèse neutre</th>
-              <th scope="col"><span class="visuellement-cache">Action</span></th>
-            </tr>
-          </thead>
-          <tbody id="corps-lot"></tbody>
-        </table>
-      </div>
+      </section>
     </section>
 
-    <!-- Thèmes -->
-    <section class="carte" aria-labelledby="titre-themes">
-      <div class="carte-entete">
-        <h2 id="titre-themes">Aperçu des thèmes</h2>
-        <span class="badge badge-demo">Comptage local de mots-clés — sans IA</span>
-      </div>
-      <p class="note">Simple comptage de mots-clés réalisé dans votre navigateur sur les textes locaux. Ce n’est pas une analyse sémantique : utilisez « Synthèse globale par l’IA » pour cela.</p>
-      <div class="tableau-conteneur">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Thème</th>
-              <th scope="col">Observations concernées</th>
-              <th scope="col">Mentions</th>
-            </tr>
-          </thead>
-          <tbody id="corps-themes"></tbody>
-        </table>
-      </div>
+    <!-- ===================== EXPORT DES CONTRIBUTIONS ===================== -->
+    <section id="panneau-export" role="tabpanel" aria-labelledby="onglet-export" class="panneau" hidden>
+      <section class="carte" aria-labelledby="titre-export">
+        <h2 id="titre-export">Export des contributions</h2>
+        <p class="encadre-conseil" role="note"><strong>Le format CSV est le plus préconisé : il est pérenne, lisible par tous les tableurs, sans mise en forme parasite, et adapté à l'archivage et aux traitements ultérieurs.</strong></p>
+        <div class="grille-2">
+          <div class="champ">
+            <label for="export-source">Contenu à exporter</label>
+            <select id="export-source">
+              <option value="dossier-traite">Mon dossier — version traitée (pseudonymisée ou anonymisée)</option>
+              <option value="registre">Registre de démonstration (anonymisé)</option>
+              <option value="analyses-registre">Analyses IA — registre de démonstration</option>
+              <option value="analyses-dossier">Analyses IA — mon dossier</option>
+              <option value="dossier-original">Mon dossier — version ORIGINALE nominative (confirmation requise)</option>
+            </select>
+          </div>
+          <div class="champ">
+            <span class="libelle">Options</span>
+            <label class="case"><input type="checkbox" id="export-valides"> Uniquement les observations validées</label>
+            <label class="case"><input type="checkbox" id="export-auteur"> Inclure la colonne « auteur » (donnée nominative si non traitée)</label>
+          </div>
+        </div>
+        <p id="export-resume" class="note-normale" role="status"></p>
+        <div class="grille-formats">
+          <button type="button" class="carte-format preconise" data-format="csv"><strong>CSV — préconisé</strong><span>UTF-8 avec BOM, séparateur « ; ». Archivage, tableurs, traitements ultérieurs.</span></button>
+          <button type="button" class="carte-format" data-format="xlsx"><strong>XLSX</strong><span>Classeur Excel mis en forme (filtres, colonnes larges). Partage avec des services qui travaillent sous Excel.</span></button>
+          <button type="button" class="carte-format" data-format="json"><strong>JSON</strong><span>Échange entre logiciels, ré-import dans le kit, traitements automatisés.</span></button>
+          <button type="button" class="carte-format" data-format="txt"><strong>TXT — fichier unique</strong><span>Lecture ou impression : contributions numérotées selon leur référence.</span></button>
+          <button type="button" class="carte-format" data-format="txt-zip"><strong>TXT — un fichier par contribution</strong><span>Archive ZIP, un fichier texte par référence (pièces jointes, classement).</span></button>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============================ INSTALLATION ============================ -->
+    <section id="panneau-installation" role="tabpanel" aria-labelledby="onglet-installation" class="panneau" hidden>
+      <section class="carte" aria-labelledby="titre-diagnostic">
+        <div class="carte-entete">
+          <h2 id="titre-diagnostic">Diagnostic de votre ordinateur</h2>
+          <button type="button" class="petit" id="btn-tester-ollama">Tester Ollama</button>
+        </div>
+        <div id="diag-contenu" class="rapport"><p class="note-normale">Diagnostic non disponible.</p></div>
+      </section>
+      <section class="carte document" aria-labelledby="titre-guide-installation">
+        <div class="carte-entete">
+          <h2 id="titre-guide-installation">Guide d’installation</h2>
+          <div class="boutons-inline">
+            <button type="button" class="petit" data-imprimer="guide-installation">Imprimer / PDF</button>
+            <a class="bouton-lien petit" href="docs/GUIDE_INSTALLATION.html" target="_blank" rel="noopener">Version autonome (HTML)</a>
+          </div>
+        </div>
+        <nav class="sommaire" id="sommaire-installation" aria-label="Sommaire du guide d’installation"></nav>
+        <article id="guide-installation" class="contenu-guide"><p class="note-normale">Chargement du guide…</p></article>
+      </section>
+    </section>
+
+    <!-- ============================ GUIDE D’USAGE ============================ -->
+    <section id="panneau-guide" role="tabpanel" aria-labelledby="onglet-guide" class="panneau" hidden>
+      <section class="carte" aria-labelledby="titre-video">
+        <h2 id="titre-video">Vidéo de sensibilisation</h2>
+        <div id="zone-video">
+          <video id="video-sensibilisation" controls preload="metadata" width="960" hidden>
+            <source src="docs/video/video-sensibilisation.mp4" type="video/mp4">
+            <track kind="subtitles" src="docs/video/video-sensibilisation.fr.vtt" srclang="fr" label="Français" default>
+          </video>
+          <p id="video-absente" class="encadre-alerte" hidden>
+            La vidéo n’est pas incluse dans cette version du kit (fichier attendu : <code>docs/video/video-sensibilisation.mp4</code>).
+            Sa transcription complète est disponible ci-dessous.
+          </p>
+        </div>
+        <details>
+          <summary>Transcription texte de la vidéo</summary>
+          <article id="transcription-video" class="contenu-guide"></article>
+        </details>
+      </section>
+      <section class="carte document" aria-labelledby="titre-guide-usage">
+        <div class="carte-entete">
+          <h2 id="titre-guide-usage">Guide d’usage : pseudonymisation et anonymisation</h2>
+          <div class="boutons-inline">
+            <button type="button" class="petit" data-imprimer="guide-usage">Imprimer / PDF</button>
+            <a class="bouton-lien petit" href="docs/GUIDE_USAGE_ANONYMISATION.html" target="_blank" rel="noopener">Version autonome (HTML)</a>
+          </div>
+        </div>
+        <nav class="sommaire" id="sommaire-usage" aria-label="Sommaire du guide d’usage"></nav>
+        <article id="guide-usage" class="contenu-guide"><p class="note-normale">Chargement du guide…</p></article>
+      </section>
     </section>
   </main>
+
+  <dialog id="dialogue" aria-labelledby="dialogue-titre">
+    <form method="dialog" id="dialogue-formulaire">
+      <h2 id="dialogue-titre"></h2>
+      <div id="dialogue-corps"></div>
+      <div class="boutons" id="dialogue-boutons"></div>
+    </form>
+  </dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
   <footer class="pied">
-    <p>Prototype — les données du registre sont anonymisées de façon irréversible. Les analyses IA sont des aides : le commissaire enquêteur en reste pleinement responsable.</p>
+    <p>Kit local — aucune télémétrie, aucun cookie de suivi. Les analyses IA sont des aides : le commissaire enquêteur en reste pleinement responsable.</p>
   </footer>
 
-  <script src="donnees/observations.js"></script>
+  <script src="js/version.js"></script>
+  <script src="js/markdown.js"></script>
+  <script src="js/formats.js"></script>
+  <script src="js/chiffrement.js"></script>
+  <script src="js/anonymisation.js"></script>
+  <script src="registre/observations.js"></script>
   <script src="app.js"></script>
+  <script src="js/kit.js"></script>
 </body>
 </html>
