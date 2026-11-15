@@ -12,12 +12,23 @@ Application web en français pour préparer l’analyse des observations d’une
 - `outils/anonymiser.py` — anonymisation irréversible (jetons aléatoires, noms masqués)
 - `docs/RAPPORT_ANONYMISATION.md` — rapport d’audit d’anonymisation
 
+## Nouveautés (version 2)
+
+- **Analyse IA disponible partout**, y compris sur GitHub Pages : bouton « ⚙ Paramètres IA » → coller sa clé API Mistral → « Enregistrer et tester ». La clé reste dans le navigateur (mémorisation facultative) et n’est envoyée qu’à `api.mistral.ai`. Si le serveur local est lancé, il est utilisé en priorité.
+- **Boutons IA corrigés** : ils ne sont plus désactivés sans explication ; sans clé, ils ouvrent les paramètres. Messages d’erreur clairs (clé invalide, quota, modèle introuvable…), nouvel essai automatique en cas de limite de requêtes (HTTP 429).
+- **Gestion des analyses IA** : analyse d’une observation du registre en un clic, analyse **en lot** de tout le registre (ou de la sélection filtrée) avec barre de progression, interruption et reprise ; analyses enregistrées dans le navigateur ; export CSV (compatible Excel) / JSON, import JSON, suppression.
+- **Synthèse globale par l’IA** (thèmes, questions prioritaires au maître d’ouvrage, points de vigilance) à partir des analyses individuelles.
+- Nouvelle rubrique **Position** (favorable / défavorable / réservé / non exprimée).
+- Registre : recherche plein texte et filtres (oral / écrit / analysé / non analysé).
+- **Données corrigées** : l’ancienne anonymisation supprimait le « m » initial de tous les mots (« mais » → « ais », « maire » → « aire », « Mirepoix » → « irepoix »), ce qui faussait aussi le masquage des fonctions. `outils/anonymiser.py` est corrigé (avec contrôle automatique de non-régression) et `donnees/observations.js` régénéré.
+- Comptage des thèmes plus juste (mots-clés cherchés en début de mot), mode sombre, version mobile, accessibilité.
+
 ## Lancer sans IA (100 % local, aucune clé, aucune connexion)
 
 1. Ouvrir `index.html` directement dans un navigateur, ou
 2. `python3 -m http.server 8000` dans ce dossier, puis <http://localhost:8000>.
 
-Fonctionnalités disponibles : exemple fictif + tableau préparé (« Démonstration — aucune analyse par IA effectuée »), registre anonymisé consultable (204 observations), aperçu des thèmes (comptage local de mots-clés). Le bouton « Analyser avec l’IA » est alors désactivé avec une explication.
+Fonctionnalités disponibles : exemple fictif + tableau préparé (« Démonstration — aucune analyse par IA effectuée »), registre anonymisé consultable (204 observations), aperçu des thèmes (comptage local de mots-clés). Pour l’analyse IA sans serveur, renseignez votre clé dans « ⚙ Paramètres IA ».
 
 ## Lancer avec l’analyse IA (clé côté serveur)
 
@@ -26,7 +37,7 @@ MISTRAL_API_KEY=<votre clé> node serveur/server.js
 # puis ouvrir http://localhost:3000
 ```
 
-- Le serveur sert l’app sur `127.0.0.1:3000` et expose `POST /api/analyse`.
+- Le serveur sert l’app sur `127.0.0.1:3000` et expose `POST /api/analyse` et `POST /api/synthese` (même prompt que le mode navigateur, défini dans `app.js`).
 - La clé `MISTRAL_API_KEY` n’est lue que côté serveur (variable d’environnement ou fichier `serveur/.env`, ignoré par git) et **n’est jamais envoyée au navigateur**.
 - Modèle : `mistral-small-latest` (modifiable via `MISTRAL_MODELE`).
 - Le prompt demande un JSON strict avec les mêmes rubriques que le tableau de démonstration : référence, thèmes, synthèse neutre, demandes explicites, questions au maître d’ouvrage, points à vérifier. Le bandeau « à vérifier par le commissaire enquêteur » s’affiche avec chaque résultat IA.
@@ -61,7 +72,7 @@ Fichier autonome pour test sans serveur : `python3 outils/assembler_page_unique.
 ## Déploiement GitHub Pages (hébergement statique)
 
 Settings → Pages → « Deploy from a branch » → branche `main`, dossier `/analyse-observations`.
-URL : https://<owner>.github.io/<repo>/analyse-observations/ — l’app y fonctionne **sans IA** (bouton désactivé proprement), car une page statique ne peut pas détenir de clé API.
+URL : https://<owner>.github.io/<repo>/analyse-observations/ — l’analyse IA y fonctionne avec la clé Mistral de chaque utilisateur, saisie dans « ⚙ Paramètres IA » (aucune clé n’est publiée dans le dépôt).
 
 ## Tests effectués
 

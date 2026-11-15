@@ -21,7 +21,18 @@ from pathlib import Path
 
 RE_TOKEN_PERSONNE = re.compile(r"\[PERSONNE[^\]]*\]")
 RE_CIVILITE_PRENOM = re.compile(r"(?i)\b(?:Mme|Madame|Monsieur|Mr|M)\.\s+\[PERSONNE\]\s+([A-ZÀ-Þ][A-Za-zÀ-Þ-]{2,})")
-RE_CIVILITE = re.compile(r"(?i)\b(?:Mme|Madame|Monsieur|Mr|M)\.?[\s,;:!?]*")
+# Civilités. ATTENTION : « M » seul n'est une civilité que s'il est en MAJUSCULE et suivi
+# d'un point (« M. ») ou d'un espace puis d'une majuscule/balise (« M [PERSONNE] »).
+# L'ancienne version (insensible à la casse, « M » sans point) supprimait le « m »
+# initial de TOUS les mots (« mais » -> « ais », « maire » -> « aire »…).
+RE_CIVILITE = re.compile(
+    r"(?:\b(?i:madame|mesdames|monsieur|messieurs|mademoiselle)\b"
+    r"|\b(?:Mmes|Mme|Mlle|MM|Mr)\b\.?"
+    r"|\bM\.(?=\s)"
+    r"|\bM\b(?=\s+[\[A-ZÀ-Þ]))[\s,;:!?]*"
+)
+# Mots tronqués typiques d'une suppression abusive du « m » initial (contrôle de non-régression).
+TRONCATURES_M = ("ais", "oins", "ieux", "ettre", "ême", "aisons", "esures", "onde")
 RE_APRES_PERSONNE = re.compile(r"(\[PERSONNE\])\s+([A-ZÀ-Þ][A-Za-zÀ-Þ-]{2,})")
 RE_FONCTION = re.compile(
     r"(?i)\b(?:le\s+)?maire de [A-ZÀ-Þ][A-Za-zÀ-Þ-]+(?:\s+de\s+[A-ZÀ-Þ][A-Za-zÀ-Þ-]+)*"
@@ -154,6 +165,9 @@ def verifier(donnees):
         problemes.append("société (SASU) restante")
     if re.search(r"(?i)\b(?:Mme|Madame|Monsieur|Mr)\b|\bM\.(?=\s)", tout):
         problemes.append("civilité restante")
+    tronques = [mot for mot in TRONCATURES_M if re.search(r"(?<![\w'])" + mot + r"\b", tout)]
+    if len(tronques) >= 3:
+        problemes.append("texte altéré (m initial supprimé ?) : " + ", ".join(tronques))
     if re.search(r"(?i)\[lieu-dit\]|\[courriel", tout):
         problemes.append("placeholder adresse/courriel non normalisé")
     if RE_EMAIL.search(tout):

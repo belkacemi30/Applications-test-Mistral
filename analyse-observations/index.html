@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <title>Analyse des observations — Enquête publique « Pas de Mirepoix »</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
   <header class="entete">
     <div class="entete-interieur">
       <div class="entete-texte">
@@ -14,11 +16,55 @@
         <h1>Analyse des observations</h1>
         <p class="sous-titre">Projet agrivoltaïque du Pas de Mirepoix — Saint-Julien-de-Briola (Aude)</p>
       </div>
-      <span class="badge badge-neutre" id="badge-ia">IA : vérification…</span>
+      <div class="entete-actions">
+        <span class="badge badge-neutre" id="badge-ia" role="status">IA : vérification…</span>
+        <button type="button" id="btn-parametres" class="bouton-entete" aria-controls="parametres-ia" aria-expanded="false">⚙ Paramètres IA</button>
+      </div>
     </div>
   </header>
 
-  <main>
+  <main id="contenu">
+    <!-- Paramètres IA -->
+    <section class="carte" id="parametres-ia" hidden aria-labelledby="titre-parametres">
+      <div class="carte-entete">
+        <h2 id="titre-parametres">Paramètres de l’analyse IA (Mistral)</h2>
+        <button type="button" class="doux petit" id="btn-fermer-parametres">Fermer</button>
+      </div>
+      <p class="note-normale" id="etat-serveur"></p>
+      <div class="grille-2">
+        <div class="champ">
+          <label for="cle-api">Clé API Mistral</label>
+          <div class="champ-groupe">
+            <input type="password" id="cle-api" autocomplete="off" spellcheck="false" placeholder="Collez votre clé (console.mistral.ai → API Keys)">
+            <button type="button" class="doux petit" id="btn-voir-cle" aria-pressed="false">Afficher</button>
+          </div>
+        </div>
+        <div class="champ">
+          <label for="modele">Modèle</label>
+          <select id="modele">
+            <option value="mistral-small-latest">mistral-small-latest (rapide, économique)</option>
+            <option value="mistral-medium-latest">mistral-medium-latest (équilibré)</option>
+            <option value="mistral-large-latest">mistral-large-latest (le plus précis)</option>
+          </select>
+        </div>
+      </div>
+      <label class="case">
+        <input type="checkbox" id="memoriser-cle">
+        Mémoriser la clé sur cet appareil (sinon elle est oubliée à la fermeture de l’onglet)
+      </label>
+      <div class="boutons">
+        <button type="button" id="btn-enregistrer-cle" class="principal">Enregistrer et tester</button>
+        <button type="button" id="btn-oublier-cle" class="doux">Oublier la clé</button>
+      </div>
+      <p id="retour-parametres" class="retour" hidden role="status"></p>
+      <p class="aide">
+        La clé reste dans votre navigateur et n’est envoyée qu’à <code>api.mistral.ai</code>, uniquement lors d’une analyse.
+        Seul le texte de l’observation (déjà anonymisé pour le registre) est transmis. Si le serveur local
+        (<code>node serveur/server.js</code>) est lancé avec <code>MISTRAL_API_KEY</code>, il est utilisé en priorité et aucune clé n’est nécessaire ici.
+      </p>
+    </section>
+
+    <!-- Saisie -->
     <section class="carte" aria-labelledby="titre-saisie">
       <h2 id="titre-saisie">Saisie de l’observation</h2>
 
@@ -28,28 +74,27 @@
       </div>
 
       <div class="champ">
-        <label for="texte">Texte de l’observation</label>
-        <textarea id="texte" name="texte" rows="10" placeholder="Saisissez ou collez ici le texte de l’observation…"></textarea>
+        <label for="texte">Texte de l’observation <span class="compteur" id="compteur-texte">0 / 20 000</span></label>
+        <textarea id="texte" name="texte" rows="10" maxlength="20000" placeholder="Saisissez ou collez ici le texte de l’observation…"></textarea>
         <p id="avertissement-modification" class="avertissement" hidden>
-          Le texte a été modifié : le tableau préparé affiché correspond à l’exemple fictif, pas à ce nouveau texte. La démonstration n’effectue aucune analyse par IA — utilisez « Analyser avec l’IA » pour un vrai texte.
+          Le texte a été modifié : le tableau préparé correspond à l’exemple fictif, pas à ce nouveau texte.
+          Utilisez « Analyser avec l’IA » pour obtenir une analyse de ce texte.
         </p>
       </div>
 
       <div class="boutons">
+        <button type="button" id="btn-ia" class="principal">✦ Analyser avec l’IA</button>
         <button type="button" id="btn-exemple">Charger un exemple fictif</button>
         <button type="button" id="btn-demo">Afficher la démonstration</button>
-        <button type="button" id="btn-ia" class="principal">Analyser avec l’IA</button>
         <button type="button" id="btn-effacer" class="doux">Effacer</button>
       </div>
-      <p class="aide" id="aide-ia" hidden>
-        L’analyse IA passe par un petit serveur local (<code>node serveur/server.js</code>) : la clé
-        <code>MISTRAL_API_KEY</code> reste côté serveur et n’est jamais envoyée au navigateur. Sur un hébergement
-        statique (GitHub Pages), seule la démonstration est disponible.
-      </p>
     </section>
 
+    <section id="message" class="carte message" hidden role="alert"></section>
+
+    <!-- Résultat -->
     <section id="resultats" class="carte" hidden aria-labelledby="titre-resultats">
-      <div class="resultats-entete">
+      <div class="carte-entete">
         <h2 id="titre-resultats">Résultat</h2>
         <span id="bandeau-resultats" class="badge"></span>
       </div>
@@ -65,16 +110,40 @@
           <tbody id="corps-tableau"></tbody>
         </table>
       </div>
+      <div class="boutons" id="actions-resultat">
+        <button type="button" id="btn-copier" class="petit">Copier le tableau</button>
+        <button type="button" id="btn-export-un" class="petit">Télécharger (CSV)</button>
+        <button type="button" id="btn-relancer" class="petit doux">Relancer l’analyse IA</button>
+      </div>
     </section>
 
-    <section id="message" class="carte message" hidden role="status"></section>
-
+    <!-- Registre -->
     <section class="carte" aria-labelledby="titre-registre">
-      <h2 id="titre-registre">Registre réel anonymisé</h2>
-      <p class="badge badge-demo">Démonstration — aucune analyse par IA effectuée</p>
-      <p class="note">Export anonymisé de façon irréversible (voir <code>docs/RAPPORT_ANONYMISATION.md</code>) : 204 observations du registre, servies localement. Rien n’est envoyé sur le réseau par la page.</p>
+      <div class="carte-entete">
+        <h2 id="titre-registre">Registre réel anonymisé</h2>
+        <span class="badge badge-neutre-clair" id="badge-avancement">0 analysée</span>
+      </div>
+      <p class="note">Export anonymisé de façon irréversible (voir <code>docs/RAPPORT_ANONYMISATION.md</code>) : <span id="nb-observations-texte">204</span> observations du registre, servies localement.</p>
+
+      <div class="grille-filtres">
+        <div class="champ">
+          <label for="filtre-registre">Rechercher</label>
+          <input type="search" id="filtre-registre" placeholder="Mot-clé, identifiant (ex. O12, C4)…" autocomplete="off">
+        </div>
+        <div class="champ">
+          <label for="filtre-type">Type</label>
+          <select id="filtre-type">
+            <option value="">Toutes</option>
+            <option value="orale">Observations orales</option>
+            <option value="ecrite">Contributions écrites</option>
+            <option value="analysee">Déjà analysées par l’IA</option>
+            <option value="non-analysee">Pas encore analysées</option>
+          </select>
+        </div>
+      </div>
+
       <div class="champ">
-        <label for="liste-observations">Choisir une observation (<span id="nb-observations"></span> au total)</label>
+        <label for="liste-observations">Choisir une observation (<span id="nb-observations"></span>)</label>
         <select id="liste-observations"></select>
       </div>
       <div id="detail-observation" hidden>
@@ -82,15 +151,75 @@
         <p id="detail-objet" class="objet-observation"></p>
         <div id="detail-texte" class="texte-observation"></div>
         <div class="boutons">
-          <button type="button" id="btn-charger-observation" class="principal">Charger cette observation dans le formulaire</button>
+          <button type="button" id="btn-analyser-observation" class="principal">✦ Analyser cette observation avec l’IA</button>
+          <button type="button" id="btn-voir-analyse" hidden>Voir l’analyse enregistrée</button>
+          <button type="button" id="btn-charger-observation">Charger dans le formulaire</button>
         </div>
       </div>
     </section>
 
+    <!-- Analyse en lot -->
+    <section class="carte" aria-labelledby="titre-lot">
+      <div class="carte-entete">
+        <h2 id="titre-lot">Gestion des analyses IA</h2>
+      </div>
+      <p class="note-normale">
+        Analysez tout le registre (ou la sélection filtrée) en une fois. Les analyses sont enregistrées dans ce navigateur :
+        une observation déjà analysée n’est pas renvoyée à l’IA, et vous pouvez interrompre puis reprendre à tout moment.
+      </p>
+      <div class="boutons">
+        <button type="button" id="btn-lot" class="principal">✦ Analyser les observations restantes</button>
+        <button type="button" id="btn-lot-stop" class="danger" hidden>■ Interrompre</button>
+        <button type="button" id="btn-synthese">✦ Synthèse globale par l’IA</button>
+        <button type="button" id="btn-export-csv">Exporter (CSV)</button>
+        <button type="button" id="btn-export-json">Exporter (JSON)</button>
+        <button type="button" id="btn-import-json" class="doux">Importer (JSON)</button>
+        <input type="file" id="fichier-import" accept="application/json,.json" hidden>
+        <button type="button" id="btn-vider" class="doux">Supprimer les analyses enregistrées</button>
+      </div>
+      <label class="case">
+        <input type="checkbox" id="lot-filtre">
+        Limiter l’analyse en lot aux observations affichées par le filtre du registre
+      </label>
+
+      <div id="progression" class="progression" hidden>
+        <div class="progression-barre"><div id="progression-remplissage"></div></div>
+        <p id="progression-texte" role="status"></p>
+      </div>
+
+      <div id="synthese-globale" class="synthese" hidden>
+        <div class="carte-entete">
+          <h3>Synthèse globale</h3>
+          <span class="badge badge-ia">IA — à vérifier par le commissaire enquêteur</span>
+        </div>
+        <div id="synthese-contenu"></div>
+        <div class="boutons">
+          <button type="button" id="btn-copier-synthese" class="petit">Copier la synthèse</button>
+        </div>
+      </div>
+
+      <div class="tableau-conteneur" id="conteneur-lot" hidden>
+        <table class="tableau-lot">
+          <thead>
+            <tr>
+              <th scope="col">Réf.</th>
+              <th scope="col">Thèmes</th>
+              <th scope="col">Synthèse neutre</th>
+              <th scope="col"><span class="visuellement-cache">Action</span></th>
+            </tr>
+          </thead>
+          <tbody id="corps-lot"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Thèmes -->
     <section class="carte" aria-labelledby="titre-themes">
-      <h2 id="titre-themes">Aperçu des thèmes</h2>
-      <p class="badge badge-demo">Comptage local de mots-clés — aucune analyse par IA effectuée</p>
-      <p class="note">Simple comptage de mots-clés réalisé dans votre navigateur sur les textes locaux. Ce n’est pas une analyse sémantique.</p>
+      <div class="carte-entete">
+        <h2 id="titre-themes">Aperçu des thèmes</h2>
+        <span class="badge badge-demo">Comptage local de mots-clés — sans IA</span>
+      </div>
+      <p class="note">Simple comptage de mots-clés réalisé dans votre navigateur sur les textes locaux. Ce n’est pas une analyse sémantique : utilisez « Synthèse globale par l’IA » pour cela.</p>
       <div class="tableau-conteneur">
         <table>
           <thead>
@@ -106,8 +235,10 @@
     </section>
   </main>
 
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
   <footer class="pied">
-    <p>Prototype local — les données du registre sont anonymisées de façon irréversible ; aucune donnée n’est enregistrée par la page.</p>
+    <p>Prototype — les données du registre sont anonymisées de façon irréversible. Les analyses IA sont des aides : le commissaire enquêteur en reste pleinement responsable.</p>
   </footer>
 
   <script src="donnees/observations.js"></script>
